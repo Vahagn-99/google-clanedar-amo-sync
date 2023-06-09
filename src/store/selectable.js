@@ -41,29 +41,24 @@ const selectable = {
             const calendars = resposne.data.data
             commit("setCalendars", calendars);
         },
-        getFields: async ({ commit }, apiClientId) => {
-            const resposne = await apiClient.get(`/amo-crm/${apiClientId}/fields`);
+        getFields: async ({ commit }, subdomainId) => {
+            const resposne = await apiClient.get(`/subdomain/${subdomainId}/fields`);
             const fields = resposne.data.data
             commit("setFields", fields);
         },
-        getAllFields: async ({ commit }, apiClientId) => {
-            const resposne = await apiClient.get(`/amo-crm/${apiClientId}/all-fields`);
-            const fields = resposne.data.data
-            commit("setAllFields", fields);
-        },
-        getStatuses: async ({ commit }, apiClientId) => {
-            const resposne = await apiClient.get(`/amo-crm/${apiClientId}/statuses`);
+        getStatuses: async ({ commit }, subdomainId) => {
+            const resposne = await apiClient.get(`/subdomain/${subdomainId}/statuses`);
             const statuses = resposne.data.data
             commit("setStatuses", statuses);
         },
-        getSelects: async ({ commit }, apiClientId) => {
-            const resposne = await apiClient.get(`/amo-crm/${apiClientId}/select-fields`);
+        getSelects: async ({ commit }, subdomainId) => {
+            const resposne = await apiClient.get(`/subdomain/${subdomainId}/selects`);
             const selects = resposne.data.data
             commit("setSelects", selects);
         },
 
-        getMarkers: async ({ commit }, apiClientId) => {
-            const resposne = await apiClient.get(`/amo-crm/${apiClientId}/markers`);
+        getMarkers: async ({ commit }, subdomainId) => {
+            const resposne = await apiClient.get(`/subdomain/${subdomainId}/markers`);
             const markers = resposne.data.data
             commit("setMarkers", markers);
         },

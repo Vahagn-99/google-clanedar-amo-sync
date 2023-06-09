@@ -190,7 +190,6 @@
     <Drawer
       v-if="showDrawer"
       :account="currentAccount"
-      :client="apiClient"
       @close-drawer="hideSettings"
     />
   </section>
@@ -203,7 +202,7 @@ import { useSelect } from "../compostions/useSelect";
 import Drawer from "./Drawer.vue";
 import { oauthModal } from "../helpers/helpers";
 
-const { accounts, getAccounts, apiClient, deleteAccount } = useAccount();
+const { accounts, getAccounts, subdomainId, deleteAccount } = useAccount();
 const { getSettings } = useSettings();
 const { getStatuses, getFields, getSelects, getCalendars } = useSelect();
 
@@ -225,7 +224,7 @@ function hideSettings() {
 }
 
 async function handleGoogleAuth() {
-  oauthModal(`${window.Host}google-auth/${apiClient.value}`);
+  oauthModal(`${window.Host}google-auth/${subdomainId.value}`);
   await getAccounts();
 }
 
@@ -234,10 +233,8 @@ async function handleDeleteAccount(account) {
 }
 
 onMounted(async () => {
-  await getStatuses(apiClient.value);
-  await getFields(apiClient.value);
-  await getSelects(apiClient.value);
+  await getStatuses(subdomainId.value);
+  await getFields(subdomainId.value);
+  await getSelects(subdomainId.value);
 });
 </script>
-
- 

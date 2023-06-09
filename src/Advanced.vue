@@ -126,7 +126,7 @@
               </template>
               <template #content>Виджет установлень</template>
             </InfoCard>
-            <InfoCard :value="isAmoRegistred" @click="handleAmoAuth">
+            <InfoCard :value="isRegistred" @click="handleAmoAuth">
               <template #title> Авторизация </template>
               <template #trueValue>
                 <svg
@@ -156,7 +156,7 @@
                   />
                 </svg>
               </template>
-              <template v-if="isAmoRegistred" #content
+              <template v-if="isRegistred" #content
                 >Данные успешно сохранены</template
               >
               <template v-else #content>Каснитес для авторизации</template>
@@ -182,9 +182,9 @@ import WidgetSettings from "./components/WidgetSettings.vue";
 import WidgetShablon from "./components/WidgetShablon.vue";
 import { ref } from "vue";
 import { oauthModal } from "./helpers/helpers";
-import { useClient } from "./compostions/useClient";
+import { useSubdomain } from "./compostions/useSubdomain";
 
-const { apiClient, isAmoRegistred } = useClient();
+const { subdomainId, isRegistred } = useSubdomain();
 
 const currentNav = ref("info");
 const widgetStatusActive = ref(true);
@@ -195,7 +195,7 @@ function showNav(is) {
   return currentNav.value === is;
 }
 function handleAmoAuth() {
-  oauthModal(`${window.Host}amo-auth/${apiClient.value}`);
+  oauthModal(`${window.Host}amo-auth/${subdomainId.value}`);
 }
 </script>
 

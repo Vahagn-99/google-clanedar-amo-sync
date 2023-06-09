@@ -12,15 +12,15 @@ const account = {
         setAccounts: (state, accounts) => state.accounts = accounts,
     },
     actions: {
-        get: async ({ commit }, apiClientId) => {
-            const resposne = await apiClient.get(`/${apiClientId}/accounts`);
+        get: async ({ commit }, subdomainId) => {
+            const resposne = await apiClient.get(`/${subdomainId}/accounts`);
             const accounts = resposne.data.data
             commit("setAccounts", accounts);
         },
         destroy: async ({ dispatch }, account) => {
-            const { client_id, id } = account;
-            await apiClient.delete(`/${client_id}/accounts/${id}`);
-            await dispatch("get", client_id);
+            const { subdomain_id, id } = account;
+            await apiClient.delete(`/${subdomain_id}/accounts/${id}`);
+            await dispatch("get", subdomain_id);
         }
     },
 }

@@ -68,7 +68,7 @@ import { useAccount } from "../compostions/useAccount";
 import { onMounted, ref } from "vue";
 
 const { markers, getMarkers } = useSelect();
-const { apiClient } = useAccount();
+const { subdomainId } = useAccount();
 const context = ref("");
 const copied = ref(false);
 
@@ -88,7 +88,7 @@ function copyTemplate() {
     });
 }
 
-onMounted(async () => await getMarkers(apiClient.value));
+onMounted(async () => await getMarkers(subdomainId.value));
 </script>
 
  

@@ -226,9 +226,9 @@ const { settings, saveSettings } = useSettings();
 const { fields, statuses, calendars, selects } = useSelect();
 
 const drawerInstance = ref(null); // Create a ref for the drawer instance
+
 const props = defineProps({
   account: Number,
-  client: Number,
 });
 
 const emit = defineEmits(["close-drawer"]);
