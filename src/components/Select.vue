@@ -21,7 +21,7 @@
 </template>
 
 <script setup>
-import { computed, reactive, ref } from "vue";
+import {  ref } from "vue";
 
 const props = defineProps({
   label: {

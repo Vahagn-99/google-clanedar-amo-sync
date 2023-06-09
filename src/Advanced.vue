@@ -1,9 +1,9 @@
 <template>
-  <div class=" h-screen">
-    <nav class=" bg-white  border-gray-200  dark:bg-gray-900">
-      <div class=" px-4  py-3  mx-auto">
-        <div class=" flex  items-center">
-          <ul class=" flex  flex-row  font-medium  mt-0  mr-6  space-x-8  text-sm">
+  <div class="h-screen">
+    <nav class="bg-white border-gray-200 dark:bg-gray-900">
+      <div class="px-4 py-3 mx-auto">
+        <div class="flex items-center">
+          <ul class="flex flex-row font-medium mt-0 mr-6 space-x-8 text-sm">
             <li @click="switchNav('info')">
               <a
                 href="#"
@@ -116,7 +116,7 @@
               </template>
               <template #content>Виджет установлень</template>
             </InfoCard>
-            <InfoCard :value="isAmoRegistred" @click="handleAmoAuth">
+            <InfoCard :value="isRegistred" @click="handleAmoAuth">
               <template #title> Авторизация </template>
               <template #trueValue>
                 <svg
@@ -146,7 +146,7 @@
                   />
                 </svg>
               </template>
-              <template v-if="isAmoRegistred" #content
+              <template v-if="isRegistred" #content
                 >Данные успешно сохранены</template
               >
               <template v-else #content>Каснитес для авторизации</template>
@@ -172,9 +172,9 @@ import WidgetSettings from "./components/WidgetSettings.vue";
 import WidgetShablon from "./components/WidgetShablon.vue";
 import { ref } from "vue";
 import { oauthModal } from "./helpers/helpers";
-import { useClient } from "./compostions/useClient";
+import { useSubdomain } from "./compostions/useSubdomain";
 
-const { apiClient, isAmoRegistred } = useClient();
+const { subdomainId, isRegistred, checkIsRegistred } = useSubdomain();
 
 const currentNav = ref("info");
 const widgetStatusActive = ref(true);
@@ -184,8 +184,9 @@ function switchNav(next) {
 function showNav(is) {
   return currentNav.value === is;
 }
-function handleAmoAuth() {
-  oauthModal(`${window.Host}amo-auth/${apiClient.value}`);
+
+async function handleAmoAuth() {
+  oauthModal(`${window.Host}amo-auth/${subdomainId.value}`);
+  await checkIsRegistred();
 }
 </script>
-

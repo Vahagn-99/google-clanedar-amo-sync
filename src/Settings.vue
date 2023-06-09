@@ -1,18 +1,18 @@
 <template>
-  <WindgetContainer>
+  <WindgetContainer v-if="isRegistred">
     <template v-slot:title>
-      <h2 class=" text-slate-900  text-2xl">
+      <h2 class="text-slate-900 text-2xl">
         Сервиси Google Календаря под ваших нужд!
       </h2>
     </template>
     <div>
       <button
         type="button"
-        @click="asyncClient"
-        class=" my-2  text-white  bg-[#4285F4]  hover:bg-[#4285F4]/90  focus:ring-4  focus:outline-none  focus:ring-[#4285F4]/50  font-medium  rounded-lg  text-sm  px-5  py-2.5  text-center  inline-flex  items-center dark:focus:ring-[#4285F4]/55  mr-2  mb-2"
+        @click="asyncSubdomain"
+        class="my-2 text-white bg-[#4285F4] hover:bg-[#4285F4]/90 focus:ring-4 focus:outline-none focus:ring-[#4285F4]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#4285F4]/55 mr-2 mb-2"
       >
         <svg
-          class=" w-4  h-4  mr-2  -ml-1"
+          class="w-4 h-4 mr-2 -ml-1"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
         >
@@ -27,10 +27,10 @@
       <button
         type="button"
         @click="goToAdvancedSettings"
-        class=" my-2  text-white  bg-[#4285F4]  hover:bg-[#4285F4]/90  focus:ring-4  focus:outline-none  focus:ring-[#4285F4]/50  font-medium  rounded-lg  text-sm  px-5  py-2.5  text-center  inline-flex  items-center dark:focus:ring-[#4285F4]/55  mr-2  mb-2"
+        class="my-2 text-white bg-[#4285F4] hover:bg-[#4285F4]/90 focus:ring-4 focus:outline-none focus:ring-[#4285F4]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#4285F4]/55 mr-2 mb-2"
       >
         <svg
-          class=" w-4  h-4  mr-2  -ml-1"
+          class="w-4 h-4 mr-2 -ml-1"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
         >
@@ -47,13 +47,11 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
 import WindgetContainer from "./components/WidgetContainer.vue";
-import { useClient } from "./compostions/useClient";
+import { useSubdomain } from "./compostions/useSubdomain";
 import { goTo } from "./helpers/helpers";
 
-const { asyncClient } = useClient();
-const widgetInstalled = ref(false);
+const { asyncSubdomain, isRegistred } = useSubdomain();
 const goToAdvancedSettings = () => {
   goTo("/");
 };
