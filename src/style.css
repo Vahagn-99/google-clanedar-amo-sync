@@ -1,10 +1,18 @@
-/* @tailwind base; */
+/*@tailwind base;*/
 @tailwind components;
 @tailwind utilities;
 
+*,
+::before,
+::after {
+    box-sizing: border-box; /* 1 */
+    border-width: 0; /* 2 */
+    border-style: solid; /* 2 */
+}
+
 /* width */
 .custom-scroll::-webkit-scrollbar {
-    width: 6px;
+    width: 8px;
 }
 
 /* Track */
@@ -14,15 +22,107 @@
 
 /* Handle */
 .custom-scroll::-webkit-scrollbar-thumb {
-    background: #4285f47a;
-    border-radius: 5px;
+    background: rgba(91, 113, 147, 0.59);
+    border-radius: 6.5px;
 }
 
 /* Handle on hover */
 .custom-scroll::-webkit-scrollbar-thumb:hover {
-    background: #4285f47a;
+    background: rgba(91, 113, 147, 0.59);
 }
 
 select:disabled{
     opacity: 0.2;
+}
+
+.dtc-button{
+    border: none;
+}
+
+.dtc-ul{
+    list-style: none;
+}
+
+.dtc-ul li a{
+    text-decoration: none;
+    color: inherit;
+    text-decoration: inherit;
+}
+
+.dtc-a{
+    text-decoration: none;
+    color: inherit;
+    text-decoration: inherit;
+}
+
+.dtc-p{
+   margin: 0;
+}
+
+.dtc-h5{
+    display: flex;
+    margin-bottom: 0.5rem;
+    color: #6B7280;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    white-space: nowrap;
+    align-items: center;
+}
+
+.dtc-html {
+    line-height: 1.5; /* 1 */
+    -webkit-text-size-adjust: 100%; /* 2 */
+    -moz-tab-size: 4; /* 3 */
+    tab-size: 4; /* 3 */
+    font-family: theme('fontFamily.sans', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"), serif; /* 4 */
+    font-feature-settings: theme('fontFamily.sans[1].fontFeatureSettings', normal); /* 5 */
+    font-variation-settings: theme('fontFamily.sans[1].fontVariationSettings', normal); /* 6 */
+}
+
+
+.dtc-body {
+    margin: 0; /* 1 */
+    line-height: inherit; /* 2 */
+}
+
+
+.dtc-table {
+    text-indent: 0; /* 1 */
+    border-color: inherit; /* 2 */
+    border-collapse: collapse; /* 3 */
+}
+
+
+.dtc-button,
+.dtc-select {
+    text-transform: none;
+}
+
+
+[type='search'] {
+    -webkit-appearance: textfield; /* 1 */
+    outline-offset: -2px; /* 2 */
+}
+
+
+/*ol,*/
+/*ul,*/
+/*menu {*/
+/*    list-style: none;*/
+/*    margin: 0;*/
+/*    padding: 0;*/
+/*}*/
+
+
+
+img,
+video {
+    max-width: 100%;
+    height: auto;
+}
+
+
+.dtc-active{
+    background-color: #e0edfe82;
+    border-radius: 8px;
 }

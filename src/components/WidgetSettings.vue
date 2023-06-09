@@ -1,9 +1,9 @@
 <template>
   <!-- Start block -->
-  <section class="bg-gray-50 dark:bg-gray-900 p-3 sm:p-5 antialiased">
+  <section class=" dark:bg-gray-900 p-3 sm:p-5 antialiased">
     <div class="mx-auto">
       <div
-        class="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden"
+        class="bg-white overflow-hidden"
       >
         <div
           class="flex flex-col md:flex-row md:items-center md:justify-between space-y-3 md:space-y-0 md:space-x-4 p-4"
@@ -37,7 +37,7 @@
                   id="simple-search"
                   placeholder="Search for products"
                   required=""
-                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                  class=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                 />
               </div>
             </form>
@@ -50,7 +50,7 @@
               type="button"
               id="createProductButton"
               data-modal-toggle="createProductModal"
-              class="flex items-center justify-center text-white bg-[#4c8bf7] hover:bg-[#5c8bf9] focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800"
+              class="dtc-button flex items-center justify-center text-white bg-[#4c8bf7] hover:bg-[#5c8bf9] focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800"
             >
               <svg
                 class="w-4 h-4 mr-2 -ml-1"
@@ -73,10 +73,10 @@
         </div>
         <div class="overflow-x-auto">
           <table
-            class="w-full text-sm text-left text-gray-500 dark:text-gray-400"
+            class="dtc-table w-full text-sm text-left text-gray-500 dark:text-gray-400"
           >
             <thead
-              class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
+              class="text-xs text-gray-700 uppercase  dark:bg-gray-700 dark:text-gray-400"
             ></thead>
             <tbody>
               <tr
@@ -116,7 +116,7 @@
                     @click="showSettings(account.id)"
                     :disabled="isLoadingId == account.id"
                     type="button"
-                    class="text-white bg-[#4c8bf7] hover:bg-[#5c8bf9] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 inline-flex items-center"
+                    class="dtc-button text-white bg-[#4c8bf7] hover:bg-[#5c8bf9] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 inline-flex items-center"
                   >
                     <svg
                       v-if="isLoadingId == account.id"
@@ -163,7 +163,7 @@
                     type="button"
                     data-modal-target="delete-modal"
                     data-modal-toggle="delete-modal"
-                    class="flex items-center text-[#ff6e6e] hover:text-white border border-[#ff6e6e] hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-3 py-2 text-center"
+                    class="dtc-button flex items-center text-[#ff6e6e] hover:text-white border border-[#ff6e6e] hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-3 py-2 text-center"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"

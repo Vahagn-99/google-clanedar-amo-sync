@@ -1,5 +1,5 @@
 <template>
-  <section class="bg-gray-50 dark:bg-gray-900 p-3 sm:p-5 antialiased">
+  <section class=" dark:bg-gray-900 p-3 sm:p-5 antialiased">
     <div class="mx-auto">
       <div
         class="p-10 bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden"
@@ -9,29 +9,35 @@
         </h2>
         <form action="#">
           <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
-            <div class="flex gap-x-36 sm:col-span-2">
-              <textarea
-                v-model="context"
-                id="description"
-                rows="8"
-                class="block p-2.5 w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-              ></textarea>
-              <ul class="p-4 w-[400px] h-[400px] overflow-y-auto custom-scroll">
-                <template v-for="(marker, key) in markers" :key="key">
-                  <ShablonItem
-                    @copy:value="copyMarker"
-                    :marker="marker"
-                    :group="key"
-                  />
-                </template>
-              </ul>
+            <div class="flex gap-x-4 sm:col-span-2">
+              <div class="p-2.5 w-fit	">
+                <textarea
+                    v-model="context"
+                    id="description"
+                    rows="8"
+                    class="block p-2.5 w-full text-gray-900  rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                ></textarea>
+              </div>
+              <div class="pt-2">
+                <div class="h-[350px] overflow-y-auto custom-scroll">
+                  <ul class="dtc-ul">
+                    <template v-for="(marker, key) in markers" :key="key">
+                      <ShablonItem
+                          @copy:value="copyMarker"
+                          :marker="marker"
+                          :group="key"
+                      />
+                    </template>
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
           <button
             @click.prevent="copyTemlate"
             type="submit"
             :class="{ 'bg-[#5c7cf3]': copied }"
-            class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-[#4c8bf7] hover:bg-[#5c8bf9] rounded-lg focus:ring-4"
+            class="dtc-button inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-[#4c8bf7] hover:bg-[#5c8bf9] rounded-lg focus:ring-4"
           >
             {{ copied ? "скопировано" : "Скопировать шаблон" }}
             <svg

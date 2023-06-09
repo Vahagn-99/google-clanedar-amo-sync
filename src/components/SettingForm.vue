@@ -5,7 +5,7 @@
     </template>
     <template #body>
       <div
-        class="w-full bg-gray-50 border border-gray-200 rounded-lg sm:p-8 dark:bg-gray-800 dark:border-gray-700"
+        class="w-full  border border-gray-200 rounded-lg sm:p-8 dark:bg-gray-800 dark:border-gray-700"
       >
         <Select
           :label="'Сатус'"
@@ -28,7 +28,7 @@
       </div>
       <!-- card 2 -->
       <div
-        class="w-full bg-gray-50 border border-gray-200 rounded-lg sm:p-8 dark:bg-gray-800 dark:border-gray-700 my-3"
+        class="w-full  border border-gray-200 rounded-lg sm:p-8 dark:bg-gray-800 dark:border-gray-700 my-3"
       >
         <div class="">
           <Toggle v-model="usePcker" />
@@ -80,7 +80,7 @@
       </div>
       <!-- card 3 -->
       <div
-        class="w-full bg-gray-50 border border-gray-200 rounded-lg sm:p-8 dark:bg-gray-800 dark:border-gray-700"
+        class="w-full  border border-gray-200 rounded-lg sm:p-8 dark:bg-gray-800 dark:border-gray-700"
       >
         <Select
           class=""
@@ -95,14 +95,14 @@
         <textarea
           id="description"
           rows="8"
-          class="my-2 block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+          class="my-2 block p-2.5 w-full text-sm text-gray-900  rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
           placeholder="Your description here"
         ></textarea>
         <div class="flex justify-end">
           <button
             @click="handleSave"
             type="button"
-            class="text-white bg-[#4c8bf7] hover:bg-[#5c8bf9] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            class="dtc-button text-white bg-[#4c8bf7] hover:bg-[#5c8bf9] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
           >
             перейти в Шаблонизатор
           </button>
@@ -114,14 +114,14 @@
         <button
           @click="closeModal"
           type="button"
-          class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600"
+          class="dtc-button text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600"
         >
           Закрыть
         </button>
         <button
           @click="handleSave"
           type="button"
-          class="text-white bg-[#4c8bf7] hover:bg-[#5c8bf9] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          class="dtc-button text-white bg-[#4c8bf7] hover:bg-[#5c8bf9] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
         >
           Сохранить
         </button>

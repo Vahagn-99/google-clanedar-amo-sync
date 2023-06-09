@@ -3,11 +3,15 @@
     <nav class=" bg-white  border-gray-200  dark:bg-gray-900">
       <div class=" px-4  py-3  mx-auto">
         <div class=" flex  items-center">
-          <ul class=" flex  flex-row  font-medium  mt-0  mr-6  space-x-8  text-sm">
-            <li @click="switchNav('info')">
+          <ul class="dtc-ul dtc-ul-general flex  flex-row  font-medium  mt-0  mr-6  space-x-8  text-sm">
+            <li @click="switchNav('info')"
+            :class="{
+              'dtc-active': showNav('info')
+            }"
+            >
               <a
                 href="#"
-                class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+                class="dtc-a flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -27,10 +31,13 @@
                 <span class="ml-3">Инфо</span>
               </a>
             </li>
-            <li @click="switchNav('settings')">
+            <li @click="switchNav('settings')"
+                :class="{
+                  'dtc-active': showNav('settings')
+                 }">
               <a
                 href="#"
-                class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+                class="dtc-a flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -50,10 +57,13 @@
                 <span class="ml-3">Настройки</span>
               </a>
             </li>
-            <li @click="switchNav('shablonizator')">
+            <li @click="switchNav('shablonizator')"
+                :class="{
+                  'dtc-active': showNav('shablonizator')
+                 }">
               <a
                 href="#"
-                class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+                class="dtc-a flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
