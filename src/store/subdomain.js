@@ -4,8 +4,8 @@ const subdomain = {
     namespaced: true,
     state: {
         subdomainId: localStorage.getItem("subdomain_id"),
-        isRegistred: null,
-        isWidgetRegistred: null,
+        isRegistred: false,
+        isWidgetRegistred: false,
     },
     getters: {
         getSubdomainId: (state) => state.subdomainId,
@@ -27,8 +27,6 @@ const subdomain = {
         },
         destory: async ({ commit }, subdomainId) => {
             const resposne = await apiClient.delete(`subdomains/${subdomainId}`);
-            const { id } = resposne.data.data;
-            commit("setSubdomainId", id);
             localStorage.clear();
         },
         checkIsRegistred: async ({ commit }, subdomainId) => {
@@ -36,7 +34,7 @@ const subdomain = {
             const { registered } = resposne.data.data
             commit("setIsRegistred", registered);
         },
-        checWidgetkIsRegistred: async ({ commit }, subdomainId) => {
+        checkWidgetStatus: async ({ commit }, subdomainId) => {
             const resposne = await apiClient.get(`subdomain/${subdomainId}/is-widget-registered`);
             const { registered } = resposne.data.data
             commit("setIsWidgetRegistred", registered);

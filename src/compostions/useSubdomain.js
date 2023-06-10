@@ -8,15 +8,15 @@ export function useSubdomain() {
     const isRegistred = computed(() => store.getters['subdomain/isRegistred']);
     const isWidgetRegistred = computed(() => store.getters['subdomain/isWidgetRegistred']);
     const checkIsRegistred = async () => await store.dispatch('subdomain/checkIsRegistred', subdomainId.value);
-    const checkIsWIdgetRegistred = async () => await store.dispatch('subdomain/checWidgetkIsRegistred', subdomainId.value);
+    const checkWidgetStatus = async () => await store.dispatch('subdomain/checkWidgetStatus', subdomainId.value);
 
     const asyncSubdomain = async () => {
         await store.dispatch('subdomain/store', widget.system);
     }
 
+    onMounted(async () => await checkWidgetStatus())
     onMounted(async () => await asyncSubdomain())
     onMounted(async () => await checkIsRegistred())
-    onMounted(async () => await checkIsWIdgetRegistred())
 
     return {
         asyncSubdomain,

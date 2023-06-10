@@ -1,7 +1,7 @@
 <template>
   <WidgetContainer v-if="isWidgetRegistred">
     <template v-slot:title>
-      <h2 class=" text-slate-900  text-2xl">
+      <h2 class="text-slate-900 text-2xl">
         Сервиси Google Календаря под ваших нужд!
       </h2>
     </template>
@@ -9,10 +9,10 @@
       <button
         type="button"
         @click="asyncSubdomain"
-        class="dtc-button my-2  text-white  bg-[#4285F4]  hover:bg-[#4285F4]/90  focus:ring-4  focus:outline-none  focus:ring-[#4285F4]/50  font-medium  rounded-lg  text-sm  px-5  py-2.5  text-center  inline-flex  items-center dark:focus:ring-[#4285F4]/55  mr-2  mb-2"
+        class="dtc-button my-2 text-white bg-[#4285F4] hover:bg-[#4285F4]/90 focus:ring-4 focus:outline-none focus:ring-[#4285F4]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#4285F4]/55 mr-2 mb-2"
       >
         <svg
-          class=" w-4  h-4  mr-2  -ml-1"
+          class="w-4 h-4 mr-2 -ml-1"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
         >
@@ -27,10 +27,10 @@
       <button
         type="button"
         @click="goToAdvancedSettings"
-        class="dtc-button my-2  text-white  bg-[#4285F4]  hover:bg-[#4285F4]/90  focus:ring-4  focus:outline-none  focus:ring-[#4285F4]/50  font-medium  rounded-lg  text-sm  px-5  py-2.5  text-center  inline-flex  items-center dark:focus:ring-[#4285F4]/55  mr-2  mb-2"
+        class="dtc-button my-2 text-white bg-[#4285F4] hover:bg-[#4285F4]/90 focus:ring-4 focus:outline-none focus:ring-[#4285F4]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#4285F4]/55 mr-2 mb-2"
       >
         <svg
-          class=" w-4  h-4  mr-2  -ml-1"
+          class="w-4 h-4 mr-2 -ml-1"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
         >
@@ -52,7 +52,7 @@ import WidgetContainer from "./components/WidgetContainer.vue";
 import { useSubdomain } from "./compostions/useSubdomain";
 import { goTo } from "./helpers/helpers";
 
-const { asyncSubdomain,isWidgetRegistred } = useSubdomain();
+const { asyncSubdomain, isWidgetRegistred } = useSubdomain();
 const goToAdvancedSettings = () => {
   goTo("/");
 };
