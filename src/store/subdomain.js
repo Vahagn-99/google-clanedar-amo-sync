@@ -4,15 +4,18 @@ const subdomain = {
     namespaced: true,
     state: {
         subdomainId: localStorage.getItem("subdomain_id"),
-        isRegistred: localStorage.getItem("subdomain_registred"),
+        isRegistred: null,
+        isWidgetRegistred: null,
     },
     getters: {
         getSubdomainId: (state) => state.subdomainId,
-        isRegistred: (state) => state.isRegistred
+        isRegistred: (state) => state.isRegistred,
+        isWidgetRegistred: (state) => state.isWidgetRegistred,
     },
     mutations: {
         setSubdomainId: (state, subdomainId) => state.subdomainId = subdomainId,
-        setIsRegistred: (state, isRegistred) => state.isRegistred = isRegistred
+        setIsRegistred: (state, isRegistred) => state.isRegistred = isRegistred,
+        setIsWidgetRegistred: (state, isRegistred) => state.isWidgetRegistred = isRegistred,
     },
     actions: {
         // save new client data in the back-end
@@ -26,13 +29,17 @@ const subdomain = {
             const resposne = await apiClient.delete(`subdomains/${subdomainId}`);
             const { id } = resposne.data.data;
             commit("setSubdomainId", id);
-            localStorage.setItem("subdomain_id", id);
+            localStorage.clear();
         },
         checkIsRegistred: async ({ commit }, subdomainId) => {
             const resposne = await apiClient.get(`subdomain/${subdomainId}/is-registered`);
             const { registered } = resposne.data.data
             commit("setIsRegistred", registered);
-            localStorage.setItem("subdomain_registred", registered);
+        },
+        checWidgetkIsRegistred: async ({ commit }, subdomainId) => {
+            const resposne = await apiClient.get(`subdomain/${subdomainId}/is-widget-registered`);
+            const { registered } = resposne.data.data
+            commit("setIsWidgetRegistred", registered);
         }
     },
 }

@@ -22,8 +22,8 @@ define(['./app.js?cache=' + Date.now()], function (App) {
             settings($settings_body, context) {
                 App.default.settings(self, $settings_body.selector, context);
             },
-            onSave() {
-                App.default.onSave(self);
+            async onSave() {
+                await App.default.onSave(self);
                 return true;
             },
             destroy() {
