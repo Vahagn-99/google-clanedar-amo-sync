@@ -17,18 +17,18 @@
 
 /* Track */
 .custom-scroll::-webkit-scrollbar-track {
-    background: #f1f1f1;
+    background: rgba(192, 192, 192, 0.23);
 }
 
 /* Handle */
 .custom-scroll::-webkit-scrollbar-thumb {
-    background: rgba(91, 113, 147, 0.59);
+    background: #c0c0c0;
     border-radius: 6.5px;
 }
 
 /* Handle on hover */
 .custom-scroll::-webkit-scrollbar-thumb:hover {
-    background: rgba(91, 113, 147, 0.59);
+    background: #c0c0c0;
 }
 
 select:disabled{
@@ -45,14 +45,10 @@ select:disabled{
 
 .dtc-ul li a{
     text-decoration: none;
-    color: inherit;
-    text-decoration: inherit;
 }
 
 .dtc-a{
     text-decoration: none;
-    color: inherit;
-    text-decoration: inherit;
 }
 
 .dtc-p{
@@ -92,6 +88,9 @@ select:disabled{
     border-collapse: collapse; /* 3 */
 }
 
+.dtc-table tr{
+    border-bottom: 0.5px solid #f5f5f5;
+}
 
 .dtc-button,
 .dtc-select {
@@ -123,15 +122,51 @@ video {
 
 
 .dtc-active{
-    background-color: #e0edfe82;
+    background-color: #f5f5f5;
     border-radius: 8px;
 }
 
 .dtc-input{
-    border:1px solid rgb(156 163 175)!important;
+    border:1px solid #f5f5f5!important;
     background-color: #fff!important;
 }
 
 .dtc-select-item{
-    border:0.5px solid rgb(156 163 175)!important;
+    border:0.5px solid #c0c0c0!important;
+    color: #2e2d2d;
 }
+
+.dtc-textarea{
+    background-color: #fff;
+    border:0.5px solid #c0c0c0!important;
+
+}
+
+.h-screen{
+    margin-left: -23px;
+}
+
+.dtc-modal{
+    background-color: #f5f5f5;
+    box-shadow: 10px 25px 20px #2e2d2d;
+}
+
+.dtc-select{
+    background-color: #fff;
+}
+
+.dtc-info-card{
+    background-color: #f5f5f5;
+}
+
+.peer:checked ~ .peer-checked\:after\:translate-x-full::after {
+    content: var(--tw-content);
+    --tw-translate-x: 100%;
+    transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+ .peer:checked ~ .peer-checked\:after\:border-white::after {
+     content: var(--tw-content);
+     --tw-border-opacity: 1;
+     border-color: rgb(255 255 255);
+ }

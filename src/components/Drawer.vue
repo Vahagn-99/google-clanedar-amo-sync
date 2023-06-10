@@ -2,7 +2,7 @@
   <div class="max-w-2xl p-4 mx-auto">
     <div
       id="drawer-example"
-      class="fixed z-40 h-screen p-4 overflow-y-auto bg-slate-50 w-1/3"
+      class="fixed z-40 h-screen p-4 overflow-y-auto bg-slate-50 w-1/3 dtc-modal"
       tabindex="-1"
       aria-labelledby="drawer-label"
     >
@@ -178,7 +178,7 @@
             <textarea
               id="description"
               rows="8"
-              class="block p-2.5 w-full text-sm text-gray-900 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+              class="dtc-textarea block p-2.5 w-full text-sm text-gray-900 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
               placeholder="Вставьте сюда..."
               v-model="settings.event_body"
             ></textarea>
@@ -191,7 +191,7 @@
             </button>
           </div>
           <div class="pt-3" v-if="isOpenTemplate">
-            <div class="h-[350px] overflow-y-auto custom-scroll">
+            <div class="h-[300px] overflow-y-auto custom-scroll">
               <ul class="dtc-ul mt-0 pl-0">
                 <template v-for="(marker, key) in markers" :key="key">
                   <ShablonItem
@@ -208,7 +208,7 @@
           <button
             @click="closeModal"
             type="button"
-            class="dtc-button text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600"
+            class="dtc-button text-gray-500 bg-white focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:focus:ring-gray-600"
           >
             Закрыть
           </button>

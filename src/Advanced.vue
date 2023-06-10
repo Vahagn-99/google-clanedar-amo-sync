@@ -1,7 +1,7 @@
 <template>
   <div class="h-screen bg-white">
     <nav class=" bg-white  border-gray-200  dark:bg-gray-900">
-      <div class=" px-4  py-3  mx-auto">
+      <div class=" px-6  py-3  mx-auto">
         <div class=" flex  items-center">
           <ul class="dtc-ul dtc-ul-general flex  flex-row  font-medium  mt-0  mr-6  space-x-8  text-sm">
             <li @click="switchNav('info')"
@@ -11,7 +11,7 @@
             >
               <a
                 href="#"
-                class="dtc-a flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+                class="dtc-a flex items-center py-2 px-8 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -37,7 +37,7 @@
                  }">
               <a
                 href="#"
-                class="dtc-a flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+                class="dtc-a flex items-center py-2 px-8 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -63,7 +63,7 @@
                  }">
               <a
                 href="#"
-                class="dtc-a flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+                class="dtc-a flex items-center py-2 px-8 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -88,7 +88,7 @@
       </div>
     </nav>
     <div class="mx-auto">
-      <div class="p-4 border-gray-200 rounded-lg dark:border-gray-700">
+      <div class="border-gray-200 rounded-lg dark:border-gray-700">
         <NavItem v-if="showNav('info')">
           <div class="flex">
             <InfoCard :value="widgetStatusActive">

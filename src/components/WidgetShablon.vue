@@ -1,7 +1,7 @@
 <template>
-  <section class="dark:bg-gray-900 p-3 sm:p-5 antialiased">
+  <section class="dark:bg-gray-900 antialiased ">
     <div class="mx-auto">
-      <div class="p-10 bg-white relative overflow-hidden">
+      <div class="p-6 bg-white relative overflow-hidden">
         <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">
           Для подстановки данных по сущности вы можете использовать маркеры.
         </h2>
@@ -16,7 +16,7 @@
                   v-model="content"
                   id="description"
                   rows="12"
-                  class="block p-2.5 w-full text-gray-900 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                  class="dtc-textarea block p-2.5 w-full text-gray-900 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                 ></textarea>
               </div>
               <div class="pt-3">

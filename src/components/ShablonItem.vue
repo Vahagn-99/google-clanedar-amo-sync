@@ -1,6 +1,6 @@
 <template>
   <li class="border-gray-400">
-    <ul class="dtc-ul pl-4 border-gray-400 mt-0">
+    <ul class="dtc-ul border-gray-400 mt-0">
       <template v-for="(item, key) in marker" :key="key">
         <li
           @click="copyValue(item.id)"

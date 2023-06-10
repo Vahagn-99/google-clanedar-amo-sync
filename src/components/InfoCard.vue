@@ -1,6 +1,6 @@
 <template>
   <div
-    class="w-full min-w-max mx-2 px-10 py-8 border rounded-lg dark:bg-gray-800 flex items-center"
+    class="dtc-info-card w-full min-w-max mx-6 px-10 py-8 border rounded-lg dark:bg-gray-800 flex items-center"
     :class="classObj"
     role="alert"
   >

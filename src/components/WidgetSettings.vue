@@ -1,6 +1,6 @@
 <template>
   <!-- Start block -->
-  <section class=" dark:bg-gray-900 p-3 sm:p-5 antialiased">
+  <section class="dark:bg-gray-900 antialiased">
     <div class="mx-auto">
       <div
         class="bg-white overflow-hidden"
