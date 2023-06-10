@@ -288,12 +288,12 @@ function handleEndDate(value) {
 }
 
 function handleService(option) {
-  settings.value.service_id = option.parent.id;
+  settings.value.service_id = option.parent;
   settings.value.service_value = option.child;
 }
 
 function handleStatus(option) {
-  settings.value.pipeline_id = option.parent.id;
+  settings.value.pipeline_id = option.parent;
   settings.value.status_id = option.child;
 }
 
