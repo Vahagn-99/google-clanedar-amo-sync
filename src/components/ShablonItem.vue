@@ -7,7 +7,8 @@
           class="p-2 flex justify-start items-center cursor-pointer hover:bg-slate-100 dtc-select-item"
         >
           <span class="whitespace-nowrap">
-            {{ group + ": " + item.name }}
+            <b>{{group}} : </b>{{item.name }}
+
           </span>
           <svg
             xmlns="http://www.w3.org/2000/svg"

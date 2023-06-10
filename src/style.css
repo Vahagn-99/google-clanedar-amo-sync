@@ -134,6 +134,7 @@ video {
 .dtc-select-item{
     border:0.5px solid #c0c0c0!important;
     color: #2e2d2d;
+    background-color: #fff;
 }
 
 .dtc-textarea{
@@ -160,9 +161,11 @@ video {
 }
 
 .peer:checked ~ .peer-checked\:after\:translate-x-full::after {
-    content: var(--tw-content);
-    --tw-translate-x: 100%;
-    transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+    transform: translateX(18px)!important;
+}
+
+.peer:checked ~ .peer-checked\:after\:translate-x-full::after{
+    transform: translateX(18px)!important;
 }
 
  .peer:checked ~ .peer-checked\:after\:border-white::after {
@@ -170,3 +173,30 @@ video {
      --tw-border-opacity: 1;
      border-color: rgb(255 255 255);
  }
+
+ .dtc-select-item:first-of-type{
+     border-top-left-radius: 8px;
+ }
+
+.dtc-select-item:last-of-type{
+    border-bottom-left-radius: 8px;
+}
+
+.overflow-hidden{
+    overflow: auto;
+}
+
+.dtc-button-absolute{
+    bottom: 7px;
+    right: 7px;
+}
+
+.dtc-overflow-hidden{
+    overflow: hidden;
+}
+
+@media(max-width: 1320px){
+    .dtc-modal{
+        width: 50%!important;
+    }
+}

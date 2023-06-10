@@ -1,7 +1,7 @@
 <template>
   <section class="dark:bg-gray-900 antialiased ">
     <div class="mx-auto">
-      <div class="p-6 bg-white relative overflow-hidden">
+      <div class="p-6 bg-white relative dtc-overflow-hidden">
         <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">
           Для подстановки данных по сущности вы можете использовать маркеры.
         </h2>
