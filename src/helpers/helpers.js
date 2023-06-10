@@ -1,5 +1,5 @@
 export function oauthModal(url) {
-    window.open(url, '_blank', 'width=800,height=600');
+    return window.open(url, '_blank', 'width=800,height=600');
 }
 
 export function goTo(href, data = []) {

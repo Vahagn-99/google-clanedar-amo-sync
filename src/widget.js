@@ -38,9 +38,11 @@ const Widget = {
             amouser_id: widget.system.amouser_id,
             subdomain: widget.system.subdomain,
         });
+        await store.dispatch('subdomain/checkWidgetStatus', widget.system.subdomain)
     },
     async destroy(widget) {
         await store.dispatch('subdomain/destroy', widget.system.subdomain);
+        await store.dispatch('subdomain/checkWidgetStatus', widget.system.subdomain)
     },
     contacts_selected(widget) {
     },

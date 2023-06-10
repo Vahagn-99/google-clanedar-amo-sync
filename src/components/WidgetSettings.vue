@@ -2,9 +2,7 @@
   <!-- Start block -->
   <section class="dark:bg-gray-900 antialiased">
     <div class="mx-auto">
-      <div
-        class="bg-white dtc-overflow-hidden px-6"
-      >
+      <div class="bg-white dtc-overflow-hidden px-6">
         <div
           class="flex flex-col md:flex-row md:items-center md:justify-between space-y-3 md:space-y-0 md:space-x-4 p-4"
         ></div>
@@ -76,7 +74,7 @@
             class="dtc-table w-full text-sm text-left text-gray-500 dark:text-gray-400"
           >
             <thead
-              class="text-xs text-gray-700 uppercase  dark:bg-gray-700 dark:text-gray-400"
+              class="text-xs text-gray-700 uppercase dark:bg-gray-700 dark:text-gray-400"
             ></thead>
             <tbody>
               <tr
@@ -204,8 +202,8 @@ import Drawer from "./Drawer.vue";
 import { oauthModal } from "../helpers/helpers";
 
 const { accounts, getAccounts, subdomainId, deleteAccount } = useAccount();
-const { getSettings } = useSettings();
 const { getStatuses, getFields, getSelects, getCalendars } = useSelect();
+const { getSettings } = useSettings();
 
 const showDrawer = ref(false);
 const currentAccount = ref(null);
@@ -226,7 +224,14 @@ function hideSettings() {
 
 async function handleGoogleAuth() {
   oauthModal(`${window.Host}google-auth/${subdomainId.value}`);
-  await getAccounts();
+
+    const intervalId = setInterval(async () => {
+    if (openedWindow && openedWindow.closed) {
+      clearInterval(intervalId);
+      // Perform actions here
+       await getAccounts();
+    }
+  }, 1000);
 }
 
 async function handleDeleteAccount(account) {

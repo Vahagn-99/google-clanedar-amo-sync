@@ -1,13 +1,16 @@
 <template>
   <div class="h-screen bg-white">
-    <nav class=" bg-white  border-gray-200  dark:bg-gray-900">
-      <div class=" px-6  py-3  mx-auto">
-        <div class=" flex  items-center">
-          <ul class="dtc-ul dtc-ul-general flex  flex-row  font-medium  mt-0  mr-6  space-x-8  text-sm">
-            <li @click="switchNav('info')"
-            :class="{
-              'dtc-active': showNav('info')
-            }"
+    <nav class="bg-white border-gray-200 dark:bg-gray-900">
+      <div class="px-6 py-3 mx-auto">
+        <div class="flex items-center">
+          <ul
+            class="dtc-ul dtc-ul-general flex flex-row font-medium mt-0 mr-6 space-x-8 text-sm"
+          >
+            <li
+              @click="switchNav('info')"
+              :class="{
+                'dtc-active': showNav('info'),
+              }"
             >
               <a
                 href="#"
@@ -31,10 +34,12 @@
                 <span class="ml-3">Инфо</span>
               </a>
             </li>
-            <li @click="switchNav('settings')"
-                :class="{
-                  'dtc-active': showNav('settings')
-                 }">
+            <li
+              @click="switchNav('settings')"
+              :class="{
+                'dtc-active': showNav('settings'),
+              }"
+            >
               <a
                 href="#"
                 class="dtc-a flex items-center py-2 px-8 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
@@ -57,10 +62,12 @@
                 <span class="ml-3">Настройки</span>
               </a>
             </li>
-            <li @click="switchNav('shablonizator')"
-                :class="{
-                  'dtc-active': showNav('shablonizator')
-                 }">
+            <li
+              @click="switchNav('shablonizator')"
+              :class="{
+                'dtc-active': showNav('shablonizator'),
+              }"
+            >
               <a
                 href="#"
                 class="dtc-a flex items-center py-2 px-8 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
@@ -184,7 +191,7 @@ import { ref } from "vue";
 import { oauthModal } from "./helpers/helpers";
 import { useSubdomain } from "./compostions/useSubdomain";
 
-const { subdomainId, isRegistred } = useSubdomain();
+const { subdomainId, isRegistred, checkIsRegistred } = useSubdomain();
 
 const currentNav = ref("info");
 const widgetStatusActive = ref(true);
@@ -195,7 +202,15 @@ function showNav(is) {
   return currentNav.value === is;
 }
 function handleAmoAuth() {
-  oauthModal(`${window.Host}amo-auth/${subdomainId.value}`);
+  openedWindow = oauthModal(`${window.Host}amo-auth/${subdomainId.value}`);
+
+  // Check if the opened window is closed at intervals
+  const intervalId = setInterval(async () => {
+    if (openedWindow && openedWindow.closed) {
+      clearInterval(intervalId);
+      // Perform actions here
+      await checkIsRegistred();
+    }
+  }, 1000);
 }
 </script>
-
