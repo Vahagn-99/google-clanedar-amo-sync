@@ -1,5 +1,5 @@
 <template>
-  <div class=" h-screen">
+  <div class="h-screen bg-white">
     <nav class=" bg-white  border-gray-200  dark:bg-gray-900">
       <div class=" px-4  py-3  mx-auto">
         <div class=" flex  items-center">
