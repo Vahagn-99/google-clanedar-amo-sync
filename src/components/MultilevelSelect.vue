@@ -10,7 +10,8 @@
       :id="name"
       v-model="selectedValue"
       @change="handleSelect"
-      class=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+      ref="selectElement"
+      class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
     >
       <template v-for="(option, key) in settings.options" :key="key">
         <option class="font-bold">
@@ -19,7 +20,8 @@
         <option
           v-for="(child, nestedKey) in option[settings.option.nested]"
           :key="nestedKey"
-          :value="getNestedkey(option, child)"
+          :data-value="getSelected(option, child)"
+          :value="getNestedkey(child)"
         >
           {{ getNestedValue(child) }}
         </option>
@@ -49,13 +51,17 @@ const props = defineProps({
 const emits = defineEmits(["update:value"]);
 
 const selectedValue = ref(props.settings.selected.child_id);
-
+const selectElement = ref(null);
 function getParentLabel(option) {
   return option[props.settings.option.value];
 }
 
-function getNestedkey(option, child) {
+function getNestedkey(child) {
   return child[props.settings.nested.key];
+}
+
+function getSelected(option, child) {
+  return option.id + "p" + child[props.settings.nested.key];
 }
 
 function getNestedValue(child) {
@@ -63,13 +69,11 @@ function getNestedValue(child) {
 }
 
 const value = computed(() => {
+  const selectedOption = selectElement.value.selectedOptions[0];
+  const dataValue = selectedOption.dataset.value;
   return {
-    parent: props.settings.options.find(
-      (option) =>
-        option[props.settings.option.nested][props.settings.nested.value] ===
-        selectedValue.child_id
-    ),
-    child: selectedValue.value,
+    parent: dataValue.split("p")[0],
+    child: dataValue.split("p")[1],
   };
 });
 
@@ -77,5 +81,3 @@ function handleSelect() {
   emits("update:value", value.value);
 }
 </script>
-
- 
