@@ -1,21 +1,22 @@
 <template>
-  <section class=" dark:bg-gray-900 p-3 sm:p-5 antialiased">
+  <section class="dark:bg-gray-900 p-3 sm:p-5 antialiased">
     <div class="mx-auto">
-      <div
-        class="p-10 bg-white relative  overflow-hidden"
-      >
+      <div class="p-10 bg-white relative overflow-hidden">
         <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">
-          Для подстановки данных по сущности вы можете использовать маркеры
+          Для подстановки данных по сущности вы можете использовать маркеры.
+        </h2>
+        <h2 class="mb-4 text-sm font-bold text-gray-900 dark:text-white">
+          Нажмите на название маркера, чтобы скопировать!
         </h2>
         <form action="#">
           <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
             <div class="flex gap-x-4 sm:col-span-2">
-              <div class="p-2.5 w-full	">
+              <div class="p-2.5 w-full">
                 <textarea
-                    v-model="context"
-                    id="description"
-                    rows="12"
-                    class="block p-2.5 w-full text-gray-900  rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                  v-model="content"
+                  id="description"
+                  rows="12"
+                  class="block p-2.5 w-full text-gray-900 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                 ></textarea>
               </div>
               <div class="pt-3">
@@ -23,9 +24,9 @@
                   <ul class="dtc-ul mt-0">
                     <template v-for="(marker, key) in markers" :key="key">
                       <ShablonItem
-                          @copy:value="copyMarker"
-                          :marker="marker"
-                          :group="key"
+                        @copy:value="copyMarker"
+                        :marker="marker"
+                        :group="key"
                       />
                     </template>
                   </ul>
@@ -34,10 +35,10 @@
             </div>
           </div>
           <button
-            @click.prevent="copyTemlate"
+            @click.prevent="copyTemplate"
             type="submit"
             :class="{ 'bg-[#5c7cf3]': copied }"
-            class="dtc-button inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-[#4c8bf7] hover:bg-[#5c8bf9] rounded-lg focus:ring-4"
+            class="dtc-button inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-[#4c8bf7] hover:bg-[#5c8bf9] rounded-lg focus:ring-4 cursor-pointer"
           >
             {{ copied ? "скопировано" : "Скопировать шаблон" }}
             <svg
@@ -65,21 +66,21 @@
 import ShablonItem from "./ShablonItem.vue";
 import { useSelect } from "../compostions/useSelect";
 import { useAccount } from "../compostions/useAccount";
-import { onMounted, ref } from "vue";
+import { computed, onMounted, ref } from "vue";
 
 const { markers, getMarkers } = useSelect();
 const { subdomainId } = useAccount();
-const context = ref("");
+const content = ref("");
 const copied = ref(false);
 
 function copyMarker(id) {
   copied.value = false;
-  context.value = context.value + " " + id;
+  content.value += " " + id;
 }
 
 function copyTemplate() {
   navigator.clipboard
-    .write([new ClipboardItem({ "text/plain": context.value })])
+    .write([new ClipboardItem({ "text/plain": content.value })])
     .then(() => {
       copied.value = true;
     })
@@ -90,5 +91,3 @@ function copyTemplate() {
 
 onMounted(async () => await getMarkers(subdomainId.value));
 </script>
-
- 
