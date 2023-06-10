@@ -190,6 +190,7 @@
     <Drawer
       v-if="showDrawer"
       :account="currentAccount"
+      :subdomainId="subdomainId"
       @close-drawer="hideSettings"
     />
   </section>

@@ -183,12 +183,25 @@
               v-model="settings.event_body"
             ></textarea>
             <button
-              @click="goToEngine"
+              @click="toggleTemplate"
               type="button"
               class="dtc-button absolute right-2 top-2 text-white bg-[#4c8bf7] hover:bg-[#5c8bf9] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >
-              перейти в Шаблонизатор
+              {{ isOpenTemplate ? "закрить" : "открить" }} Шаблонизатор
             </button>
+          </div>
+          <div class="pt-3" v-if="isOpenTemplate">
+            <div class="h-[350px] overflow-y-auto custom-scroll">
+              <ul class="dtc-ul mt-0 pl-0">
+                <template v-for="(marker, key) in markers" :key="key">
+                  <ShablonItem
+                    @copy:value="copyMarker"
+                    :marker="marker"
+                    :group="key"
+                  />
+                </template>
+              </ul>
+            </div>
           </div>
         </div>
         <div class="flex justify-between">
@@ -221,14 +234,17 @@ import { useSelect } from "../compostions/useSelect";
 import { onMounted, ref, watch } from "vue";
 import Toggle from "./Toggle.vue";
 import Input from "./Input.vue";
+import ShablonItem from "./ShablonItem.vue";
 
 const { settings, saveSettings } = useSettings();
-const { fields, statuses, calendars, selects } = useSelect();
+const { fields, statuses, calendars, selects, getMarkers, markers } =
+  useSelect();
 
 const drawerInstance = ref(null); // Create a ref for the drawer instance
 
 const props = defineProps({
   account: Number,
+  subdomainId: Number,
 });
 
 const emit = defineEmits(["close-drawer"]);
@@ -236,7 +252,16 @@ const emit = defineEmits(["close-drawer"]);
 const useInput = ref(false);
 const usePcker = ref(true);
 
-// function goToEngine() {}
+const isOpenTemplate = ref(false);
+
+function toggleTemplate() {
+  isOpenTemplate.value = !isOpenTemplate.value;
+}
+
+function copyMarker(id) {
+  // console.log(settings.value.event_body);
+  settings.value.event_body += " " + id;
+}
 
 function handleCalendar(value) {
   settings.value.calendar_id = value;
@@ -316,5 +341,7 @@ onMounted(async () => {
     // Show the drawer initially
     drawerInstance.value.show();
   }
+
+  await getMarkers(props.subdomainId);
 });
 </script>
