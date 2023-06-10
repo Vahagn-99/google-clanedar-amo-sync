@@ -23,6 +23,7 @@ export function useSubdomain() {
         subdomainId,
         isRegistred,
         isWidgetRegistred,
-        checkIsRegistred
+        checkIsRegistred,
+        widget
     };
 }

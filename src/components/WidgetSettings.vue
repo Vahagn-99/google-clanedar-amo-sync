@@ -194,7 +194,7 @@
   </section>
 </template>
 <script setup>
-import { onMounted, ref } from "vue";
+import { onMounted, ref, watch } from "vue";
 import { useAccount } from "../compostions/useAccount";
 import { useSettings } from "../compostions/useSettings";
 import { useSelect } from "../compostions/useSelect";
@@ -222,16 +222,15 @@ function hideSettings() {
   showDrawer.value = false;
 }
 
-async function handleGoogleAuth() {
-  oauthModal(`${window.Host}google-auth/${subdomainId.value}`);
+const openedWindow = ref(false);
 
-    const intervalId = setInterval(async () => {
-    if (openedWindow && openedWindow.closed) {
-      clearInterval(intervalId);
-      // Perform actions here
-       await getAccounts();
-    }
-  }, 1000);
+function handleGoogleAuth() {
+  oauthModal(
+    `${window.Host}google-auth/${subdomainId.value}`,
+    "_blank",
+    "width=800,height=600"
+  );
+  openedWindow.value = true;
 }
 
 async function handleDeleteAccount(account) {

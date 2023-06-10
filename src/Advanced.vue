@@ -202,8 +202,7 @@ function showNav(is) {
   return currentNav.value === is;
 }
 function handleAmoAuth() {
-  openedWindow = oauthModal(`${window.Host}amo-auth/${subdomainId.value}`);
-
+ const openedWindow = oauthModal(`${window.Host}amo-auth/${subdomainId.value}`);
   // Check if the opened window is closed at intervals
   const intervalId = setInterval(async () => {
     if (openedWindow && openedWindow.closed) {
