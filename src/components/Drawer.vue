@@ -2,7 +2,7 @@
   <div class="max-w-2xl p-4 mx-auto">
     <div
       id="drawer-example"
-      class="fixed z-40 h-screen p-4 overflow-y-auto bg-white w-1/3 dark:bg-gray-800"
+      class="fixed z-40 h-screen p-4 overflow-y-auto bg-slate-50 w-1/3"
       tabindex="-1"
       aria-labelledby="drawer-label"
     >
@@ -30,7 +30,7 @@
       </button>
       <div class="grid grid-cols-1 gap-4">
         <div
-          class="w-full  border border-gray-200 rounded-lg sm:p-8 dark:bg-gray-800 dark:border-gray-700"
+          class="w-full border border-gray-200 rounded-lg sm:p-8 dark:bg-gray-800 dark:border-gray-700"
         >
           <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">
             Настройки событий
@@ -80,7 +80,7 @@
         </div>
         <!-- card 2 -->
         <div
-          class="w-full  border border-gray-200 rounded-lg sm:p-8 dark:bg-gray-800 dark:border-gray-700 my-3"
+          class="w-full border border-gray-200 rounded-lg sm:p-8 dark:bg-gray-800 dark:border-gray-700 my-3"
         >
           <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">
             Настройки дата и время
@@ -137,7 +137,7 @@
         </div>
         <!-- card 3 -->
         <div
-          class="w-full  border border-gray-200 rounded-lg sm:p-8 dark:bg-gray-800 dark:border-gray-700"
+          class="w-full border border-gray-200 rounded-lg sm:p-8 dark:bg-gray-800 dark:border-gray-700"
         >
           <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">
             Настройки Контента
@@ -178,7 +178,7 @@
             <textarea
               id="description"
               rows="8"
-              class="block p-2.5 w-full text-sm text-gray-900  rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+              class="block p-2.5 w-full text-sm text-gray-900 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
               placeholder="Вставьте сюда..."
               v-model="settings.event_body"
             ></textarea>

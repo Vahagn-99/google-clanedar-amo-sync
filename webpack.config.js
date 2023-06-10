@@ -36,9 +36,6 @@ module.exports = (env, argv) => {
             ],
         },
         resolve: {
-            alias: {
-                '@': path.resolve(__dirname, './src/components'),
-            },
             extensions: ['.js', '.vue'],
         },
         plugins: [

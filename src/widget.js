@@ -33,11 +33,13 @@ const Widget = {
         app.use(store)
         app.mount(appElement);
     },
-    onSave(widget) {
+    async onSave(widget) {
+        await store.dispatch('subdomain/store', widget.system);
         window.WIDGET_INSTALLED = true;
         return true
     },
-    destroy(widget) {
+    async destroy(widget) {
+        await store.dispatch('subdomain/destroy', widget.system.subdomain);
         window.WIDGET_INSTALLED = false;
     },
     contacts_selected(widget) {
