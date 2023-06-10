@@ -2,7 +2,7 @@
   <section class=" dark:bg-gray-900 p-3 sm:p-5 antialiased">
     <div class="mx-auto">
       <div
-        class="p-10 bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden"
+        class="p-10 bg-white relative  overflow-hidden"
       >
         <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">
           Для подстановки данных по сущности вы можете использовать маркеры
@@ -10,17 +10,17 @@
         <form action="#">
           <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
             <div class="flex gap-x-4 sm:col-span-2">
-              <div class="p-2.5 w-fit	">
+              <div class="p-2.5 w-full	">
                 <textarea
                     v-model="context"
                     id="description"
-                    rows="8"
+                    rows="12"
                     class="block p-2.5 w-full text-gray-900  rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                 ></textarea>
               </div>
-              <div class="pt-2">
+              <div class="pt-3">
                 <div class="h-[350px] overflow-y-auto custom-scroll">
-                  <ul class="dtc-ul">
+                  <ul class="dtc-ul mt-0">
                     <template v-for="(marker, key) in markers" :key="key">
                       <ShablonItem
                           @copy:value="copyMarker"
