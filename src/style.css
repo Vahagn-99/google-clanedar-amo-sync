@@ -1,4 +1,4 @@
-/*@tailwind base;*/
+@tailwind base;
 @tailwind components;
 @tailwind utilities;
 
@@ -89,7 +89,7 @@ select:disabled{
 }
 
 .dtc-table tr{
-    border-bottom: 0.5px solid #f5f5f5;
+    border-bottom: 0.5px solid #c7c7c763 ;
 }
 
 .dtc-button,
@@ -118,13 +118,13 @@ video {
 
 .dtc-ul-general li:hover{
     border-radius: 8px;
-    border: 1px solid #c3c3c3;
+    border: 1px solid #c7c7c790;
 }
 
 .dtc-active{
     background-color: #fff;
     border-radius: 8px;
-    border:1px solid #c3c3c3!important;
+    border:1px solid #c7c7c790!important;
 }
 
 .dtc-input{
@@ -156,6 +156,10 @@ video {
 .dtc-modal{
     background-color: #f5f5f5;
     box-shadow: 10px 25px 20px #2e2d2d;
+}
+
+.dtc-google-button{
+    padding: 10px 42px;
 }
 
 .dtc-select{
@@ -200,6 +204,14 @@ video {
 
 .dtc-overflow-hidden{
     overflow: hidden;
+}
+
+.dtc-success-card{
+    background-color: #00d66633;
+}
+
+.dtc-danger-card{
+    background-color: rgb(254 226 226);
 }
 
 @media(max-width: 1320px){
