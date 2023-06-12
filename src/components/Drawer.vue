@@ -185,7 +185,7 @@
             <button
               @click="toggleTemplate"
               type="button"
-              class="dtc-button-absolute absolute  text-white bg-[#4c8bf7] hover:bg-[#5c8bf9] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              class="dtc-button-absolute absolute text-white bg-[#4c8bf7] hover:bg-[#5c8bf9] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >
               {{ isOpenTemplate ? "закрить" : "открить" }} Шаблонизатор
             </button>
@@ -260,7 +260,10 @@ function toggleTemplate() {
 
 function copyMarker(id) {
   // console.log(settings.value.event_body);
-  settings.value.event_body += " " + id;
+  settings.value.event_body =
+    settings.value.event_body === null
+      ? ""
+      : settings.value.event_body + " " + id;
 }
 
 function handleCalendar(value) {

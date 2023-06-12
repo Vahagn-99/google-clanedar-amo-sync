@@ -15,7 +15,7 @@ const settings = {
         // save new client data in the back-end
         save: async ({ commit }, data) => {
             const { settings, accountId } = data;
-            const response = await apiClient.post(`/${accountId}/settings`, {
+            const response = await apiClient.post(`calendar/v1/account/${accountId}/settings`, {
                 id: settings.id,
                 google_color_id: settings.google_color_id,
                 date_district: settings.date_district,
@@ -34,13 +34,13 @@ const settings = {
             commit("setSettings", response.data.data);
         },
         get: async ({ commit }, googleAccountId) => {
-            const resposne = await apiClient.get(`/${googleAccountId}/settings`);
+            const resposne = await apiClient.get(`calendar/v1/account/${googleAccountId}/settings`);
             const settings = resposne.data.data
             commit("setSettings", settings);
         },
         destory: async ({ commit }, settings) => {
             const { google_account_id, id } = settings;
-            await apiClient.delete(`/${google_account_id}/settings/${id}`);
+            await apiClient.delete(`calendar/v1/account/${google_account_id}/settings/${id}`);
             commit("setSettings", null)
         }
     },
