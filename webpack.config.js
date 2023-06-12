@@ -1,6 +1,7 @@
 const path = require('path');
 const { VueLoaderPlugin } = require('vue-loader');
 const WebpackShellPluginNext = require('webpack-shell-plugin-next');
+const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = (env, argv) => {
     const isProductionMode = argv.mode === 'production';
@@ -48,5 +49,21 @@ module.exports = (env, argv) => {
                 },
             }),
         ],
+        optimization: {
+            'minimize': true,
+            minimizer: [new TerserPlugin({
+                terserOptions: {
+                    compress: {
+                        pure_funcs: [
+                            'console.log',
+                            'console.info',
+                            'console.debug',
+                            'console.warn',
+                            'console.error',
+                        ]
+                    }
+                }
+            })],
+        },
     };
 };

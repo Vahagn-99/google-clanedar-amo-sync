@@ -33,9 +33,9 @@ import WidgetContainer from "./components/WidgetContainer.vue";
 import { useSubdomain } from "./compostions/useSubdomain";
 import { goTo } from "./helpers/helpers";
 
-const { asyncSubdomain, isWidgetRegistred,widget } = useSubdomain();
+const { asyncSubdomain, isWidgetRegistred, widget } = useSubdomain();
 
 const goToAdvancedSettings = () => {
-  goTo(`https://${widget.system.domain}/settings`,);
+  goTo(`https://${widget.system.domain}/settings`);
 };
 </script>
