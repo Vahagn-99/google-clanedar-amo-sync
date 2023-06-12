@@ -169,7 +169,14 @@ import { useSubdomain } from "./compostions/useSubdomain";
 const { subdomainId, isRegistred, checkIsRegistred } = useSubdomain();
 
 const currentNav = ref("info");
+
 const widgetStatusActive = ref(true);
+ 
+Echo.channel(`google-accounts.${this.order.id}`)
+    .listen('OrderShipmentStatusUpdated', (e) => {
+        console.log(e.order.name);
+    });
+
 function switchNav(next) {
   currentNav.value = next;
 }

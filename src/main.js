@@ -8,10 +8,18 @@ import { vMaska } from "maska"
 import Notifications from '@kyvg/vue3-notification'
 window.Host = "https://widgets-api.dicitech.com/api/";
 
-window.isLocalServer = true;
-// window.Host = window.isLocalServer ? "http://127.0.0.1:8080/api/" : "https://widgets-api.dicitech.com/api/";
+import Echo from 'laravel-echo';
+import Pusher from 'pusher-js';
 
-// createApp(Settings).provide('widget', Widget).use(store).mount('#settings-area')
+window.Pusher = Pusher;
+
+window.Echo = new Echo({
+    broadcaster: 'pusher',
+    key: import.meta.env.VITE_PUSHER_APP_KEY,
+    cluster: import.meta.env.VITE_PUSHER_APP_CLUSTER,
+    forceTLS: true
+})
+
 createApp(Advanced)
     .provide('widget', Widget)
     .use(Notifications)
