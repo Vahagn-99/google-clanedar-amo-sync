@@ -2,42 +2,10 @@
   <!-- Start block -->
   <section class="dark:bg-gray-900 antialiased">
     <div class="mx-auto">
-      <div class="bg-white dtc-overflow-hidden px-6">
+      <div class="dtc-overflow-hidden px-6">
         <div
           class="flex flex-col md:flex-row md:items-center md:justify-between space-y-3 md:space-y-0 md:space-x-4 p-4"
         ></div>
-        <div
-          class="flex flex-col md:flex-row items-stretch md:items-center md:space-x-3 space-y-3 md:space-y-0 justify-between mx-4 py-4 border-t dark:border-gray-700"
-        >
-          <div
-            class="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0"
-          >
-            <button
-              @click="handleGoogleAuth"
-              type="button"
-              id="createProductButton"
-              data-modal-toggle="createProductModal"
-              class="dtc-button flex items-center justify-center text-white bg-[#4c8bf7] hover:bg-[#5c8bf9] focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800"
-            >
-              <svg
-                class="w-4 h-4 mr-2 -ml-1"
-                aria-hidden="true"
-                focusable="false"
-                data-prefix="fab"
-                data-icon="google"
-                role="img"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 488 512"
-              >
-                <path
-                  fill="currentColor"
-                  d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z"
-                ></path>
-              </svg>
-              Добавить Ползователя
-            </button>
-          </div>
-        </div>
         <div class="overflow-x-auto">
           <table
             class="dtc-table w-full text-sm text-left text-gray-500 dark:text-gray-400"
@@ -51,19 +19,6 @@
                 :key="key"
                 class="border-b dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700"
               >
-                <td class="p-4 w-4">
-                  <div class="flex items-center">
-                    <input
-                      id="checkbox-table-search-1"
-                      type="checkbox"
-                      onclick="event.stopPropagation()"
-                      class="dtc-input w-4 h-4 text-primary-600 bg-gray-100 rounded border-gray-300 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                    />
-                    <label for="checkbox-table-search-1" class="sr-only"
-                      >checkbox</label
-                    >
-                  </div>
-                </td>
                 <th
                   scope="row"
                   class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white"
@@ -152,6 +107,36 @@
             </tbody>
           </table>
         </div>
+        <div
+            class="w-full md:w-auto flex px-4 mt-10 flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0"
+        >
+          <button
+              @click="handleGoogleAuth"
+              type="button"
+              id="createProductButton"
+              data-modal-toggle="createProductModal"
+              class="dtc-button dtc-google-button flex items-center justify-center text-white bg-[#4c8bf7] hover:bg-[#5c8bf9] focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800"
+          >
+            <svg
+                class="w-4 h-4 mr-2 -ml-1"
+                aria-hidden="true"
+                focusable="false"
+                data-prefix="fab"
+                data-icon="google"
+                role="img"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 488 512"
+            >
+              <path
+                  fill="currentColor"
+                  d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z"
+              ></path>
+            </svg>
+            Добавить Ползователя
+          </button>
+
+        </div>
+
       </div>
     </div>
     <Drawer

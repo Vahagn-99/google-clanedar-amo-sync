@@ -29,11 +29,10 @@ const props = defineProps({
     requried: false,
   },
 });
-
 const classObj = computed(() => ({
-  "text-blue-700 bg-blue-100 border border-blue-300  dark:border-blue-800 dark:text-blue-400":
+  "text-blue-700 bg-blue-100 border border-blue-300  dark:border-blue-800 dark:text-blue-400 dtc-success-card":
     props.value,
-  "text-red-700 bg-red-100 border border-red-300  dark:border-red-800 dark:text-red-400":
+  "text-red-700 bg-red-100 border border-red-300  dark:border-red-800 dark:text-red-400 dtc-danger-card":
     !props.value,
 }));
 </script>
