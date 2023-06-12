@@ -2,7 +2,7 @@
   <div class="max-w-2xl p-4 mx-auto">
     <div
       id="drawer-example"
-      class="fixed z-40 h-screen p-4 overflow-y-auto bg-slate-50 w-1/3 dtc-modal"
+      class="fixed z-40 h-screen p-4 overflow-y-auto bg-slate-50 w-2/5 dtc-modal"
       tabindex="-1"
       aria-labelledby="drawer-label"
     >
