@@ -34,9 +34,12 @@ const Widget = {
         app.mount(appElement);
     },
     async onSave(widget) {
+        await store.dispatch('widget/getWidgetId');
+        const widgetId = store.getters('widget/getWidgetId');
         await store.dispatch('subdomain/store', {
             amouser_id: widget.system.amouser_id,
             subdomain: widget.system.subdomain,
+            widget_id: widgetId.value
         });
     },
     async destroy(widget) {

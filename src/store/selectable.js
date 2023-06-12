@@ -32,12 +32,12 @@ const selectable = {
     },
     actions: {
         getColors: async ({ commit }, googleAccountId) => {
-            const resposne = await apiClient.get(`/google-account/${googleAccountId}/colors`);
+            const resposne = await apiClient.get(`/calendar/v1/account/${googleAccountId}/colors`);
             const colors = resposne.data.data
             commit("setColors", colors);
         },
         getCalendars: async ({ commit }, googleAccountId) => {
-            const resposne = await apiClient.get(`/google-account/${googleAccountId}/calendars`);
+            const resposne = await apiClient.get(`/calendar/v1/account/${googleAccountId}/calendars`);
             const calendars = resposne.data.data
             commit("setCalendars", calendars);
         },

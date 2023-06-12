@@ -1,5 +1,5 @@
 <template>
-  <WidgetContainer v-if="isWidgetRegistred">
+  <WidgetContainer>
     <template v-slot:title>
       <h2 class="text-slate-900 text-2xl">
         Сервиси Google Календаря под ваших нужд!
@@ -31,9 +31,11 @@
 <script setup>
 import WidgetContainer from "./components/WidgetContainer.vue";
 import { useSubdomain } from "./compostions/useSubdomain";
+import { useWidget } from "./compostions/useWidget";
 import { goTo } from "./helpers/helpers";
 
-const { asyncSubdomain, isWidgetRegistred, widget } = useSubdomain();
+const { asyncSubdomain } = useSubdomain();
+const { isWidgetRegistred } = useWidget();
 
 const goToAdvancedSettings = () => {
   goTo(`https://${widget.system.domain}/settings`);
