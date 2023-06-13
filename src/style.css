@@ -172,7 +172,7 @@ video {
 }
 
 .peer:checked ~ .peer-checked\:after\:translate-x-full::after {
-    transform: translateX(100%)!important;
+    transform: translateX(95%)!important;
 }
 
 .peer:checked ~ .peer-checked\:after\:translate-x-full::after{
@@ -212,6 +212,26 @@ video {
 
 .dtc-danger-card{
     background-color: rgb(254 226 226);
+}
+
+.dtc-card{
+    background: #fff;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    border-radius: 8px;
+}
+
+.dtc-button{
+    cursor: pointer;
+}
+
+.dtc-disabled{
+    pointer-events: none;
+    opacity: 0.3;
+}
+
+.dtc-empty-table{
+    font-size: 18px;
 }
 
 @media(max-width: 1320px){

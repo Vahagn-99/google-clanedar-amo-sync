@@ -2,7 +2,7 @@
   <!-- Start block -->
   <section class="dark:bg-gray-900 antialiased">
     <div class="mx-auto">
-      <div class="dtc-overflow-hidden px-6">
+      <div class="dtc-overflow-hidden ml-6 px-4 dtc-card">
         <div class="overflow-x-auto">
           <table
             class="dtc-table w-full text-sm text-left text-gray-500 dark:text-gray-400"
@@ -11,6 +11,15 @@
               class="text-xs text-gray-700 uppercase dark:bg-gray-700 dark:text-gray-400"
             ></thead>
             <tbody>
+            <tr
+                v-if= "accounts.length===0"
+                class="border-b dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700"
+            >
+              <th
+                  class="dtc-empty-table  px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                Нет зарегистрированных пользователей.
+              </th>
+            </tr>
               <tr
                 v-for="(account, key) in accounts"
                 :key="key"
@@ -105,7 +114,7 @@
           </table>
         </div>
         <div
-            class="w-full md:w-auto flex px-4 mt-10 flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0"
+            class="w-full md:w-auto flex px-4 mt-7 flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0"
         >
           <button
               @click="handleGoogleAuth"

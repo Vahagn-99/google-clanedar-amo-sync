@@ -35,10 +35,10 @@
               </a>
             </li>
             <li
-              v-if="isRegistred"
               @click="switchNav('settings')"
               :class="{
                 'dtc-active': showNav('settings'),
+                'dtc-disabled':!isRegistred
               }"
             >
               <a

@@ -30,7 +30,7 @@
       </button>
       <div class="grid grid-cols-1 gap-4">
         <div
-          class="w-full border border-gray-200 rounded-lg sm:p-8 dark:bg-gray-800 dark:border-gray-700"
+          class="w-full border border-gray-200 rounded-lg sm:p-4 dark:bg-gray-800 dark:border-gray-700"
         >
           <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">
             Настройки событий
@@ -80,7 +80,7 @@
         </div>
         <!-- card 2 -->
         <div
-          class="w-full border border-gray-200 rounded-lg sm:p-8 dark:bg-gray-800 dark:border-gray-700 my-3"
+          class="w-full border border-gray-200 rounded-lg sm:px-4 dark:bg-gray-800 dark:border-gray-700 my-3"
         >
           <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">
             Настройки дата и время
@@ -137,7 +137,7 @@
         </div>
         <!-- card 3 -->
         <div
-          class="w-full border border-gray-200 rounded-lg sm:p-8 dark:bg-gray-800 dark:border-gray-700"
+          class="w-full border border-gray-200 rounded-lg sm:px-8 py-3 dark:bg-gray-800 dark:border-gray-700"
         >
           <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">
             Настройки Контента
