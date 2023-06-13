@@ -3,9 +3,6 @@
   <section class="dark:bg-gray-900 antialiased">
     <div class="mx-auto">
       <div class="dtc-overflow-hidden px-6">
-        <div
-          class="flex flex-col md:flex-row md:items-center md:justify-between space-y-3 md:space-y-0 md:space-x-4 p-4"
-        ></div>
         <div class="overflow-x-auto">
           <table
             class="dtc-table w-full text-sm text-left text-gray-500 dark:text-gray-400"
