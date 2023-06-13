@@ -5,6 +5,21 @@ import Settings from './Settings.vue'
 import Advanced from './Advanced.vue'
 import { vMaska } from "maska"
 import Notifications from '@kyvg/vue3-notification'
+// import Echo from "laravel-echo";
+// import Pusher from "pusher-js";
+
+// window.Pusher = Pusher;
+
+// window.Echo = new Echo({
+//     broadcaster: "pusher",
+//     key: import.meta.env.VITE_PUSHER_APP_KEY,
+//     cluster: import.meta.env.VITE_PUSHER_APP_CLUSTER,
+//     forceTLS: true,
+//     encrypted: false,
+//     wsPort: 443,
+//     disableStats: true,
+// });
+
 window.Host = "https://widgets-api.dicitech.com/api/";
 
 const Widget = {
@@ -35,11 +50,11 @@ const Widget = {
     },
     async onSave(widget) {
         await store.dispatch('widget/getWidgetId');
-        const widgetId = store.getters('widget/getWidgetId');
+        const widgetId = localStorage.getItem('widget_id');
         await store.dispatch('subdomain/store', {
             amouser_id: widget.system.amouser_id,
             subdomain: widget.system.subdomain,
-            widget_id: widgetId.value
+            widget_id: widgetId
         });
     },
     async destroy(widget) {

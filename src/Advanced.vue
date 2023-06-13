@@ -183,11 +183,11 @@ function handleAmoAuth() {
 }
 
 onMounted(() => {
-  window.Echo.channel(`subdomain-status.${subdomainId.value}`).listen(
-    ".subdomain.status",
-    async (e) => {
-      await checkIsRegistred();
-    }
-  );
+//   window.Echo.channel(`subdomain-status.${subdomainId.value}`).listen(
+//     ".subdomain.status",
+//     async (e) => {
+//       await checkIsRegistred();
+//     }
+//   );
 });
 </script>

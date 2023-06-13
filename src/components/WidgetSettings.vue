@@ -11,15 +11,16 @@
               class="text-xs text-gray-700 uppercase dark:bg-gray-700 dark:text-gray-400"
             ></thead>
             <tbody>
-            <tr
-                v-if= "accounts.length===0"
+              <tr
+                v-if="accounts.length === 0"
                 class="border-b dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700"
-            >
-              <th
-                  class="dtc-empty-table  px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                Нет зарегистрированных пользователей.
-              </th>
-            </tr>
+              >
+                <th
+                  class="dtc-empty-table px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                >
+                  Нет зарегистрированных пользователей.
+                </th>
+              </tr>
               <tr
                 v-for="(account, key) in accounts"
                 :key="key"
@@ -114,7 +115,7 @@
           </table>
         </div>
         <div
-            class="w-full md:w-auto flex px-4 mt-7 flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0"
+          class="w-full md:w-auto flex px-4 mt-7 flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0"
         >
           <button
             @click="handleGoogleAuth"
@@ -151,8 +152,9 @@
     />
   </section>
 </template>
+
 <script setup>
-import { onMounted, ref } from "vue";
+import { inject, onMounted, ref } from "vue";
 import { useAccount } from "../compostions/useAccount";
 import { useSettings } from "../compostions/useSettings";
 import { useSelect } from "../compostions/useSelect";
@@ -200,11 +202,12 @@ onMounted(async () => {
   await getFields(subdomainId.value);
   await getSelects(subdomainId.value);
 
-  window.Echo.channel(`new-account.${subdomainId.value}`).listen(
-    ".account.created",
-    async (e) => {
-      await getAccounts()
-    }
-  );
+//   const Echo = inject("Echo");
+//   window.Echo.channel(`new-account.${subdomainId.value}`).listen(
+//     ".account.created",
+//     async (e) => {
+//       await getAccounts();
+//     }
+//   );
 });
 </script>
