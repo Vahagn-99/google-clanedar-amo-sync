@@ -1,7 +1,7 @@
 <template>
   <div class="h-screen">
     <nav class="dtc-nav bg-white border-gray-200 dark:bg-gray-900">
-      <div class="px-6 py-3 mx-auto">
+      <div class="px-6 py-3 mx-auto mb-4">
         <div class="flex items-center">
           <ul
             class="dtc-ul dtc-ul-general flex flex-row font-medium mt-0 mr-6 space-x-8 text-sm"
@@ -14,7 +14,7 @@
             >
               <a
                 href="#"
-                class="dtc-a flex items-center py-2 px-8 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+                class="dtc-a flex items-center py-2 px-4 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -35,15 +35,15 @@
               </a>
             </li>
             <li
-              v-if="isRegistred"
               @click="switchNav('settings')"
               :class="{
                 'dtc-active': showNav('settings'),
+                'dtc-disabled':!isRegistred
               }"
             >
               <a
                 href="#"
-                class="dtc-a flex items-center py-2 px-8 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+                class="dtc-a flex items-center py-2 px-4 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

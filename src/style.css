@@ -1,4 +1,4 @@
-@tailwind base;
+/*@tailwind base;*/
 @tailwind components;
 @tailwind utilities;
 
@@ -159,7 +159,7 @@ video {
 }
 
 .dtc-google-button{
-    padding: 10px 42px;
+    padding: 10px 40px;
 }
 
 .dtc-select{
@@ -172,11 +172,11 @@ video {
 }
 
 .peer:checked ~ .peer-checked\:after\:translate-x-full::after {
-    transform: translateX(18px)!important;
+    transform: translateX(95%)!important;
 }
 
 .peer:checked ~ .peer-checked\:after\:translate-x-full::after{
-    transform: translateX(18px)!important;
+    transform: translateX(100%)!important;
 }
 
  .peer:checked ~ .peer-checked\:after\:border-white::after {
@@ -207,11 +207,31 @@ video {
 }
 
 .dtc-success-card{
-    background-color: #00d66633;
+    background-color: #00d6661f;
 }
 
 .dtc-danger-card{
     background-color: rgb(254 226 226);
+}
+
+.dtc-card{
+    background: #fff;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    border-radius: 8px;
+}
+
+.dtc-button{
+    cursor: pointer;
+}
+
+.dtc-disabled{
+    pointer-events: none;
+    opacity: 0.3;
+}
+
+.dtc-empty-table{
+    font-size: 18px;
 }
 
 @media(max-width: 1320px){
