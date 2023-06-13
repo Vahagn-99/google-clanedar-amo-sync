@@ -162,7 +162,7 @@
 import NavItem from "./components/NavItem.vue";
 import InfoCard from "./components/InfoCard.vue";
 import WidgetSettings from "./components/WidgetSettings.vue";
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 import { oauthModal } from "./helpers/helpers";
 import { useSubdomain } from "./compostions/useSubdomain";
 
@@ -171,11 +171,6 @@ const { subdomainId, isRegistred, checkIsRegistred } = useSubdomain();
 const currentNav = ref("info");
 
 const widgetStatusActive = ref(true);
- 
-Echo.channel(`google-accounts.${this.order.id}`)
-    .listen('OrderShipmentStatusUpdated', (e) => {
-        console.log(e.order.name);
-    });
 
 function switchNav(next) {
   currentNav.value = next;
@@ -184,16 +179,15 @@ function showNav(is) {
   return currentNav.value === is;
 }
 function handleAmoAuth() {
-  const openedWindow = oauthModal(
-    `${window.Host}amo-auth/${subdomainId.value}`
-  );
-  // Check if the opened window is closed at intervals
-  const intervalId = setInterval(async () => {
-    if (openedWindow && openedWindow.closed) {
-      clearInterval(intervalId);
-      // Perform actions here
+  oauthModal(`${window.Host}amo-auth/${subdomainId.value}`);
+}
+
+onMounted(() => {
+  window.Echo.channel(`subdomain-status.${subdomainId.value}`).listen(
+    ".subdomain.status",
+    async (e) => {
       await checkIsRegistred();
     }
-  }, 1000);
-}
+  );
+});
 </script>
