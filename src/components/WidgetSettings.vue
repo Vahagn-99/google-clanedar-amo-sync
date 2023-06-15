@@ -11,15 +11,16 @@
               class="text-xs text-gray-700 uppercase dark:bg-gray-700 dark:text-gray-400"
             ></thead>
             <tbody>
-            <tr
-                v-if= "accounts.length===0"
+              <tr
+                v-if="accounts.length === 0"
                 class="border-b dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700"
-            >
-              <th
-                  class="dtc-empty-table  px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                Нет зарегистрированных пользователей.
-              </th>
-            </tr>
+              >
+                <th
+                  class="dtc-empty-table px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                >
+                  Нет зарегистрированных пользователей.
+                </th>
+              </tr>
               <tr
                 v-for="(account, key) in accounts"
                 :key="key"
@@ -113,18 +114,17 @@
             </tbody>
           </table>
         </div>
-      </div>
-      <div
+        <div
           class="w-full md:w-auto flex px-4 mt-7 flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0"
-      >
-        <button
+        >
+          <button
             @click="handleGoogleAuth"
             type="button"
             id="createProductButton"
             data-modal-toggle="createProductModal"
             class="dtc-button dtc-google-button flex items-center justify-center text-white bg-[#4c8bf7] hover:bg-[#5c8bf9] focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800"
-        >
-          <svg
+          >
+            <svg
               class="w-4 h-4 mr-2 -ml-1"
               aria-hidden="true"
               focusable="false"
@@ -133,15 +133,15 @@
               role="img"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 488 512"
-          >
-            <path
+            >
+              <path
                 fill="currentColor"
                 d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z"
-            ></path>
-          </svg>
-          Добавить Ползователя
-        </button>
-
+              ></path>
+            </svg>
+            Добавить Ползователя
+          </button>
+        </div>
       </div>
     </div>
     <Drawer
@@ -152,8 +152,9 @@
     />
   </section>
 </template>
+
 <script setup>
-import { onMounted, ref, watch } from "vue";
+import { inject, onMounted, ref } from "vue";
 import { useAccount } from "../compostions/useAccount";
 import { useSettings } from "../compostions/useSettings";
 import { useSelect } from "../compostions/useSelect";
@@ -184,12 +185,7 @@ function hideSettings() {
 const openedWindow = ref(false);
 
 function handleGoogleAuth() {
-  oauthModal(
-    `${window.Host}google-auth/${subdomainId.value}`,
-    "_blank",
-    "width=800,height=600"
-  );
-  openedWindow.value = true;
+  oauthModal(`${window.Host}google-auth/${subdomainId.value}`).then(()=>getAccounts);
 }
 
 async function handleDeleteAccount(account) {
@@ -200,5 +196,13 @@ onMounted(async () => {
   await getStatuses(subdomainId.value);
   await getFields(subdomainId.value);
   await getSelects(subdomainId.value);
+
+  //   const Echo = inject("Echo");
+  //   window.Echo.channel(`new-account.${subdomainId.value}`).listen(
+  //     ".account.created",
+  //     async (e) => {
+  //       await getAccounts();
+  //     }
+  //   );
 });
 </script>

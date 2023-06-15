@@ -29,13 +29,11 @@
 </template>
 
 <script setup>
+import { inject } from "vue";
 import WidgetContainer from "./components/WidgetContainer.vue";
-import { useSubdomain } from "./compostions/useSubdomain";
-import { useWidget } from "./compostions/useWidget";
 import { goTo } from "./helpers/helpers";
 
-const { asyncSubdomain } = useSubdomain();
-const { isWidgetRegistred } = useWidget();
+const widget = inject("widget");
 
 const goToAdvancedSettings = () => {
   goTo(`https://${widget.system.domain}/settings`);

@@ -5,7 +5,10 @@ import Settings from './Settings.vue'
 import Advanced from './Advanced.vue'
 import { vMaska } from "maska"
 import Notifications from '@kyvg/vue3-notification'
+import apiClient from "../apiClient"
+
 window.Host = "https://widgets-api.dicitech.com/api/";
+window.isWidgetInstalled = false;
 
 const Widget = {
     render() {
@@ -34,13 +37,16 @@ const Widget = {
         app.mount(appElement);
     },
     async onSave(widget) {
-        await store.dispatch('widget/getWidgetId');
-        const widgetId = store.getters('widget/getWidgetId');
-        await store.dispatch('subdomain/store', {
-            amouser_id: widget.system.amouser_id,
-            subdomain: widget.system.subdomain,
-            widget_id: widgetId.value
-        });
+        return apiClient.get("info/calendar")
+            .then(res => res.data.data.id)
+            .then(id => {
+                localStorage.setItem('widget_id', id);
+                apiClient.post("subdomains", {
+                    amouser_id: widget.system.amouser_id,
+                    subdomain: widget.system.subdomain,
+                    widget_id: id
+                }).then(e => window.isWidgetInstalled = true)
+            });
     },
     async destroy(widget) {
         await store.dispatch('subdomain/destroy', widget.system.subdomain);

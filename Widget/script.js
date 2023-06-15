@@ -23,8 +23,7 @@ define(['./app.js?cache=' + Date.now()], function (App) {
                 App.default.settings(self, $settings_body.selector, context);
             },
             onSave() {
-                App.default.onSave(self);
-                return true;
+                return App.default.onSave(self);
             },
             destroy() {
                 App.default.destroy(self);
