@@ -185,12 +185,7 @@ function hideSettings() {
 const openedWindow = ref(false);
 
 function handleGoogleAuth() {
-  oauthModal(
-    `${window.Host}google-auth/${subdomainId.value}`,
-    "_blank",
-    "width=800,height=600"
-  );
-  openedWindow.value = true;
+  oauthModal(`${window.Host}google-auth/${subdomainId.value}`).then(()=>getAccounts);
 }
 
 async function handleDeleteAccount(account) {
@@ -202,12 +197,12 @@ onMounted(async () => {
   await getFields(subdomainId.value);
   await getSelects(subdomainId.value);
 
-//   const Echo = inject("Echo");
-//   window.Echo.channel(`new-account.${subdomainId.value}`).listen(
-//     ".account.created",
-//     async (e) => {
-//       await getAccounts();
-//     }
-//   );
+  //   const Echo = inject("Echo");
+  //   window.Echo.channel(`new-account.${subdomainId.value}`).listen(
+  //     ".account.created",
+  //     async (e) => {
+  //       await getAccounts();
+  //     }
+  //   );
 });
 </script>
