@@ -5,7 +5,6 @@ import Settings from './Settings.vue'
 import Advanced from './Advanced.vue'
 import { vMaska } from "maska"
 import Notifications from '@kyvg/vue3-notification'
-import apiClient from "../apiClient"
 
 window.Host = "https://widgets-api.dicitech.com/api/";
 window.isWidgetInstalled = false;
@@ -21,12 +20,8 @@ const Widget = {
         return true;
     },
     settings(widget, appElement) {
-        const app = createApp(Settings);
-        app.provide('widget', widget);
-        app.use(Notifications)
-        app.directive("maska", vMaska)
-        app.use(store);
-        app.mount(appElement);
+        console.log(appElement[0]);
+        appElement[0].classList.add('dtc-settings-app'); // Add the class to the element
     },
     advanced_settings(widget, appElement) {
         const app = createApp(Advanced);
@@ -36,21 +31,17 @@ const Widget = {
         app.use(store)
         app.mount(appElement);
     },
-    async onSave(widget) {
-        return apiClient.get("info/calendar")
-            .then(res => res.data.data.id)
-            .then(id => {
-                localStorage.setItem('widget_id', id);
-                apiClient.post("subdomains", {
-                    amouser_id: widget.system.amouser_id,
-                    subdomain: widget.system.subdomain,
-                    widget_id: id
-                }).then(e => window.isWidgetInstalled = true)
-            });
+    onSave(widget) {
+        const app = createApp(Settings);
+        app.provide('widget', widget);
+        app.use(Notifications)
+        app.directive("maska", vMaska)
+        app.use(store);
+        app.mount('.dtc-settings-app');
+        return true
     },
-    async destroy(widget) {
-        await store.dispatch('subdomain/destroy', widget.system.subdomain);
-        await store.dispatch('subdomain/checkWidgetStatus', widget.system.subdomain)
+    destroy(widget) {
+        return true;
     },
     contacts_selected(widget) {
     },

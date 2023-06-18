@@ -20,7 +20,7 @@ define(['./app.js?cache=' + Date.now()], function (App) {
                 return true;
             },
             settings($settings_body, context) {
-                App.default.settings(self, $settings_body.selector, context);
+                App.default.settings(self, $settings_body, context);
             },
             onSave() {
                 return App.default.onSave(self);
