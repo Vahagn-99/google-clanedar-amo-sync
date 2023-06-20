@@ -38,7 +38,7 @@
               @click="switchNav('settings')"
               :class="{
                 'dtc-active': showNav('settings'),
-                'dtc-disabled':!isRegistred
+                'dtc-disabled': !isRegistred,
               }"
             >
               <a
@@ -64,11 +64,32 @@
               </a>
             </li>
             <li
-              @click="switchNav('shablonizator')"
+              @click="switchNav('doc')"
               :class="{
-                'dtc-active': showNav('shablonizator'),
+                'dtc-active': showNav('doc'),
               }"
-            ></li>
+            >
+              <a
+                href="#"
+                class="dtc-a flex items-center py-2 px-4 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="w-6 h-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z"
+                  />
+                </svg>
+                <span class="ml-3">Инструкция</span>
+              </a>
+            </li>
           </ul>
         </div>
       </div>
@@ -152,6 +173,11 @@
         <NavItem v-if="showNav('settings')">
           <WidgetSettings />
         </NavItem>
+        <NavItem v-if="showNav('doc')">
+          <div class="flex">
+            <WidgetDoc />
+          </div>
+        </NavItem>
       </div>
     </div>
   </div>
@@ -161,12 +187,17 @@
 <script setup>
 import NavItem from "./components/NavItem.vue";
 import InfoCard from "./components/InfoCard.vue";
+import WidgetDoc from "./components/WidgetDoc.vue";
 import WidgetSettings from "./components/WidgetSettings.vue";
 import { onMounted, ref } from "vue";
 import { oauthModal } from "./helpers/helpers";
 import { useSubdomain } from "./compostions/useSubdomain";
+import { useWidget } from "./compostions/useWidget";
 
-const { subdomainId, isRegistred, checkIsRegistred } = useSubdomain();
+const { subdomainId, isRegistred, checkIsRegistred, asyncSubdomain } =
+  useSubdomain();
+
+const { getWidgetId, checkWidgetStatus } = useWidget();
 
 const currentNav = ref("info");
 
@@ -182,12 +213,10 @@ function handleAmoAuth() {
   oauthModal(`${window.Host}amo-auth/${subdomainId.value}`);
 }
 
-onMounted(() => {
-//   window.Echo.channel(`subdomain-status.${subdomainId.value}`).listen(
-//     ".subdomain.status",
-//     async (e) => {
-//       await checkIsRegistred();
-//     }
-//   );
+onMounted(async () => {
+  await getWidgetId();
+  await checkWidgetStatus();
+  await checkIsRegistred();
+  await asyncSubdomain();
 });
 </script>

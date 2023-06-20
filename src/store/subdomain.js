@@ -6,14 +6,17 @@ const subdomain = {
         subdomainId: localStorage.getItem("subdomain_id"),
         isRegistred: false,
         isWidgetRegistred: false,
+        isExists: false,
     },
     getters: {
         getSubdomainId: (state) => state.subdomainId,
         isRegistred: (state) => state.isRegistred,
+        isExists: (state) => state.isExists,
     },
     mutations: {
         setSubdomainId: (state, subdomainId) => state.subdomainId = subdomainId,
         setIsRegistred: (state, isRegistred) => state.isRegistred = isRegistred,
+        setIsExists: (state, isExists) => state.isExists = isExists,
     },
     actions: {
         // save new client data in the back-end
@@ -31,6 +34,11 @@ const subdomain = {
             const resposne = await apiClient.get(`subdomains/${subdomainId}/status`);
             const { status } = resposne.data.data
             commit("setIsRegistred", status);
+        },
+        checkIsExists: async ({ commit }, subdomain) => {
+            const resposne = await apiClient.get(`subdomains/${subdomain}exists`);
+            const { status } = resposne.data.data
+            commit("setIsExists", status);
         }
     },
 }

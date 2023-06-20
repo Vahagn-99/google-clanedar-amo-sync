@@ -20,6 +20,7 @@ export function useWidget() {
     return {
         getWidgetId,
         widgetId,
+        checkWidgetStatus,
         isWidgetRegistred,
         widget
     };
