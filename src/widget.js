@@ -15,8 +15,7 @@ const Widget = {
         return true;
     },
     init(widget) {
-        // your code here
-        return true;
+        return true
     },
     bind_actions(widget) {
         return true;
@@ -33,13 +32,17 @@ const Widget = {
             const { data: { data: { status: subdomainId } } } = await apiClient.get(`subdomains/${subdomain}/exists`);
 
             if (subdomainId) {
+                // Get subdomainId from the server
+                const { data: { data: { status: isInstalled } } } = await apiClient.get(`${widgetId}/status/${subdomainId}`);
 
-                const app = createApp(Settings);
-                app.provide('widget', widget);
-                app.use(Notifications)
-                app.directive("maska", vMaska)
-                app.use(store);
-                app.mount('.dtc-settings-app');
+                if (isInstalled) {
+                    const app = createApp(Settings);
+                    app.provide('widget', widget);
+                    app.use(Notifications)
+                    app.directive("maska", vMaska)
+                    app.use(store);
+                    app.mount('.dtc-settings-app');
+                }
             }
         } catch (error) {
             console.log(error);
@@ -58,14 +61,15 @@ const Widget = {
             const subdomain = widget.system.subdomain;
             // Get widgetId from the server
             const { data: { data: { id: widgetId } } } = await apiClient.get('info/calendar');
-
             // Create the subdomain as it's known it does not exist yet
             const { data: { data: { id: subdomainId } } } = await apiClient.post("subdomains", {
                 subdomain,
                 widget_id: widgetId,
             });
+            // Check if the widget is installed
+            const { data: { data: { status: isInstalled } } } = await apiClient.get(`${widgetId}/status/${subdomainId}`);
 
-            if (subdomainId) {
+            if (isInstalled) {
                 const app = createApp(Settings);
                 app.provide('widget', widget);
                 app.use(Notifications)
@@ -73,11 +77,13 @@ const Widget = {
                 app.use(store);
                 app.mount('.dtc-settings-app');
             }
+            return true
         } catch (error) {
             console.log(error);
+            return true
         }
     },
-    async destroy(widget) {
+    async destroy() {
         return true;
     },
 }

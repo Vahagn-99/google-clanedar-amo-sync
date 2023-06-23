@@ -8,43 +8,43 @@ define(['./app.js?cache=' + Date.now()], function (App) {
         /** @private */
         this.callbacks = {
             render() {
-                App.default.render(self);
-                return true;
+                return App.default.render(self);
             },
             init() {
-                App.default.init(self);
-                return true;
+                return App.default.init(self);
             },
             bind_actions() {
-                App.default.bind_actions(self);
-                return true;
+                return App.default.bind_actions(self);
             },
-            settings($settings_body, context) {
-                App.default.settings(self, $settings_body, context);
+            async settings($settings_body, context) {
+                return await App.default.settings(self, $settings_body, context);
             },
-            onSave() {
-                return App.default.onSave(self);
+            async onSave() {
+                try {
+                    return await App.default.onSave(self);
+                } catch (error) {
+                    throw error
+                }
             },
             destroy() {
-                App.default.destroy(self);
-                return true;
+                return App.default.destroy(self);
             },
-            advancedSettings: function () {
-                App.default.advanced_settings(self, '#list_page_holder');
+            advancedSettings() {
+                return App.default.advanced_settings(self, '#list_page_holder');
             },
             contacts: {
                 selected() {
-                    App.default.contacts_selected(self);
+                    return App.default.contacts_selected(self);
                 }
             },
             leads: {
                 selected() {
-                    App.default.leads_selected(self);
+                    return App.default.leads_selected(self);
                 }
             },
             tasks: {
                 selected() {
-                    App.default.tasks_selected(self);
+                    return App.default.tasks_selected(self);
                 }
             }
         };
