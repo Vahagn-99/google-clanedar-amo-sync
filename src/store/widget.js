@@ -20,7 +20,6 @@ const widget = {
             const resposne = await apiClient.get("info/calendar");
             const { id } = resposne.data.data;
             commit("setWidgetId", id);
-            localStorage.setItem("widget_id", id);
         },
         checkWidgetStatus: async ({ commit }, { widgetId, subdomain }) => {
             const resposne = await apiClient.get(`${widgetId}/status/${subdomain}`);

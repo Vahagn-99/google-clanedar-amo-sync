@@ -1,10 +1,13 @@
 <template>
   <div class="w-[100%] mt-2">
-    <label
-      :for="name"
-      class="block mb-1 text-sm font-medium text-gray-900 dark:text-white"
-      >{{ label }}</label
-    >
+    <div class="flex">
+      <label
+        :for="name"
+        class="mb-1 text-sm font-medium text-gray-900 dark:text-white"
+        >{{ label }}
+      </label>
+      <Popover v-if="popover !== NULL" :context="popover" />
+    </div>
     <select
       :name="name"
       :id="name"
@@ -32,8 +35,13 @@
 
 <script setup>
 import { computed, ref } from "vue";
+import Popover from "./Popover.vue";
 
 const props = defineProps({
+  popover: {
+    type: String,
+    required: false,
+  },
   settings: {
     type: Object,
     required: true,

@@ -22,7 +22,7 @@
           />
           <path d="M0 0h24v24H0z" fill="none" />
         </svg>
-        Перейти к расширенным настройкам
+        Настроить виджет!
       </button>
     </div>
   </WidgetContainer>
@@ -32,10 +32,13 @@
 import { inject } from "vue";
 import WidgetContainer from "./components/WidgetContainer.vue";
 import { goTo } from "./helpers/helpers";
-
+import { useWidget } from "./compostions/useWidget";
 const widget = inject("widget");
+
+const { getWidgetCode, widgetCode } = useWidget();
 
 const goToAdvancedSettings = () => {
   goTo(`https://${widget.system.domain}/settings`);
 };
+
 </script>

@@ -181,7 +181,7 @@
       </div>
     </div>
   </div>
-  <notifications position="bottom right" />
+  <notifications position="bottom right"  width="400px" duration="3" />
 </template>
 
 <script setup>
@@ -215,8 +215,8 @@ function handleAmoAuth() {
 
 onMounted(async () => {
   await getWidgetId();
+  await asyncSubdomain();
   await checkWidgetStatus();
   await checkIsRegistred();
-  await asyncSubdomain();
 });
 </script>

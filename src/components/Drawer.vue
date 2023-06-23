@@ -36,6 +36,7 @@
             Настройки событий
           </h2>
           <MultilevelSelect
+            popover="Some text ..."
             label="Статус"
             name="settings_status_id"
             :settings="{
@@ -57,6 +58,7 @@
             @update:value="handleStatus"
           />
           <MultilevelSelect
+            popover="Some text ..."
             label="Специалист/Услуга"
             name="settings_status_id"
             :settings="{
@@ -82,8 +84,9 @@
         <div
           class="w-full border border-gray-200 rounded-lg sm:px-4 dark:bg-gray-800 dark:border-gray-700 my-3"
         >
-          <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">
+          <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white flex">
             Настройки дата и время
+            <Popover context="Some text ..." />
           </h2>
           <div class="">
             <Toggle v-model="usePcker" />
@@ -114,7 +117,7 @@
             <Toggle v-model="useInput" />
             <div class="flex gap-2 justify-between items-end">
               <Select
-                :disabled="usePcker"
+                popover="Some text ..."
                 label="Начало события (дата и время)"
                 :options="fields"
                 :selected="settings.start_date_id"
@@ -124,7 +127,7 @@
                 @update:value="handleStartDate"
               />
               <Input
-                :disabled="usePcker"
+                popover="Some text ..."
                 type="tell"
                 label="Укажите длительность"
                 name="date_district"
@@ -144,6 +147,7 @@
           </h2>
 
           <Select
+            popover="Some text ..."
             class=""
             label="Вибрать Календарь"
             :options="calendars"
@@ -155,6 +159,7 @@
           ></Select>
 
           <Select
+            popover="Some text ..."
             class=""
             label="Название события в календаре"
             :options="fields"
@@ -165,6 +170,7 @@
             @update:value="handleTaskName"
           ></Select>
           <Select
+            popover="Some text ..."
             label="ГЕО Адрес"
             :options="fields"
             optionKey="name"
@@ -175,6 +181,15 @@
             placeholder="Город Москва, Ул 45 дом 14"
           ></Select>
           <div class="my-2 relative">
+            <div class="flex">
+              <label
+                for="description"
+                class="block mb-1 text-sm font-medium text-gray-900 dark:text-white"
+              >
+                Описание задачи
+              </label>
+              <Popover context="Some text ..." />
+            </div>
             <textarea
               id="description"
               rows="8"
@@ -235,6 +250,7 @@ import { onMounted, ref, watch } from "vue";
 import Toggle from "./Toggle.vue";
 import Input from "./Input.vue";
 import ShablonItem from "./ShablonItem.vue";
+import Popover from "./Popover.vue";
 
 const { settings, saveSettings } = useSettings();
 const { fields, statuses, calendars, selects, getMarkers, markers } =

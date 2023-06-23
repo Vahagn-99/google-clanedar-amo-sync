@@ -33,17 +33,13 @@ const Widget = {
             const { data: { data: { status: subdomainId } } } = await apiClient.get(`subdomains/${subdomain}/exists`);
 
             if (subdomainId) {
-                // Get subdomainId from the server
-                const { data: { data: { status: isInstalled } } } = await apiClient.get(`${widgetId}/status/${subdomainId}`);
 
-                if (isInstalled) {
-                    const app = createApp(Settings);
-                    app.provide('widget', widget);
-                    app.use(Notifications)
-                    app.directive("maska", vMaska)
-                    app.use(store);
-                    app.mount('.dtc-settings-app');
-                }
+                const app = createApp(Settings);
+                app.provide('widget', widget);
+                app.use(Notifications)
+                app.directive("maska", vMaska)
+                app.use(store);
+                app.mount('.dtc-settings-app');
             }
         } catch (error) {
             console.log(error);
@@ -69,11 +65,7 @@ const Widget = {
                 widget_id: widgetId,
             });
 
-
-            // Check if the widget is installed
-            const { data: { data: { status: isInstalled } } } = await apiClient.get(`${widgetId}/status/${subdomainId}`);
-
-            if (isInstalled) {
+            if (subdomainId) {
                 const app = createApp(Settings);
                 app.provide('widget', widget);
                 app.use(Notifications)

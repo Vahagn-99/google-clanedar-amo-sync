@@ -1,10 +1,13 @@
 <template>
   <div class="w-[100%] mt-2">
-    <label
-      :for="name"
-      class="block mb-1 text-sm font-medium text-gray-900 dark:text-white"
-      >{{ label }}</label
-    >
+    <div class="flex">
+      <label
+        :for="name"
+        class=" mb-1 text-sm font-medium text-gray-900 dark:text-white"
+        >{{ label }}
+      </label>
+      <popover v-if="popover !== NULL" :context="popover" />
+    </div>
     <input
       :disabled="disabled"
       :type="type"
@@ -29,8 +32,13 @@
 <script setup>
 import { computed } from "vue";
 import { vMaska } from "maska";
+import Popover from "./Popover.vue";
 
 const props = defineProps({
+  popover: {
+    type: String,
+    required: false,
+  },
   label: {
     type: String,
     required: true,
@@ -85,4 +93,3 @@ function changeEvent() {
   emits("event:change", value.value);
 }
 </script>
- 
