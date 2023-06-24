@@ -6,8 +6,10 @@ export function useSubdomain() {
     const widget = inject('widget');
     const widgetId = computed(() => store.getters['widget/getWidgetId']);
     const subdomainId = computed(() => store.getters['subdomain/getSubdomainId']);
-    const isRegistred = computed(() => store.getters['subdomain/isRegistred']);
+    const isLicensed = computed(() => store.getters['subdomain/isRegistred']);
+    const isRegistred = computed(() => store.getters['subdomain/isLicensed']);
     const checkIsRegistred = async () => await store.dispatch('subdomain/checkIsRegistred', subdomainId.value);
+    const checkIsLicensed = async () => await store.dispatch('subdomain/checkIsLicensed', subdomainId.value);
 
     const asyncSubdomain = async () => {
         await store.dispatch('subdomain/store', {
@@ -19,8 +21,10 @@ export function useSubdomain() {
     return {
         asyncSubdomain,
         checkIsRegistred,
+        checkIsLicensed,
         subdomainId,
         isRegistred,
+        isLicensed,
         widget
     };
 }

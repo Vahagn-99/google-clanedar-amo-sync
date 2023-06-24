@@ -7,16 +7,19 @@ const subdomain = {
         isRegistred: false,
         isWidgetRegistred: false,
         isExists: false,
+        isLicensed: false,
     },
     getters: {
         getSubdomainId: (state) => state.subdomainId,
         isRegistred: (state) => state.isRegistred,
         isExists: (state) => state.isExists,
+        isLicensed: (state) => state.isLicensed,
     },
     mutations: {
         setSubdomainId: (state, subdomainId) => state.subdomainId = subdomainId,
         setIsRegistred: (state, isRegistred) => state.isRegistred = isRegistred,
         setIsExists: (state, isExists) => state.isExists = isExists,
+        setIsLicensed: (state, isLicensed) => state.isLicensed = isLicensed,
     },
     actions: {
         // save new client data in the back-end
@@ -34,6 +37,11 @@ const subdomain = {
             const resposne = await apiClient.get(`subdomains/${subdomainId}/status`, { byWidgetId: true });
             const { status } = resposne.data.data
             commit("setIsRegistred", status);
+        },
+        checkIsLicensed: async ({ commit }, subdomainId) => {
+            const resposne = await apiClient.get(`subdomains/${subdomainId}/license`, { byWidgetId: true });
+            const { status } = resposne.data.data
+            commit("setIsLicensed", status);
         },
         checkIsExists: async ({ commit }, subdomain) => {
             const resposne = await apiClient.get(`subdomains/${subdomain}exists`, { byWidgetId: true });
