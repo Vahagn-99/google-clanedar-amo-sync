@@ -21,22 +21,22 @@ const subdomain = {
     actions: {
         // save new client data in the back-end
         store: async ({ commit }, data) => {
-            const resposne = await apiClient.post("subdomains", data);
+            const resposne = await apiClient.post("subdomains", data, { byWidgetId: true });
             const { id } = resposne.data.data;
             commit("setSubdomainId", id);
             localStorage.setItem("subdomain_id", id);
         },
         destory: async ({ commit }, subdomainId) => {
-            const resposne = await apiClient.delete(`subdomains/${subdomainId}`);
+            const resposne = await apiClient.delete(`subdomains/${subdomainId}`, { byWidgetId: true });
             localStorage.clear();
         },
         checkIsRegistred: async ({ commit }, subdomainId) => {
-            const resposne = await apiClient.get(`subdomains/${subdomainId}/status`);
+            const resposne = await apiClient.get(`subdomains/${subdomainId}/status`, { byWidgetId: true });
             const { status } = resposne.data.data
             commit("setIsRegistred", status);
         },
         checkIsExists: async ({ commit }, subdomain) => {
-            const resposne = await apiClient.get(`subdomains/${subdomain}exists`);
+            const resposne = await apiClient.get(`subdomains/${subdomain}exists`, { byWidgetId: true });
             const { status } = resposne.data.data
             commit("setIsExists", status);
         }

@@ -1,20 +1,23 @@
-
 import axios from 'axios';
 
+window.baseUrl = 'https://widgets-api.dicitech.com/api/widgets/';
 const apiClient = axios.create({
-    baseURL: "https://widgets-api.dicitech.com/api/widgets/",
-    // You can also configure headers, timeouts, interceptors, etc. here
+    baseURL: window.baseUrl,
+    byWidgetId: false, // set default to false
 });
 
 // Helper function to get widget id
 async function getWidgetId() {
     const { data: { data: { id: widgetId } } } = await apiClient.get('info/calendar');
-    return widgetId;  // assuming the id is in the 'id' property
+    return widgetId;
 }
 
 apiClient.interceptors.request.use(async (config) => {
-    const id = await getWidgetId();
-    config.url = `${config.url}${id}/`; // append the widget id to the endpoint
+    if (config.byWidgetId) {
+        const id = await getWidgetId();
+        config.url = `${id}/${config.url}`; // append the widget id to the endpoint
+    }
+    delete config.byWidgetId; // remove custom parameter
     return config;
 }, function (error) {
     return Promise.reject(error);
