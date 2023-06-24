@@ -253,7 +253,7 @@ video {
     display: flex;
 }
 .dtc-activation-page .dtc-activate__body {
-    width: 442px;
+    width: 345px;
     padding-bottom: 0px;
 }
 .dtc-activation-page .dtc-activate__title {
@@ -309,7 +309,7 @@ video {
     font-size: 14px;
 }
 .dtc-activate__controls-dtc .dtc-activate__phone #dtc-activation-phone {
-    width: 283px;
+    width: 190px;
     background: #ffffff;
     border: 0.834356px solid #e6e6e6;
     border-radius: 5px;
@@ -342,7 +342,7 @@ video {
     font-size: 12.5153px;
 }
 .dtc-activate__controls-dtc .dtc-activate__button {
-    width: 131px;
+    width: 120px;
     margin-left: 10px;
 }
 .dtc-activate__controls-dtc .dtc-activate__button .button-input_blue:not(.button-input-disabled) {
@@ -383,16 +383,22 @@ video {
 }
 
  .dtc-feedback-modal-dtc {
-     border: 1px solid #F0F0F0;
-     box-shadow: 0.73424px 0.73424px 10px rgb(155 155 155 / 25%);
-     padding: 12px;
-     border-radius: 2px;
-     background-color: #f8f8f8;
+     /*border: 1px solid #F0F0F0;*/
+     /*box-shadow: 0.73424px 0.73424px 10px rgb(155 155 155 / 25%);*/
+     /*padding: 12px;*/
+     /*border-radius: 2px;*/
+     /*background-color: #f8f8f8;*/
      /*margin-top: 100px;*/
  }
+
+ .dtc-send-phone-block{
+     display: flex;
+ }
+
 .dtc-feedback-modal-dtc .dtc-feedback__buttons {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: end;
     font-size: 14px;
 }
 .dtc-feedback-modal-dtc .feedback-block {
@@ -417,8 +423,8 @@ video {
     align-items: center;
     background: #fff;
     cursor: pointer;
-    margin-left: 12px;
-    padding: 8px 10px 8px 8px;
+    /*margin-left: 12px;*/
+    padding: 8px;
     box-shadow: 1px 1px 5px rgb(0 37 167 / 15%);
     border-radius: 37px;
 }
@@ -471,7 +477,7 @@ video {
     height: 25px;
     background: #f8f8f8;
     border-radius: 50%;
-    margin-right: 8px;
+    /*margin-right: 8px;*/
 }
 
 .dtc-feedback-modal-dtc .dtc-feedback__buttons[data-btns="partner"] .dtc-feedback__button-img {
