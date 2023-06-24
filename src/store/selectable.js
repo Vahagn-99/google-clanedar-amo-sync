@@ -42,23 +42,23 @@ const selectable = {
             commit("setCalendars", calendars);
         },
         getFields: async ({ commit }, subdomainId) => {
-            const resposne = await apiClient.get(`/subdomain/${subdomainId}/fields`);
+            const resposne = await apiClient.get(`/subdomain/${subdomainId}/fields`, { byWidgetId: true });
             const fields = resposne.data.data
             commit("setFields", fields);
         },
         getStatuses: async ({ commit }, subdomainId) => {
-            const resposne = await apiClient.get(`/subdomain/${subdomainId}/statuses`);
+            const resposne = await apiClient.get(`/subdomain/${subdomainId}/statuses`, { byWidgetId: true });
             const statuses = resposne.data.data
             commit("setStatuses", statuses);
         },
         getSelects: async ({ commit }, subdomainId) => {
-            const resposne = await apiClient.get(`/subdomain/${subdomainId}/selects`);
+            const resposne = await apiClient.get(`/subdomain/${subdomainId}/selects`, { byWidgetId: true });
             const selects = resposne.data.data
             commit("setSelects", selects);
         },
 
         getMarkers: async ({ commit }, subdomainId) => {
-            const resposne = await apiClient.get(`/subdomain/${subdomainId}/markers`);
+            const resposne = await apiClient.get(`/subdomain/${subdomainId}/markers`, { byWidgetId: true });
             const markers = resposne.data.data
             commit("setMarkers", markers);
         },

@@ -38,7 +38,7 @@
               @click="switchNav('settings')"
               :class="{
                 'dtc-active': showNav('settings'),
-                'dtc-disabled': !isRegistred,
+                'dtc-disabled': !isRegistred || !isLicensed,
               }"
             >
               <a
@@ -168,6 +168,41 @@
               >
               <template v-else #content>Каснитес для авторизации</template>
             </InfoCard>
+            <InfoCard :value="isLicensed">
+              <template #title> Лицензя </template>
+              <template #trueValue>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  class="w-6 h-6 mx-2 text-green-500"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M12 1.5a5.25 5.25 0 00-5.25 5.25v3a3 3 0 00-3 3v6.75a3 3 0 003 3h10.5a3 3 0 003-3v-6.75a3 3 0 00-3-3v-3c0-2.9-2.35-5.25-5.25-5.25zm3.75 8.25v-3a3.75 3.75 0 10-7.5 0v3h7.5z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+              </template>
+              <template #falseValue>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  class="w-6 h-6 mx-2 text-red-500"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M6.72 5.66l11.62 11.62A8.25 8.25 0 006.72 5.66zm10.56 12.68L5.66 6.72a8.25 8.25 0 0011.62 11.62zM5.105 5.106c3.807-3.808 9.98-3.808 13.788 0 3.808 3.807 3.808 9.98 0 13.788-3.807 3.808-9.98 3.808-13.788 0-3.808-3.807-3.808-9.98 0-13.788z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+              </template>
+              <template v-if="isLicensed" #content
+                >Лицензия получена</template
+              >
+              <template v-else #content>Напишите в обратную связь</template>
+            </InfoCard>
           </div>
         </NavItem>
         <NavItem v-if="showNav('settings')">
@@ -181,7 +216,7 @@
       </div>
     </div>
   </div>
-  <notifications position="bottom right"  width="400px" duration="3" />
+  <notifications position="bottom right" width="400px" duration="3" />
 </template>
 
 <script setup>
@@ -194,8 +229,14 @@ import { oauthModal } from "./helpers/helpers";
 import { useSubdomain } from "./compostions/useSubdomain";
 import { useWidget } from "./compostions/useWidget";
 
-const { subdomainId, isRegistred, checkIsRegistred, asyncSubdomain } =
-  useSubdomain();
+const {
+  subdomainId,
+  isRegistred,
+  isLicensed,
+  checkIsRegistred,
+  checkIsLicensed,
+  asyncSubdomain,
+} = useSubdomain();
 
 const { getWidgetId, checkWidgetStatus } = useWidget();
 
@@ -218,5 +259,6 @@ onMounted(async () => {
   await asyncSubdomain();
   await checkWidgetStatus();
   await checkIsRegistred();
+  await checkIsLicensed();
 });
 </script>

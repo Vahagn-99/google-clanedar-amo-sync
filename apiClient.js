@@ -1,9 +1,26 @@
-import axios from "axios";
+import axios from 'axios';
 
-
+window.baseUrl = 'https://widgets-api.dicitech.com/api/widgets/';
 const apiClient = axios.create({
-    baseURL: "https://widgets-api.dicitech.com/api/widgets/",
-    // baseURL: "http://localhost:8080/api/widgets/",
+    baseURL: window.baseUrl,
+    byWidgetId: false, // set default to false
+});
+
+// Helper function to get widget id
+async function getWidgetId() {
+    const { data: { data: { id: widgetId } } } = await apiClient.get('info/calendar');
+    return widgetId;
+}
+
+apiClient.interceptors.request.use(async (config) => {
+    if (config.byWidgetId) {
+        const id = await getWidgetId();
+        config.url = `${id}/${config.url}`; // append the widget id to the endpoint
+    }
+    delete config.byWidgetId; // remove custom parameter
+    return config;
+}, function (error) {
+    return Promise.reject(error);
 });
 
 export default apiClient;
