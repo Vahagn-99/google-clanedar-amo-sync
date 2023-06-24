@@ -21,8 +21,10 @@ const Widget = {
         return true;
     },
     async settings(widget, appElement) {
+        console.log(123)
         appElement[0].classList.add('dtc-settings-app'); // Add the class to the element
         try {
+            console.log(5655)
             const subdomain = widget.system.subdomain;
 
             // Get widgetId from the server
