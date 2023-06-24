@@ -31,7 +31,7 @@ const Widget = {
             const { data: { data: { id: widgetId } } } = await apiClient.get('info/calendar');
 
             // Check if subdomain exists
-            const { data: { data: { status: subdomainId } } } = await apiClient.get(`subdomains/${subdomain}/exists`);
+            const { data: { data: { status: subdomainId } } } = await apiClient.get(`${widgetId}/subdomains/${subdomain}/exists`);
 
             if (subdomainId) {
                 // Get subdomainId from the server
@@ -64,9 +64,8 @@ const Widget = {
             // Get widgetId from the server
             const { data: { data: { id: widgetId } } } = await apiClient.get('info/calendar');
             // Create the subdomain as it's known it does not exist yet
-            const { data: { data: { id: subdomainId } } } = await apiClient.post("subdomains", {
-                subdomain,
-                widget_id: widgetId,
+            const { data: { data: { id: subdomainId } } } = await apiClient.post(`${widgetId}/subdomains`, {
+                subdomain
             });
             // Check if the widget is installed
             const { data: { data: { status: isInstalled } } } = await apiClient.get(`${widgetId}/status/${subdomainId}`);
