@@ -162,7 +162,17 @@ import Drawer from "./Drawer.vue";
 import { oauthModal } from "../helpers/helpers";
 
 const { accounts, getAccounts, subdomainId, deleteAccount } = useAccount();
-const { getStatuses, getFields, getSelects, getCalendars } = useSelect();
+const {
+  getStatuses,
+  getFields,
+  getSelects,
+  getCalendars,
+  getMarkers,
+  statuses,
+  fields,
+  markers,
+} = useSelect();
+
 const { getSettings } = useSettings();
 
 const showDrawer = ref(false);
@@ -171,6 +181,13 @@ const isLoadingId = ref(null);
 
 async function showSettings(accountId) {
   isLoadingId.value = accountId;
+  if (fields.value.length === 0) {
+    await getFields(subdomainId.value);
+  }
+  if (markers.value.length === 0) {
+    await getMarkers(subdomainId.value);
+  }
+
   await getSettings(accountId);
   await getCalendars(accountId);
   currentAccount.value = accountId;
@@ -185,7 +202,9 @@ function hideSettings() {
 const openedWindow = ref(false);
 
 function handleGoogleAuth() {
-  oauthModal(`${window.Host}google-auth/${subdomainId.value}`).then(()=>getAccounts);
+  oauthModal(`${window.Host}google-auth/${subdomainId.value}`).then(
+    () => getAccounts
+  );
 }
 
 async function handleDeleteAccount(account) {
@@ -196,13 +215,6 @@ onMounted(async () => {
   await getStatuses(subdomainId.value);
   await getFields(subdomainId.value);
   await getSelects(subdomainId.value);
-
-  //   const Echo = inject("Echo");
-  //   window.Echo.channel(`new-account.${subdomainId.value}`).listen(
-  //     ".account.created",
-  //     async (e) => {
-  //       await getAccounts();
-  //     }
-  //   );
+  await getMarkers(subdomainId.value);
 });
 </script>

@@ -216,7 +216,7 @@
       </div>
     </div>
   </div>
-  <notifications position="bottom right" width="400px" duration="3" />
+  <notifications position="bottom right" width="400px" :duration="3" />
 </template>
 
 <script setup>

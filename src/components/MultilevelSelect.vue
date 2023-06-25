@@ -2,11 +2,12 @@
   <div class="w-[100%] mt-2">
     <div class="flex">
       <label
+        v-if="label"
         :for="name"
         class="mb-1 text-sm font-medium text-gray-900 dark:text-white"
         >{{ label }}
       </label>
-      <Popover v-if="popover !== NULL" :context="popover" />
+      <Popover v-if="popover" :context="popover" />
     </div>
     <select
       :name="name"
@@ -39,8 +40,8 @@ import Popover from "./Popover.vue";
 
 const props = defineProps({
   popover: {
-    type: String,
-    required: false,
+    type: [String, Boolean],
+    default: false,
   },
   settings: {
     type: Object,
@@ -51,8 +52,8 @@ const props = defineProps({
     required: true,
   },
   label: {
-    type: String,
-    required: true,
+    type: [String, Boolean],
+    default: false,
   },
 });
 
@@ -60,6 +61,7 @@ const emits = defineEmits(["update:value"]);
 
 const selectedValue = ref(props.settings.selected.child_id);
 const selectElement = ref(null);
+
 function getParentLabel(option) {
   return option[props.settings.option.value];
 }
@@ -76,16 +78,13 @@ function getNestedValue(child) {
   return child[props.settings.nested.value];
 }
 
-const value = computed(() => {
+function handleSelect() {
   const selectedOption = selectElement.value.selectedOptions[0];
   const dataValue = selectedOption.dataset.value;
-  return {
+  const selectedValues = {
     parent: dataValue.split("p")[0],
     child: dataValue.split("p")[1],
   };
-});
-
-function handleSelect() {
-  emits("update:value", value.value);
+  emits("update:value", selectedValues);
 }
 </script>

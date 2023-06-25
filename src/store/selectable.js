@@ -32,33 +32,33 @@ const selectable = {
     },
     actions: {
         getColors: async ({ commit }, googleAccountId) => {
-            const resposne = await apiClient.get(`/calendar/v1/account/${googleAccountId}/colors`);
+            const resposne = await apiClient.get(`calendar/v1/account/${googleAccountId}/colors`);
             const colors = resposne.data.data
             commit("setColors", colors);
         },
         getCalendars: async ({ commit }, googleAccountId) => {
-            const resposne = await apiClient.get(`/calendar/v1/account/${googleAccountId}/calendars`);
+            const resposne = await apiClient.get(`calendar/v1/account/${googleAccountId}/calendars`);
             const calendars = resposne.data.data
             commit("setCalendars", calendars);
         },
         getFields: async ({ commit }, subdomainId) => {
-            const resposne = await apiClient.get(`/subdomains/${subdomainId}/fields`, { byWidgetId: true });
+            const resposne = await apiClient.get(`subdomains/${subdomainId}/fields`, { byWidgetId: true });
             const fields = resposne.data.data
             commit("setFields", fields);
         },
         getStatuses: async ({ commit }, subdomainId) => {
-            const resposne = await apiClient.get(`/subdomains/${subdomainId}/statuses`, { byWidgetId: true });
+            const resposne = await apiClient.get(`subdomains/${subdomainId}/statuses`, { byWidgetId: true });
             const statuses = resposne.data.data
             commit("setStatuses", statuses);
         },
         getSelects: async ({ commit }, subdomainId) => {
-            const resposne = await apiClient.get(`/subdomains/${subdomainId}/selects`, { byWidgetId: true });
+            const resposne = await apiClient.get(`subdomains/${subdomainId}/selects`, { byWidgetId: true });
             const selects = resposne.data.data
             commit("setSelects", selects);
         },
 
         getMarkers: async ({ commit }, subdomainId) => {
-            const resposne = await apiClient.get(`/subdomain/${subdomainId}/markers`, { byWidgetId: true });
+            const resposne = await apiClient.get(`subdomains/${subdomainId}/markers`, { byWidgetId: true });
             const markers = resposne.data.data
             commit("setMarkers", markers);
         },
