@@ -64,7 +64,7 @@
           <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">
             Настройки событий
           </h2>
-          <div class="w-full sm:py-2" v-if="settings.services.length > 0">
+          <div class="w-full" v-if="settings.services.length > 0">
             <draggable
               v-model:items="settings.services"
               :list="settings.services"
