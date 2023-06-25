@@ -64,7 +64,7 @@
           <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">
             Настройки событий
           </h2>
-          <div class="w-full sm:py-2">
+          <div class="w-full sm:py-2" v-if="settings.services.length > 0">
             <draggable
               v-model:items="settings.services"
               :list="settings.services"
@@ -74,7 +74,7 @@
               @end="handleOrder"
             >
               <template #item="{ element: service, index }">
-                <li class="flex flex-auto items-end" :data-key="index">
+                <li class="flex flex-auto items-end" :data-key="service.id">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -91,6 +91,7 @@
                   </svg>
                   <div class="flex gap-2 justify-between items-end">
                     <MultilevelSelect
+                      :label="index + 1 + ' событие'"
                       :name="index + '-settings_status_id'"
                       :settings="{
                         selected: {
@@ -377,6 +378,7 @@ function handleEndDate(value) {
 function handleService(option, index) {
   settings.value.services[index].service_id = option.parent;
   settings.value.services[index].service_value = option.child;
+  settings.value.services[index].order = index;
 }
 
 function handleCalendar(calendar_id, index) {
@@ -402,7 +404,7 @@ function addService() {
 }
 
 function handleOrder({ oldIndex, newIndex }) {
-  settings.value[oldIndex].order = newIndex;
+  settings.value.services[oldIndex].order = newIndex;
 }
 
 async function deleteItem(id) {
