@@ -18,6 +18,7 @@
       class="dtc-select border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
     >
       <option
+        :disabled="checkIfDissabled(option[selectedKey])"
         v-for="(option, key) in options"
         :key="key"
         :value="option[selectedKey]"
@@ -45,6 +46,10 @@ const props = defineProps({
     type: [String, Object, Number],
     required: false,
   },
+  dissabledOptionsIds: {
+    type: Array,
+    required: false,
+  },
   selectedKey: {
     type: String,
     required: false,
@@ -69,6 +74,13 @@ const props = defineProps({
 const emits = defineEmits(["update:value"]);
 
 const selectedValue = ref(props.selected);
+
+function checkIfDissabled(option) {
+  if (!props.dissabledOptionsIds) {
+    return;
+  }
+  return props.dissabledOptionsIds.includes(option);
+}
 
 function getSerializable(item) {
   return !!props.optionKey ? item[props.optionKey] : item;

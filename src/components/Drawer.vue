@@ -67,30 +67,12 @@
             @update:value="handleServiceParentId"
           />
           <div class="w-full" v-if="settings.services.length > 0">
-            <draggable
-              v-model:items="settings.services"
-              :list="settings.services"
-              item-key="id"
-              tag="ul"
-              class="p-0 space-y-1 text-gray-500 list-none"
-              @end="handleOrder"
-            >
-              <template #item="{ element: service, index }">
+            <ul class="p-0 space-y-1 text-gray-500 list-none">
+              <template
+                v-for="(service, index) in settings.services"
+                :key="index"
+              >
                 <li class="flex flex-auto items-end" :data-key="service.id">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke-width="1.5"
-                    stroke="currentColor"
-                    class="w-6 h-6 mb-2.5 mr-3"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5"
-                    />
-                  </svg>
                   <div class="flex gap-2 justify-between items-end w-full">
                     <Select
                       :options="services"
@@ -111,7 +93,7 @@
                   </div>
                   <button
                     type="button"
-                    @click="deleteItem(index)"
+                    @click="deleteItem(index, service.service_id)"
                     data-modal-target="delete-modal"
                     data-modal-toggle="delete-modal"
                     class="dtc-button flex items-center ml-3 text-[#ff6e6e] hover:text-white border border-[#ff6e6e] hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-3 py-2 text-center"
@@ -133,9 +115,9 @@
                   </button>
                 </li>
               </template>
-            </draggable>
+            </ul>
           </div>
-          <div class="w-full sm:p-4">
+          <div class="w-full sm:p-4" v-if="settings.services.length > 0">
             <button
               :disabled="!canAddNewItem"
               @click="addService"
@@ -143,7 +125,7 @@
               class="dtc-button float-right flex justify-center items-center focus:ring-4 focus:outline-none focus:ring-blue-300 text-white font-medium rounded-lg text-sm px-5 py-2.5 text-center"
               :class="{
                 'bg-[#4c8bf7] hover:bg-[#5c8bf9]': canAddNewItem,
-                'bg-blue-400  cursor-not-allowed': !canAddNewItem,
+                'bg-blue-400 dct-cursor-not-allowed': !canAddNewItem,
               }"
             >
               <svg
@@ -323,7 +305,6 @@ import Toggle from "./Toggle.vue";
 import Input from "./Input.vue";
 import ShablonItem from "./ShablonItem.vue";
 import Popover from "./Popover.vue";
-import draggable from "vuedraggable";
 
 const { settings, saveSettings } = useSettings();
 const { fields, statuses, calendars, selects, markers } = useSelect();
@@ -342,7 +323,10 @@ const usePcker = ref(true);
 
 const isOpenTemplate = ref(false);
 const canAddNewItem = ref(true);
-const services = ref(settings.value.services);
+const services = ref(null);
+// const servicesToDeleteFromSelect = ref(
+//   settings.value.services.map((service) => service.service_id)
+// );
 
 function toggleTemplate() {
   isOpenTemplate.value = !isOpenTemplate.value;
@@ -373,7 +357,12 @@ function handleEndDate(value) {
 
 function handleServiceParentId(parentId) {
   settings.value.services_parent_id = parentId;
-  services.value = selects.value
+  services.value = getServices(parentId);
+  settings.value.services = [{}];
+}
+
+function getServices(parentId) {
+  return selects.value
     .find((select) => select.id === parentId)
     .options.map((option) => {
       return {
@@ -381,7 +370,6 @@ function handleServiceParentId(parentId) {
         service_value: option.value,
       };
     });
-  settings.value.services = [{}];
 }
 
 function handleService(serviceId, index) {
@@ -389,6 +377,7 @@ function handleService(serviceId, index) {
   settings.value.services[index].service_id = service.service_id;
   settings.value.services[index].service_value = service.service_value;
   settings.value.services[index].order = index;
+  //   servicesToDeleteFromSelect.value.push(serviceId);
   //   services.value = services.value.filter((service) => service.id !== serviceId);
 }
 
@@ -414,12 +403,8 @@ function addService() {
   checkCanAddNewItem();
 }
 
-function handleOrder({ oldIndex, newIndex }) {
-  settings.value.services[oldIndex].order = newIndex;
-}
-
 function checkCanAddNewItem() {
-    console.log(services.value.length <= settings.value.services.length);
+  console.log(services.value.length <= settings.value.services.length);
   if (services.value.length <= settings.value.services.length) {
     canAddNewItem.value = false;
   } else {
@@ -427,8 +412,11 @@ function checkCanAddNewItem() {
   }
 }
 
-async function deleteItem(id) {
-  settings.value.services.splice(id, 1);
+async function deleteItem(index, id) {
+  settings.value.services.splice(index, 1);
+  //   servicesToDeleteFromSelect.value = servicesToDeleteFromSelect.value.filter(
+  //     (s) => s !== id
+  //   );
   checkCanAddNewItem();
 }
 
@@ -469,5 +457,6 @@ onMounted(async () => {
     // Show the drawer initially
     drawerInstance.value.show();
   }
+  services.value = getServices(settings.value.services_parent_id);
 });
 </script>

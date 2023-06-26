@@ -9,7 +9,6 @@
         "preview": "vite preview"
     },
     "dependencies": {
-        "@heroicons/vue": "^2.0.18",
         "@kyvg/vue3-notification": "^2.9.1",
         "archiver": "^5.3.1",
         "axios": "^1.4.0",
@@ -18,8 +17,7 @@
         "maska": "^2.1.9",
         "postcss-loader": "^7.3.0",
         "vue": "^3.3.2",
-        "vuex": "^4.0.2",
-        "vuedraggable": "^4.1.0"
+        "vuex": "^4.0.2"
     },
     "devDependencies": {
         "@babel/core": "^7.22.5",
