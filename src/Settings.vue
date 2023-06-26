@@ -1,5 +1,5 @@
 <template>
-   <h2 class="text-slate-900 text-2xl mb-8">Сервиси Google Календаря под ваших нужд!</h2>
+   <h2 class=" dtc-sett text-slate-900 text-2xl mb-8">Сервиси Google Календаря под ваших нужд!</h2>
     <div class="view-integration-modal__activation">
       <div class="activation-main-wrapper">
         <div class="dtc-activation-page">

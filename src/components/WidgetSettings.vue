@@ -92,7 +92,7 @@
                     type="button"
                     data-modal-target="delete-modal"
                     data-modal-toggle="delete-modal"
-                    class="dtc-button flex items-center text-[#ff6e6e] hover:text-white border border-[#ff6e6e] hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-3 py-2 text-center"
+                    class="dtc-button flex items-center text-[#ff6e6e] hover:text-white border border-[#ff6e6e] hover:bg-[#f45050] focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-3 py-2 text-center"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"

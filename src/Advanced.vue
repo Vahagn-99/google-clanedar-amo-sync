@@ -1,5 +1,5 @@
 <template>
-  <div class="h-screen">
+  <div class="h-screen relative">
     <nav class="dtc-nav bg-white border-gray-200 dark:bg-gray-900">
       <div class="px-6 py-3 mx-auto mb-4">
         <div class="flex items-center justify-between">
@@ -191,6 +191,9 @@
         </NavItem>
         <NavItem v-if="showNav('settings')">
           <WidgetSettings />
+          <div class="mt-6">
+            <Support :isMain="true"/>
+          </div>
         </NavItem>
         <NavItem v-if="showNav('doc')">
           <div class="flex">

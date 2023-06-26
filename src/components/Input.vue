@@ -1,5 +1,5 @@
 <template>
-  <div class="w-[100%] mt-2">
+  <div class="w-[100%]">
     <div class="flex">
       <label
         v-if="label"
