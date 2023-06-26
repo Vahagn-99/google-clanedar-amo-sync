@@ -20,13 +20,19 @@
           <div class="dtc-activate__phone w-full">
             <label>
               <div class="intl-tel-input">
-                <Input id="dtc-activation-phone" v-maska data-mask="(###)###-##-##" v-model="currentCountryCode" type="tel" name="dtc-phone__activation" required="" placeholder="Номер телефона" />
-                <div class="flag-dropdown">
-                  <div class="selected-flag" title="Russia (Россия): +7" @click="toggleCountryList">
-                    <div class="flag" :class="currentCountryFlag"><div class="arrow"></div></div>
-                  </div>
+                <Input id="dtc-activation-phone"
+                       label=""
+                       type="tel" name="dtc-phone__activation" v-model="currentCountryCode" placeholder="Номер телефона" />
+                <div class="flag-dropdown"  @click="toggleCountryList">
+                 <div class="flex items-center pr-[5px]">
+                   <div class="selected-flag" title="Russia (Россия): +7">
+                     <div class="flag" :class="currentCountryFlag">
+                       <div class="arrow"></div>
+                     </div>
+                   </div>
+                 </div>
                   <ul class="country-list" v-if="openCountryList">
-                    <li @click="handleCountryCode(country.code, country.iso.toLowerCase())" v-for="country in countries" :key="country.code" class="country" :data-dial-code="country.iso" :data-country-code="country.code.toLowerCase()">
+                    <li @click="handleCountryCode(country.code, country.iso.toLowerCase(),country.mask)" v-for="country in countries" :key="country.code" class="country" :data-dial-code="country.iso" :data-country-code="country.code.toLowerCase()">
                       <div :class="'flag '+ country.iso.toLowerCase()"></div>
                       <span class="country-name">{{ country.name }}</span><span class="dial-code">{{country.code}}</span>
                     </li>

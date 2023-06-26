@@ -310,17 +310,17 @@ video {
     font-size: 14px;
 }
 .dtc-activate__controls-dtc .dtc-activate__phone #dtc-activation-phone {
-    width: 100%;
-    background: #ffffff;
-    border: 0.834356px solid #e6e6e6;
+    /*width: 100%;*/
+    /*background: #ffffff;*/
+    /*border: 0.834356px solid #e6e6e6;*/
     border-radius: 5px;
     height: 35px;
-    padding-left: 48px;
+    /*padding-left: 48px;*/
     min-width: 290px;
 }
 .dtc-activate__controls-dtc .dtc-activate__phone .flag-dropdown {
     border-right: 1px solid #E7E7E7;
-    margin: 5.5px 0;
+    padding-top: 17px;
 }
 .dtc-activate__controls-dtc .dtc-activate__phone .flag-dropdown .arrow {
     display: none;
@@ -349,6 +349,7 @@ video {
     width: 146px;
     border-radius: 5px;
     font-size: 12.5153px;
+    height: 40px;
 }
 .dtc-activate__controls-dtc .dtc-activate__button {
     width: 100%;
@@ -387,6 +388,11 @@ video {
 .dtc-activate__controls-dtc .intl-tel-input .country-list {
     z-index: 5;
 }
+
+.dtc-activate__controls-dtc .intl-tel-input input {
+    padding-left: 50px;
+    font-size: 16px;
+}
 .dtc-activate__controls-dtc strong, .dtc-activate__controls-dtc b {
     font-weight: 700;
 }
@@ -404,12 +410,33 @@ video {
      bottom: 12px;
  }
 
+ .h-screen *{
+     box-sizing: border-box;
+ }
 
+ .dtc-sett *{
+     box-sizing: border-box;
+ }
+ .mymodal .max-w-2xl{
+     max-width: 32rem;
+ }
+
+ .mymodal *{
+     box-sizing: border-box;
+
+ }
+ #drawer-example *{
+     box-sizing: border-box;
+ }
+::before,::after{
+    box-sizing: border-box;
+}
 .dtc-feedback-modal-dtc .dtc-feedback__buttons {
     display: flex;
     flex-direction: row;
     font-size: 14px;
     flex-wrap: wrap;
+    justify-content: center;
     /*margin-top: -32px;*/
 }
 .dtc-feedback-modal-dtc .feedback-block {
@@ -517,6 +544,10 @@ video {
     backdrop-filter: blur();
 }
 
+.dtc-feedback__buttons-fixed{
+    position: fixed;
+    bottom: 12px;
+}
 
 @media(max-width: 1320px){
     .dtc-modal{
