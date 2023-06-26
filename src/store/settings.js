@@ -18,6 +18,7 @@ const settings = {
             const response = await apiClient.post(`calendar/v1/account/${accountId}/settings`, {
                 id: settings.id,
                 date_district: settings.date_district,
+                services_parent_id: settings.services_parent_id,
                 end_date_id: settings.end_date_id,
                 event_name_id: settings.event_name_id,
                 event_address_id: settings.event_address_id,
