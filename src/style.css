@@ -75,7 +75,6 @@ select:disabled{
     /*font-variation-settings: theme('fontFamily.sans[1].fontVariationSettings', normal); !* 6 *!*/
 }
 
-
 .dtc-body {
     margin: 0; /* 1 */
     line-height: inherit; /* 2 */
@@ -544,9 +543,8 @@ video {
     backdrop-filter: blur();
 }
 
-.dtc-feedback__buttons-fixed{
-    position: fixed;
-    bottom: 12px;
+.dct-cursor-not-allowed {
+  cursor: not-allowed;
 }
 
 @media(max-width: 1320px){
