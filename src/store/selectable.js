@@ -10,7 +10,8 @@ const selectable = {
         allFields: [],
         statuses: [],
         selects: [],
-        markers: []
+        markers: [],
+        countries: [],
     },
     getters: {
         getColors: (state) => state.colors,
@@ -20,6 +21,7 @@ const selectable = {
         getStatuses: (state) => state.statuses,
         getSelects: (state) => state.selects,
         getMarkers: (state) => state.markers,
+        getCountries: (state) => state.countries,
     },
     mutations: {
         setColors: (state, colors) => state.colors = colors,
@@ -29,6 +31,7 @@ const selectable = {
         setStatuses: (state, statuses) => state.statuses = statuses,
         setSelects: (state, selects) => state.selects = selects,
         setMarkers: (state, markers) => state.markers = markers,
+        setCountries: (state, countries) => state.countries = countries,
     },
     actions: {
         getColors: async ({ commit }, googleAccountId) => {
@@ -61,6 +64,11 @@ const selectable = {
             const resposne = await apiClient.get(`subdomains/${subdomainId}/markers`, { byWidgetId: true });
             const markers = resposne.data.data
             commit("setMarkers", markers);
+        },
+        getCountries: async ({ commit }) => {
+            const resposne = await apiClient.get(`/countries`);
+            const countries = resposne.data.data
+            commit("setCountries", countries);
         },
     },
 }

@@ -10,6 +10,7 @@ export function useSelect() {
     const statuses = computed(() => store.getters['selectable/getStatuses']);
     const selects = computed(() => store.getters['selectable/getSelects']);
     const markers = computed(() => store.getters['selectable/getMarkers']);
+    const countries = computed(() => store.getters['selectable/getCountries']);
     // fetch selectable data
     const getColors = async (accountId) => await store.dispatch('selectable/getColors', accountId);
     const getCalendars = async (accountId) => await store.dispatch('selectable/getCalendars', accountId);
@@ -17,6 +18,7 @@ export function useSelect() {
     const getStatuses = async (subdomainId) => await store.dispatch('selectable/getStatuses', subdomainId);
     const getSelects = async (subdomainId) => await store.dispatch('selectable/getSelects', subdomainId);
     const getMarkers = async (subdomainId) => await store.dispatch('selectable/getMarkers', subdomainId);
+    const getCountries = async () => await store.dispatch('selectable/getCountries');
 
     return {
         colors,
@@ -25,11 +27,13 @@ export function useSelect() {
         selects,
         markers,
         statuses,
+        countries,
         getColors,
         getCalendars,
         getFields,
         getStatuses,
         getSelects,
         getMarkers,
+        getCountries
     };
 }
