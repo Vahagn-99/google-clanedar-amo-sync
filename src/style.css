@@ -407,6 +407,7 @@ video {
  .dtc-feedback-modal-dtc-main{
      position: fixed;
      bottom: 12px;
+     right: 19rem;
  }
 
  .h-screen *{

@@ -9,7 +9,7 @@
           </svg>
         </div>
         <div>
-          <div class="dtc-activate__title">Активация виджета</div>
+          <div class="dtc-activate__title">Статус клиента </div>
           <div class="dtc-activate__description">Подтвердите телефон и получите виджет в подарок</div>
         </div>
       </div>
