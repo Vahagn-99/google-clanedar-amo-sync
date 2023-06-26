@@ -21,7 +21,7 @@
         <button class="dtc-feedback__button" data-feedback="call">
           <span> <a href="tel:+74992132608"></a> +7 499 213 26 08</span>
         </button>
-        <button class="dtc-feedback__button" data-feedback="bug" @click="showModal">
+        <button class="dtc-feedback__button" data-feedback="bug" @click="showModal2">
           <span>Сообщить о ошибке</span>
         </button>
         <button class="dtc-feedback__button" data-feedback="wishes" @click="showModal">
@@ -43,7 +43,6 @@
           Вам бы хотелось чтобы виджет умел делать то, что не умеет
           сейчас? Опишите Вашу идею, мы обязательно рассмотрим
           её и возможно реализуем в следующей версии виджета.
-
         </p>
         <form class="space-y-6 mt-4" action="#">
           <div>
@@ -74,7 +73,7 @@
     <Modal :size="sm" v-if="isShowModal2" @close="closeModal2">
       <template #header>
         <div class="flex items-center text-lg">
-          Предложить идею
+          Сообщить о ошибке
         </div>
       </template>
       <template #body>
