@@ -2,11 +2,12 @@
   <div class="w-[100%] mt-2">
     <div class="flex">
       <label
+        v-if="label"
         :for="name"
-        class=" mb-1 text-sm font-medium text-gray-900 dark:text-white"
+        class="mb-1 text-sm font-medium text-gray-900 dark:text-white"
         >{{ label }}
       </label>
-      <Popover v-if="popover !== NULL" :context="popover" />
+      <Popover v-if="popover" :context="popover" />
     </div>
     <select
       :disabled="disabled"
@@ -33,12 +34,12 @@ import Popover from "./Popover.vue";
 
 const props = defineProps({
   popover: {
-    type: String,
-    required: false,
+    type: [String, Boolean],
+    default: false,
   },
   label: {
-    type: String,
-    required: true,
+    type: [String, Boolean],
+    default: false,
   },
   selected: {
     type: [String, Object, Number],

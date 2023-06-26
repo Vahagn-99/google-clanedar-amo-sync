@@ -17,19 +17,16 @@ const settings = {
             const { settings, accountId } = data;
             const response = await apiClient.post(`calendar/v1/account/${accountId}/settings`, {
                 id: settings.id,
-                google_color_id: settings.google_color_id,
                 date_district: settings.date_district,
-                calendar_id: settings.calendar_id,
                 end_date_id: settings.end_date_id,
                 event_name_id: settings.event_name_id,
                 event_address_id: settings.event_address_id,
                 event_body: settings.event_body,
-                service_id: settings.service_id,
-                service_value: settings.service_value,
                 start_date_id: settings.start_date_id,
                 status_id: settings.status_id,
                 pipeline_id: settings.pipeline_id,
                 google_account_id: accountId,
+                services: settings.services
             });
             commit("setSettings", response.data.data);
         },

@@ -18,7 +18,8 @@
         "maska": "^2.1.9",
         "postcss-loader": "^7.3.0",
         "vue": "^3.3.2",
-        "vuex": "^4.0.2"
+        "vuex": "^4.0.2",
+        "vuedraggable": "^4.1.0"
     },
     "devDependencies": {
         "@babel/core": "^7.22.5",

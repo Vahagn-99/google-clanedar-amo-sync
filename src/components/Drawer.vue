@@ -33,7 +33,7 @@
           class="w-full border border-gray-200 rounded-lg sm:p-4 dark:bg-gray-800 dark:border-gray-700"
         >
           <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">
-            Настройки событий
+            Настройки Статуса
           </h2>
           <MultilevelSelect
             popover="Some text ..."
@@ -57,39 +57,129 @@
             }"
             @update:value="handleStatus"
           />
-          <MultilevelSelect
-            popover="Some text ..."
-            label="Специалист/Услуга"
-            name="settings_status_id"
-            :settings="{
-              selected: {
-                parent_id: settings.service_id,
-                child_id: settings.service_value,
-              },
-              options: selects,
-              option: {
-                key: 'id',
-                value: 'name',
-                nested: 'options',
-              },
-              nested: {
-                key: 'value',
-                value: 'value',
-              },
-            }"
-            @update:value="handleService"
-          />
+        </div>
+        <div
+          class="w-full border border-gray-200 rounded-lg sm:p-4 dark:bg-gray-800 dark:border-gray-700"
+        >
+          <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">
+            Настройки событий
+          </h2>
+          <div class="w-full" v-if="settings.services.length > 0">
+            <draggable
+              v-model:items="settings.services"
+              :list="settings.services"
+              item-key="id"
+              tag="ul"
+              class="p-0 space-y-1 text-gray-500 list-none"
+              @end="handleOrder"
+            >
+              <template #item="{ element: service, index }">
+                <li class="flex flex-auto items-end" :data-key="service.id">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="w-6 h-6 mb-2.5 mr-3"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5"
+                    />
+                  </svg>
+                  <div class="flex gap-2 justify-between items-end">
+                    <MultilevelSelect
+                      :label="index + 1 + ' событие'"
+                      :name="index + '-settings_status_id'"
+                      :settings="{
+                        selected: {
+                          parent_id: service.service_id,
+                          child_id: service.service_value,
+                        },
+                        options: selects,
+                        option: {
+                          key: 'id',
+                          value: 'name',
+                          nested: 'options',
+                        },
+                        nested: {
+                          key: 'value',
+                          value: 'value',
+                        },
+                      }"
+                      @update:value="handleService($event, index)"
+                    />
+                    <Select
+                      :options="calendars"
+                      optionKey="summary"
+                      :selected="service.calendar_id"
+                      selected-key="id"
+                      name="calendar_id"
+                      @update:value="handleCalendar($event, index)"
+                    />
+                  </div>
+                  <button
+                    type="button"
+                    @click="deleteItem(index)"
+                    data-modal-target="delete-modal"
+                    data-modal-toggle="delete-modal"
+                    class="dtc-button flex items-center ml-3 text-[#ff6e6e] hover:text-white border border-[#ff6e6e] hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-3 py-2 text-center"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="h-4 w-4 mr-2 -ml-0.5"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                      aria-hidden="true"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                    Удалить
+                  </button>
+                </li>
+              </template>
+            </draggable>
+          </div>
+          <div class="w-full sm:p-4">
+            <button
+              @click="addService"
+              type="button"
+              class="dtc-button float-right flex justify-center items-center text-white bg-[#4c8bf7] hover:bg-[#5c8bf9] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="w-6 h-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M12 4.5v15m7.5-7.5h-15"
+                />
+              </svg>
+              Добавить
+            </button>
+          </div>
         </div>
         <!-- card 2 -->
         <div
-          class="w-full border border-gray-200 rounded-lg sm:px-4 dark:bg-gray-800 dark:border-gray-700 my-3"
+          class="w-full border border-gray-200 rounded-lg sm:p-4 dark:bg-gray-800 dark:border-gray-700"
         >
           <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white flex">
             Настройки дата и время
             <Popover context="Some text ..." />
           </h2>
           <div class="">
-            <Toggle v-model="usePcker" />
+            <Toggle v-model="usePcker" class="ml-0" />
             <div class="flex gap-2 justify-between items-end">
               <Select
                 :disabled="useInput"
@@ -117,8 +207,8 @@
             <Toggle v-model="useInput" />
             <div class="flex gap-2 justify-between items-end">
               <Select
-                popover="Some text ..."
                 label="Начало события (дата и время)"
+                :disabled="usePcker"
                 :options="fields"
                 :selected="settings.start_date_id"
                 optionKey="name"
@@ -127,7 +217,7 @@
                 @update:value="handleStartDate"
               />
               <Input
-                popover="Some text ..."
+                :disabled="usePcker"
                 type="tell"
                 label="Укажите длительность"
                 name="date_district"
@@ -145,18 +235,6 @@
           <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">
             Настройки Контента
           </h2>
-
-          <Select
-            popover="Some text ..."
-            class=""
-            label="Вибрать Календарь"
-            :options="calendars"
-            optionKey="summary"
-            :selected="settings.calendar_id"
-            selected-key="id"
-            name="calendar_id"
-            @update:value="handleCalendar"
-          ></Select>
 
           <Select
             popover="Some text ..."
@@ -251,10 +329,10 @@ import Toggle from "./Toggle.vue";
 import Input from "./Input.vue";
 import ShablonItem from "./ShablonItem.vue";
 import Popover from "./Popover.vue";
+import draggable from "vuedraggable";
 
 const { settings, saveSettings } = useSettings();
-const { fields, statuses, calendars, selects, getMarkers, markers } =
-  useSelect();
+const { fields, statuses, calendars, selects, markers } = useSelect();
 
 const drawerInstance = ref(null); // Create a ref for the drawer instance
 
@@ -275,23 +353,14 @@ function toggleTemplate() {
 }
 
 function copyMarker(id) {
-  // console.log(settings.value.event_body);
   settings.value.event_body =
     settings.value.event_body === null
       ? ""
       : settings.value.event_body + " " + id;
 }
 
-function handleCalendar(value) {
-  settings.value.calendar_id = value;
-}
-
 function handleAddress(value) {
   settings.value.event_address_id = value;
-}
-
-function handleTaskColor(value) {
-  settings.value.google_color_id = value;
 }
 
 function handleTaskName(value) {
@@ -306,9 +375,14 @@ function handleEndDate(value) {
   settings.value.end_date_id = value;
 }
 
-function handleService(option) {
-  settings.value.service_id = option.parent;
-  settings.value.service_value = option.child;
+function handleService(option, index) {
+  settings.value.services[index].service_id = option.parent;
+  settings.value.services[index].service_value = option.child;
+  settings.value.services[index].order = index;
+}
+
+function handleCalendar(calendar_id, index) {
+  settings.value.services[index].calendar_id = calendar_id;
 }
 
 function handleStatus(option) {
@@ -319,9 +393,22 @@ function handleStatus(option) {
 async function handleSave() {
   await saveSettings(props.account);
   closeModal();
+  console.log(settings.value);
   if (drawerInstance.value) {
     drawerInstance.value.hide(); // Hide the drawer after saving
   }
+}
+
+function addService() {
+  settings.value.services.push({});
+}
+
+function handleOrder({ oldIndex, newIndex }) {
+  settings.value.services[oldIndex].order = newIndex;
+}
+
+async function deleteItem(id) {
+  settings.value.services.splice(id, 1);
 }
 
 function closeModal() {
@@ -360,7 +447,5 @@ onMounted(async () => {
     // Show the drawer initially
     drawerInstance.value.show();
   }
-
-  await getMarkers(props.subdomainId);
 });
 </script>
