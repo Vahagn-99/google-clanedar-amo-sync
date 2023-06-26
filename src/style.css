@@ -534,9 +534,6 @@ video {
   backdrop-filter: blur();
 }
 
-.dct-cursor-not-allowed {
-  cursor: not-allowed;
-}
 
 @media (max-width: 1320px) {
   .dtc-modal {
