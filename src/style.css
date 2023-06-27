@@ -436,6 +436,10 @@ video {
      max-width: 32rem;
  }
 
+ .mymodal-drawer .max-w-2xl{
+     max-width: 44rem;
+ }
+
  .mymodal *{
      box-sizing: border-box;
 
