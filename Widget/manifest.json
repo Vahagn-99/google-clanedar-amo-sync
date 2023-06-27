@@ -3,7 +3,7 @@
     "name": "widget.name",
     "description": "widget.description",
     "short_description": "widget.short_description",
-    "version": "2.1.3",
+    "version": "2.1.7",
     "interface_version": 2,
     "init_once": true,
     "locale": [
@@ -20,9 +20,9 @@
     "advanced_settings"
   ],
   "settings": {
-    "login": {
-      "name": "settings.login",
-      "type": "text",
+    "json": {
+      "name": "settings.json",
+      "type": "custom",
       "required": false
     }
   },

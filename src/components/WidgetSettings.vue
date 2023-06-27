@@ -36,7 +36,7 @@
                   scope="row"
                   class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                 >
-                  <div class="flex items-center mr-3">#{{ account.id }}</div>
+                  <div class="flex items-center mr-3">#{{ key + 1 }}</div>
                 </th>
                 <th
                   class="flex justify-end px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white space-x-4"
