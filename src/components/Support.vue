@@ -63,7 +63,7 @@
                 type="text"
                 name="name"
                 id="name_1"
-                v-model="account.name"
+                v-model="user.name"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                 placeholder="Имя"
                 required
@@ -79,7 +79,7 @@
                 type="tel"
                 name="tel"
                 id="tel"
-                v-model="subdomain.phone"
+                v-model="user.login"
                 placeholder="Номер телефона"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                 required
@@ -184,7 +184,7 @@
 </template>
 
 <script setup>
-import { computed } from "vue";
+import { computed, inject } from "vue";
 import { Modal } from "flowbite-vue";
 import { ref } from "vue";
 
