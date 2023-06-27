@@ -58,8 +58,9 @@
             @update:value="handleStatus"
           />
           <Select
-            label="события"
+            label="События"
             :options="selects"
+            popover="Some text ..."
             optionKey="name"
             :selected="settings.services_parent_id"
             selected-key="id"
@@ -96,7 +97,7 @@
                     @click="deleteItem(index, service.service_id)"
                     data-modal-target="delete-modal"
                     data-modal-toggle="delete-modal"
-                    class="dtc-button flex items-center ml-3 text-[#ff6e6e] hover:text-white border border-[#ff6e6e] hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-3 py-2 text-center"
+                    class="dtc-button flex items-center ml-3 text-[#ff6e6e] hover:text-white border border-[#ff6e6e] hover:bg-[#f45050] focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-3 py-2 text-center"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -117,12 +118,12 @@
               </template>
             </ul>
           </div>
-          <div class="w-full sm:p-4" v-if="settings.services.length > 0">
+          <div class="w-full" v-if="settings.services.length > 0">
             <button
               :disabled="!canAddNewItem"
               @click="addService"
               type="button"
-              class="dtc-button float-right flex justify-center items-center focus:ring-4 focus:outline-none focus:ring-blue-300 text-white font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+              class="dtc-button mt-4 float-right flex justify-center items-center focus:ring-4 focus:outline-none focus:ring-blue-300 text-white font-medium rounded-lg text-sm px-5 py-2.5 text-center"
               :class="{
                 'bg-[#4c8bf7] hover:bg-[#5c8bf9]': canAddNewItem,
                 'bg-blue-400 dct-cursor-not-allowed': !canAddNewItem,
@@ -206,7 +207,7 @@
         </div>
         <!-- card 3 -->
         <div
-          class="w-full border border-gray-200 rounded-lg sm:px-8 py-3 dark:bg-gray-800 dark:border-gray-700"
+          class="w-full border border-gray-200 rounded-lg sm:px-4 py-3 dark:bg-gray-800 dark:border-gray-700"
         >
           <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">
             Настройки Контента
@@ -273,7 +274,7 @@
             </div>
           </div>
         </div>
-        <div class="flex justify-between">
+        <div class="flex justify-between px-4">
           <button
             @click="closeModal"
             type="button"

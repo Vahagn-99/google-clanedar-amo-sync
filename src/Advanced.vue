@@ -178,7 +178,10 @@
                   <div class="activation-main-wrapper h-full">
                     <div class="dtc-activation-page h-full">
                       <div class="dtc-send-phone-block h-full">
-                            <SettingsPhone  :isMain="true" />
+                        <SettingsPhone  :isMain="true"  :value="clientStatusActive">
+                          <template #trueValue></template>
+                          <template #falseValue></template>
+                        </SettingsPhone>
                       </div>
                     </div>
                   </div>
@@ -229,9 +232,11 @@ const {
 
 const { getWidgetId, checkWidgetStatus } = useWidget();
 
+
 const currentNav = ref("info");
 
 const widgetStatusActive = ref(false);
+const clientStatusActive = ref(false);
 
 function switchNav(next) {
   currentNav.value = next;
@@ -243,11 +248,14 @@ function handleAmoAuth() {
   oauthModal(`${window.Host}amo-auth/${subdomainId.value}`);
 }
 
+
 onMounted(async () => {
   await getWidgetId();
   await asyncSubdomain();
   await checkWidgetStatus();
   await checkIsRegistred();
   await checkIsLicensed();
+  await clientStatus();
 });
+
 </script>
