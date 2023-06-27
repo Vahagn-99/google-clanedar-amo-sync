@@ -235,7 +235,7 @@
           ></Select>
           <Select
             popover="Выбираете поле в amoCRM, где вы прописываете адрес и после создания события в Google Календаре, можно будет посмотреть адрес отдельно и даже открыть его на Google Maps"
-            label="ГЕО Адрес"
+            label="Местоположение / Адрес"
             :options="fields"
             optionKey="name"
             :selected="settings.event_address_id"
@@ -301,6 +301,103 @@
         </div>
       </div>
     </div>
+    <div class="mymodal">
+      <Modal :size="sm" v-if="isShow1">
+        <template #header>
+          <div class="flex items-center text-lg">Сообщить о ошибке</div>
+        </template>
+        <template #body>
+          <div class="px-4">
+            <p>
+              Обнаружили ошибку в работе виджета? Опишите проблему и по
+              возможности прикрепите скриншоты ссылками. Наши специалисты
+              постараются решить её в ближайшее время.
+            </p>
+          </div>
+        </template>
+      </Modal>
+    </div>
+    <div class="mymodal">
+      <Modal :size="sm" v-if="isShow2">
+        <template #header>
+          <div class="flex items-center text-lg">Сообщить о ошибке</div>
+        </template>
+        <template #body>
+          <div class="px-4">
+            <p>
+              Обнаружили ошибку в работе виджета? Опишите проблему и по
+              возможности прикрепите скриншоты ссылками. Наши специалисты
+              постараются решить её в ближайшее время.
+            </p>
+          </div>
+        </template>
+      </Modal>
+    </div>
+    <div class="mymodal">
+      <Modal :size="sm" v-if="isShow3">
+        <template #header>
+          <div class="flex items-center text-lg">Сообщить о ошибке</div>
+        </template>
+        <template #body>
+          <div class="px-4">
+            <p>
+              Если все сотрудники пользуются одним календарем, чтобы не было путанницы необходимо сделать сопоставление поля (например имя сотрудника) и внутреннего календаря. В таком случае можно будет быстро просмотреть все занятые слоты, либо просмотреть только одного сотрудника или услугу.<br>
+
+              В данном разделе вы можете настроить 2 варианта создания события:<br>
+
+              Вариант 1. Вы вручную для каждой сделки определяете дату и время начала и завершения события, посредством заполнения полей amoCRM.
+              Например: 20.06.2023 15:00 - 20.06.2023 17:30
+
+              Вариант 2. Вы назначаете дату и время начала события, а продолжительность уже будет фиксирована для всех событий.
+              Например: Начало события 20.06.2023 15:00, а длительность всех событий будет по умолчанию 1 час.
+            </p>
+          </div>
+        </template>
+      </Modal>
+    </div>
+    <div class="mymodal">
+      <Modal :size="sm" v-if="isShow4">
+        <template #header>
+          <div class="flex items-center text-lg">Сообщить о ошибке</div>
+        </template>
+        <template #body>
+          <div class="px-4">
+            <p>
+              Выбираете поле в amoCRM, которое будет отображать название события в Google Календаре. Можете выбрать название сделки, для того чтобы событие и сделка назывались одинаково
+            </p>
+          </div>
+        </template>
+      </Modal>
+    </div>
+    <div class="mymodal">
+      <Modal :size="sm" v-if="isShow5">
+        <template #header>
+          <div class="flex items-center text-lg">Сообщить о ошибке</div>
+        </template>
+        <template #body>
+          <div class="px-4">
+            <p>
+              Выбираете поле в amoCRM, где вы прописываете адрес и после создания события в Google Календаре, можно будет посмотреть адрес отдельно и даже открыть его на Google Maps
+            </p>
+          </div>
+        </template>
+      </Modal>
+    </div>
+    <div class="mymodal">
+      <Modal :size="sm" v-if="isShow6">
+        <template #header>
+          <div class="flex items-center text-lg">Сообщить о ошибке</div>
+        </template>
+        <template #body>
+          <div class="px-4">
+            <p>
+              Это развернутое описание события в Google Календаре, которое позволит передать любую необходимую информацию из полей amoCRM используя текст и переменные (все переменные доступны по кнопке “Открыть Шаблонизатор”)
+            </p>
+          </div>
+        </template>
+      </Modal>
+    </div>
+
   </div>
 </template>
 
@@ -315,6 +412,7 @@ import Toggle from "./Toggle.vue";
 import Input from "./Input.vue";
 import ShablonItem from "./ShablonItem.vue";
 import Popover from "./Popover.vue";
+import {Modal} from "flowbite-vue";
 
 const { settings, saveSettings } = useSettings();
 const { fields, statuses, calendars, selects, markers } = useSelect();
@@ -434,7 +532,54 @@ function closeModal() {
   drawerInstance.value.hide();
   emit("close-drawer");
 }
+const isShow1 = ref(false);
+const isShow2 = ref(false);
+const isShow3 = ref(false);
+const isShow4 = ref(false);
+const isShow5 = ref(false);
+const isShow6 = ref(false);
 
+function close1() {
+  isShow1.value=false
+}
+function show1() {
+  isShow1.value=false
+}
+
+function close2() {
+  isShow1.value=false
+}
+function show2() {
+  isShow1.value=false
+}
+
+function close3() {
+  isShow1.value=false
+}
+function show3() {
+  isShow1.value=false
+}
+
+function close4() {
+  isShow1.value=false
+}
+function show4() {
+  isShow1.value=false
+}
+
+function close5() {
+  isShow1.value=false
+}
+function show5() {
+  isShow1.value=false
+}
+
+function close6() {
+  isShow1.value=false
+}
+function show6() {
+  isShow1.value=false
+}
 watch(useInput, (newValue) => {
   settings.value.start_date_id = null;
   settings.value.end_date_id = null;
