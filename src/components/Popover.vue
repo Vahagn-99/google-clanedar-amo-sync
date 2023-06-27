@@ -16,14 +16,14 @@
       </svg>
     </a>
 
-    <div class="mymodal">
+    <div class="mymodal-drawer">
       <Modal :size="sm" v-if="isShow" @close="closeModal">
         <template #header>
           <div class="flex items-center text-lg"></div>
         </template>
         <template #body>
           <div class="px-4 py-4">
-            <p>
+            <p style="font-weight: 300;font-size:16px">
               <slot name="context">
               </slot>
             </p>
