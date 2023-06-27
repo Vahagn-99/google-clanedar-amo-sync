@@ -1,6 +1,6 @@
 <template>
   <div class="relative mt-[0.2%]">
-    <a @mouseover="showPopover" @mouseleave="hidePopover">
+    <a @click="showPopover" >
       <svg
         class="w-4 h-4 ml-2 text-gray-400 hover:text-gray-500"
         aria-hidden="true"
