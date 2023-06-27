@@ -3,7 +3,7 @@ import { useStore } from 'vuex';
 
 export function useSubdomain() {
     const store = useStore();
-    const widget = inject('widget');
+    const amocrm = inject('amocrm');
     const subdomainId = computed(() => store.getters['subdomain/getSubdomainId']);
     const subdomain = computed(() => store.getters['subdomain/getSubdomain']);
     const isLicensed = computed(() => store.getters['subdomain/isLicensed']);
@@ -24,8 +24,19 @@ export function useSubdomain() {
     const getSubdomain = async () => await store.dispatch('subdomain/getSubdomain');
 
     const asyncSubdomain = async () => {
+        const Account = amocrm.constant('account')
+        const User = amocrm.constant('user')
         await store.dispatch('subdomain/store', {
-            subdomain: widget.system.subdomain
+            name: User.name,
+            amocrm_id: Account.id,
+            phone: User.personal_mobile,
+            subdomain: Account.subdomain,
+            country: Account.country,
+            currency: Account.currency,
+            paid_from: Account.paid_from,
+            paid_till: Account.paid_till,
+            pay_type: Account.pay_type,
+            tariff: Account.tariffName,
         });
     }
 
