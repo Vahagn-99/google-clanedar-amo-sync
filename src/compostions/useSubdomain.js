@@ -14,30 +14,15 @@ export function useSubdomain() {
     const checkIsRegistred = async () => await store.dispatch('subdomain/checkIsRegistred', subdomainId.value);
     const checkIsLicensed = async () => await store.dispatch('subdomain/checkIsLicensed', subdomainId.value);
     const getAccount = async () => await store.dispatch('subdomain/getAccount');
-
     const addPhone = async (phone) => {
         await store.dispatch('subdomain/addPhone', phone);
         await checkHasPhone();
     };
-
     const checkHasPhone = async () => await store.dispatch('subdomain/checkHasPhone');
     const getSubdomain = async () => await store.dispatch('subdomain/getSubdomain');
-
     const asyncSubdomain = async () => {
-        const Account = amocrm.constant('account')
-        const User = amocrm.constant('user')
-        await store.dispatch('subdomain/store', {
-            name: User.name,
-            amocrm_id: Account.id,
-            phone: User.personal_mobile,
-            subdomain: Account.subdomain,
-            country: Account.country,
-            currency: Account.currency,
-            paid_from: Account.paid_from,
-            paid_till: Account.paid_till,
-            pay_type: Account.pay_type,
-            tariff: Account.tariffName,
-        });
+        const account = amocrm.constant('account')
+        await store.dispatch('subdomain/async', account.subdomain);
     }
 
     return {
@@ -47,7 +32,6 @@ export function useSubdomain() {
         subdomainId,
         isRegistred,
         isLicensed,
-        widget,
         checkHasPhone,
         addPhone,
         subdomain,

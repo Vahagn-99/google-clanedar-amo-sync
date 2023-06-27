@@ -3,11 +3,9 @@
     <div class="activation-main-wrapper">
       <div class="dtc-activation-page">
         <div class="dtc-send-phone-block">
-          <!--            <div class="dtc-activate__wrapper">-->
           <div>
             <SettingsPhone :isMain="false" />
           </div>
-          <!--            </div>-->
           <button
             type="button"
             @click="goToAdvancedSettings"
@@ -20,7 +18,7 @@
             >
               <path
                 fill="currentColor"
-                d="M19.23 12.93c.03-.24.07-.48.07-.73s-.04-.49-.07-.73l2.01-1.58c.14-.11.18-.32.1-.49l-2-3.46c-.09-.16-.3-.24-.49-.19l-2.49 1c-.45-.34-.92-.62-1.42-.83l-.38-2.6c-.04-.26-.25-.45-.5-.45h-4c-.26 0-.46.19-.5.45l-.38 2.6c-.5.21-.97.49-1.42.83l-2.49-1c-.19-.08-.4 0-.49.19l-2 3.46c-.08.17-.03.38.1.49l2.01 1.58c-.03.24-.07.48-.07.73s.04.49.07.73l-2.01 1.58c-.14.11-.18.32-.1.49l2 3.46c.09.16.3.24.49.19l2.49-1c.45.34.92.62 1.42.83l.38 2.6c.04.26.25.45.5.45h4c.26 0 .46-.19.5-.45l.38-2.6c.5-.21.97-.49 1.42-.83l2.49 1c.19.08.4 0 .49-.19l2-3.46c.08-.17.03-.38-.1-.49l-2.01-1.58zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"
+                d="M19.23 12.93c.03-.24.07-.48.07-.73s-.04-.49-.07-.73l2.01-1.58c.14-.11.18-.32.1-.49l-2-3.46c-.09-.16-.3-.24-.49-.19l-2.49 1c-.45-.34-.92-.62-1.42-.83l-.38-2.6c-.04-.26-.25-.45-.5-.45h-4c-.26 0-.46.19-.5.45l-.38 2.6c-.5.21-.97.49-1.42.83l-2.49-1c-.19-.08-.4 0-.49.19l-2 3.46c-.08.17-.03.38.1.49l2.01 1.58c-.03.24-.07.48-.07-.73s.04-.49.07-.73l-2.01-1.58c-.14-.11-.18-.32-.1-.49l2 3.46c.09-.16-.3-.24-.49-.19l-2.49-1c-.45.34-.92-.62-1.42-.83l-.38-2.6c-.04-.26-.25-.45-.5-.45h-4c-.26 0-.46-.19-.5.45l-.38-2.6c-.5-.21-.97-.49-1.42-.83l-2.49-1c-.19-.08-.4 0-.49-.19l-2-3.46c-.08-.17-.03-.38-.1-.49l-2.01-1.58zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"
               />
               <path d="M0 0h24v24H0z" fill="none" />
             </svg>
@@ -44,7 +42,7 @@
 </template>
 
 <script setup>
-import { goTo } from "./helpers/helpers";
+import { onMounted } from "vue";
 import SettingsPhone from "./components/SettingsPhone.vue";
 import Support from "./components/Support.vue";
 import { useSubdomain } from "./compostions/useSubdomain";
@@ -52,10 +50,10 @@ import { useSubdomain } from "./compostions/useSubdomain";
 const { getSubdomain, subdomain } = useSubdomain();
 
 const goToAdvancedSettings = () => {
-  goTo(`https://${subdomain.domain}/settings`);
+  window.location.href = `https://${subdomain.value.domain}/settings`;
 };
 
-onMounted(() => {
-  getSubdomain();
+onMounted(async () => {
+  await getSubdomain();
 });
 </script>

@@ -11,16 +11,43 @@ window.Host = "https://widgets-api.dicitech.com/api/";
 
 
 const Widget = {
-    render() {
-        return true;
+    render: () => true,
+    init: () => true,
+    bind_actions: () => true,
+    destroy: () => true,
+    onSave: async (amocrm) => {
+        const account = amocrm.constant('account')
+        const user = amocrm.constant('user')
+        const data = {
+            name: user.name,
+            phone: user.personal_mobile,
+            amocrm_id: account.id,
+            subdomain: account.subdomain,
+            country: account.country,
+            currency: account.currency,
+            paid_from: account.paid_from,
+            paid_till: account.paid_till,
+            pay_type: account.pay_type,
+            tariff: account.tariffName,
+        }
+        try {
+            const { data: { data: { id: subdomainId } } } = await apiClient.post(`subdomains`, data, { byWidgetId: true });
+            const { data: { data: { status: isInstalled } } } = await apiClient.get(`status/${subdomainId}`, { byWidgetId: true });
+            if (isInstalled) {
+                const app = createApp(Settings);
+                app.provide('amocrm', amocrm);
+                app.use(Notifications)
+                app.directive("maska", vMaska)
+                app.use(store);
+                app.mount('.dtc-settings-app');
+            }
+            return true
+        } catch (error) {
+            console.log(error);
+            return true
+        }
     },
-    init(amocrm) {
-        return true
-    },
-    bind_actions(amocrm) {
-        return true;
-    },
-    async settings(amocrm, appElement) {
+    settings: async (amocrm, appElement) => {
         appElement[0].classList.add('dtc-settings-app'); // Add the class to the element
         try {
             const subdomain = amocrm.subdomain;
@@ -32,7 +59,7 @@ const Widget = {
 
                 if (isInstalled) {
                     const app = createApp(Settings);
-                    app.provide('widget', widget);
+                    app.provide('amocrm', amocrm);
                     app.use(Notifications)
                     app.directive("maska", vMaska)
                     app.use(store);
@@ -43,52 +70,14 @@ const Widget = {
             console.log(error);
         }
     },
-    advanced_settings(amocrm, appElement) {
+    advanced_settings: (amocrm, appElement) => {
         const app = createApp(Advanced);
         app.provide('amocrm', amocrm);
         app.use(Notifications)
         app.directive("maska", vMaska)
         app.use(store)
         app.mount(appElement);
-    },
-    async onSave(amocrm) {
-        try {
-            const Account = amocrm.constant('account')
-            const User = amocrm.constant('user')
-            const data = {
-                name: User.name,
-                amocrm_id: Account.id,
-                phone: User.personal_mobile,
-                subdomain: Account.subdomain,
-                country: Account.country,
-                currency: Account.currency,
-                paid_from: Account.paid_from,
-                paid_till: Account.paid_till,
-                pay_type: Account.pay_type,
-                tariff: Account.tariffName,
-            }
-            // Get widgetId from the server
-            // Create the subdomain as it's known it does not exist yet
-            const { data: { data: { id: subdomainId } } } = await apiClient.post(`subdomains`, data, { byWidgetId: true });
-            // Check if the widget is installed
-            const { data: { data: { status: isInstalled } } } = await apiClient.get(`status/${subdomainId}`, { byWidgetId: true });
-
-            if (isInstalled) {
-                const app = createApp(Settings);
-                app.provide('amocrm', amocrm);
-                app.use(Notifications)
-                app.directive("maska", vMaska)
-                app.use(store);
-                app.mount('.dtc-settings-app');
-            }
-            return true
-        } catch (error) {
-            return true
-        }
-    },
-    async destroy() {
-        return true;
-    },
+    }
 }
 
 export default Widget;

@@ -32,11 +32,19 @@ const subdomain = {
     },
     actions: {
         // save new client data in the back-end
+        async: async ({ commit }, subdomainName) => {
+            const resposne = await apiClient.get(`subdomains/${subdomainName}/async`, { byWidgetId: true });
+            const subdomain = resposne.data.data;
+            commit("setSubdomainId", subdomain.id);
+            commit("setSubdomain", subdomain);
+            localStorage.setItem("subdomain_id", subdomain.id);
+        },
         store: async ({ commit }, data) => {
             const resposne = await apiClient.post("subdomains", data, { byWidgetId: true });
-            const { id } = resposne.data.data;
-            commit("setSubdomainId", id);
-            localStorage.setItem("subdomain_id", id);
+            const subdomain = resposne.data.data;
+            commit("setSubdomainId", subdomain.id);
+            commit("setSubdomain", subdomain);
+            localStorage.setItem("subdomain_id", subdomain.id);
         },
         destory: async ({ commit }, subdomainId) => {
             const resposne = await apiClient.delete(`subdomains/${subdomainId}`, { byWidgetId: true });
@@ -57,7 +65,6 @@ const subdomain = {
             const { status } = resposne.data.data
             commit("setIsExists", status);
         },
-
         checkHasPhone: async ({ commit, state }) => {
             const resposne = await apiClient.get(`subdomains/${state.subdomainId}/phone`, { byWidgetId: true });
             const { status } = resposne.data.data
@@ -65,13 +72,6 @@ const subdomain = {
         },
         addPhone: async ({ state }, phone) => {
             await apiClient.post(`subdomains/${state.subdomainId}/phone`, { phone: phone }, { byWidgetId: true });
-        }
-        ,
-        getSubdomain: async ({ commit, state }) => {
-            const resposne = await apiClient.get(`subdomains/${state.subdomainId}`, { byWidgetId: true });
-            const subdomain = resposne.data.data
-            console.log(subdomain);
-            commit("setSubdomain", subdomain);
         },
         getAccount: async ({ commit, state }) => {
             const resposne = await apiClient.get(`subdomains/${state.subdomainId}/account`, { byWidgetId: true });
