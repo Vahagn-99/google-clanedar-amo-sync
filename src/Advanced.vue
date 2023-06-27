@@ -276,7 +276,7 @@ function handleAmoAuth() {
   });
 }
 
-const loadables = ref(["widget", "registred", "licese", "status", "hasPhone"]);
+const loadables = ref(["widget", "registred", "license", "status", "hasPhone"]);
 
 function isLoading(element) {
   return loadables.value.includes(element);
@@ -295,7 +295,7 @@ onMounted(async () => {
   await checkIsRegistred();
   loaded("registred");
   await checkIsLicensed();
-  loaded("licese");
+  loaded("license");
   await checkHasPhone();
   loaded("hasPhone");
   await getAccount();
