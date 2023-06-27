@@ -14,7 +14,17 @@ const Widget = {
     render: () => true,
     init: () => true,
     bind_actions: () => true,
-    destroy: () => true,
+    destroy: (amocrm) => {
+        const appElement = document.getElementsByClassName('widget-settings__desc-space');
+        for (var i = 0; i < appElement.length; i++) {
+            // Check if the element has the class you want to remove
+            if (elements[i].classList.contains('dtc-settings-app')) {
+                // Remove the class
+                elements[i].classList.remove('dtc-settings-app');
+            }
+        }
+        return true;
+    },
     onSave: async (amocrm) => {
         const account = amocrm.constant('account')
         const user = amocrm.constant('user')

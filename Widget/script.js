@@ -28,7 +28,7 @@ define(['./app.js?cache=' + Date.now()], function (App) {
                 }
             },
             destroy() {
-                return App.default.destroy(self);
+                return App.default.destroy(_amocrm);
             },
             advancedSettings() {
                 return App.default.advanced_settings(_amocrm, '#list_page_holder');
