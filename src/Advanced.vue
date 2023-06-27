@@ -245,9 +245,9 @@ function showNav(is) {
   return currentNav.value === is;
 }
 function handleAmoAuth() {
-  oauthModal(`${window.Host}amo-auth/${subdomainId.value}`);
-}
-
+  oauthModal(`${window.Host}amo-auth/${subdomainId.value}`).then(async (e) => {
+    await checkIsRegistred();
+  });
 
 onMounted(async () => {
   await getWidgetId();
