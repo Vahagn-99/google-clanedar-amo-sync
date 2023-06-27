@@ -165,7 +165,7 @@
 </template>
 
 <script setup>
-import { computed, inject, onMounted, ref } from "vue";
+import { computed, onMounted, ref } from "vue";
 import { useSelect } from "../compostions/useSelect";
 import Input from "./Input.vue";
 import { useSubdomain } from "../compostions/useSubdomain";
