@@ -386,6 +386,7 @@ video {
 }
 .dtc-activate__controls-dtc .intl-tel-input .country-list {
     z-index: 5;
+    margin-top: 22px;
 }
 
 .dtc-activate__controls-dtc .intl-tel-input input {
@@ -404,11 +405,10 @@ video {
      background-color: #f8f8f8;
  }
 
- .dtc-feedback-modal-dtc-main{
-     position: fixed;
-     bottom: 12px;
-     right: 19rem;
- }
+.dtc-fixed-item-1{
+    position: fixed;
+    bottom: 12px;
+}
 
  .h-screen *{
      box-sizing: border-box;
