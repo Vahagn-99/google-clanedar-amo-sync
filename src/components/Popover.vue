@@ -19,10 +19,13 @@
     <div class="mymodal-drawer">
       <Modal :size="sm" v-if="isShow" @close="closeModal">
         <template #header>
-          <div class="flex items-center text-lg"></div>
+          <div class="flex items-center text-lg">
+            <slot name="title">
+            </slot>
+          </div>
         </template>
         <template #body>
-          <div class="px-4 py-4">
+          <div class="px-4 pb-4">
             <p style="font-weight: 300;font-size:16px">
               <slot name="context">
               </slot>

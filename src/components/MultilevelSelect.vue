@@ -8,6 +8,9 @@
         >{{ label }}
       </label>
       <Popover v-if="popover" >
+        <template #title>
+          <h3>{{label}}</h3>
+        </template>
         <template #context>
           {{popover}}
         </template>
