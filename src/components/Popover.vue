@@ -22,9 +22,10 @@
           <div class="flex items-center text-lg"></div>
         </template>
         <template #body>
-          <div class="px-4">
+          <div class="px-4 py-4">
             <p>
-              {{ context }}
+              <slot name="context">
+              </slot>
             </p>
           </div>
         </template>
