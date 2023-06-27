@@ -203,7 +203,7 @@ const openedWindow = ref(false);
 
 function handleGoogleAuth() {
   oauthModal(`${window.Host}google-auth/${subdomainId.value}`).then(
-    () => getAccounts
+    async () => await getAccounts()
   );
 }
 
