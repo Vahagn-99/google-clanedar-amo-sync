@@ -18,9 +18,9 @@ const Widget = {
         const appElement = document.getElementsByClassName('widget-settings__desc-space');
         for (var i = 0; i < appElement.length; i++) {
             // Check if the element has the class you want to remove
-            if (elements[i].classList.contains('dtc-settings-app')) {
+            if (appElement[i].classList.contains('dtc-settings-app')) {
                 // Remove the class
-                elements[i].classList.remove('dtc-settings-app');
+                appElement[i].classList.remove('dtc-settings-app');
             }
         }
         return true;
