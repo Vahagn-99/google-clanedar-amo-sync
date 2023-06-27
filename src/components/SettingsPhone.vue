@@ -165,12 +165,12 @@
 </template>
 
 <script setup>
-import { computed, onMounted, ref } from "vue";
+import { computed, inject, onMounted, ref } from "vue";
 import { useSelect } from "../compostions/useSelect";
 import Input from "./Input.vue";
 import { useSubdomain } from "../compostions/useSubdomain";
 
-const { hasPhone, addPhone, subdomain, getSubdomain } = useSubdomain();
+const { hasPhone, addPhone, subdomain, asyncSubdomain } = useSubdomain();
 
 const props = defineProps({
   isMain: Boolean,
@@ -211,7 +211,7 @@ function toggleCountryList() {
 }
 
 onMounted(async () => {
-  await getSubdomain();
+  await asyncSubdomain();
   currentCountryCode.value = subdomain.value?.phone ?? "+7";
   currentCountryFlag.value = subdomain.value?.country ?? "ru";
   currentCountryMask.value = subdomain.value?.phone_mask ?? "+7(###)###-##-##";

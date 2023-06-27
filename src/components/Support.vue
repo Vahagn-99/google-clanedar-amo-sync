@@ -137,7 +137,7 @@
                 type="text"
                 name="name"
                 id="name"
-                v-model="account.name"
+                v-model="user.name"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                 placeholder="Имя"
                 required
@@ -153,7 +153,7 @@
                 type="email"
                 name="email"
                 id="email"
-                v-model="account.email"
+                v-model="user.login"
                 placeholder="Эл. адрес"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
                 required
@@ -187,14 +187,14 @@
 import { computed } from "vue";
 import { Modal } from "flowbite-vue";
 import { ref } from "vue";
-import { useSubdomain } from "../compostions/useSubdomain";
 
-const { account, subdomain } = useSubdomain();
+const amocrm = inject("amocrm");
+const user = amocrm.constant("user");
 
 const props = defineProps({
   isMain: Boolean,
 });
-console.log(props);
+
 const classObj = computed(() => ({
   "dtc-fixed-item-1": props.isMain,
   "flex-wrap": !props.isMain,
