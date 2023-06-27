@@ -12,7 +12,8 @@
           <h3 style="font-weight: 800">{{label}}</h3>
         </template>
         <template #context>
-            {{popover}}
+          <slot name="popover">
+          </slot>
         </template>
       </Popover>
 
