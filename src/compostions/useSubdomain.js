@@ -3,7 +3,7 @@ import { useStore } from 'vuex';
 
 export function useSubdomain() {
     const store = useStore();
-    const widget = inject('widget');
+    const amocrm = inject('amocrm');
     const subdomainId = computed(() => store.getters['subdomain/getSubdomainId']);
     const subdomain = computed(() => store.getters['subdomain/getSubdomain']);
     const isLicensed = computed(() => store.getters['subdomain/isLicensed']);
@@ -14,19 +14,15 @@ export function useSubdomain() {
     const checkIsRegistred = async () => await store.dispatch('subdomain/checkIsRegistred', subdomainId.value);
     const checkIsLicensed = async () => await store.dispatch('subdomain/checkIsLicensed', subdomainId.value);
     const getAccount = async () => await store.dispatch('subdomain/getAccount');
-
     const addPhone = async (phone) => {
         await store.dispatch('subdomain/addPhone', phone);
         await checkHasPhone();
     };
-
     const checkHasPhone = async () => await store.dispatch('subdomain/checkHasPhone');
     const getSubdomain = async () => await store.dispatch('subdomain/getSubdomain');
-
     const asyncSubdomain = async () => {
-        await store.dispatch('subdomain/store', {
-            subdomain: widget.system.subdomain
-        });
+        const account = amocrm.constant('account')
+        await store.dispatch('subdomain/async', account.subdomain);
     }
 
     return {
@@ -36,7 +32,6 @@ export function useSubdomain() {
         subdomainId,
         isRegistred,
         isLicensed,
-        widget,
         checkHasPhone,
         addPhone,
         subdomain,

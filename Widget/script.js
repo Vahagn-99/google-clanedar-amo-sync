@@ -2,6 +2,7 @@ define(['./app.js?cache=' + Date.now()], function (App) {
 
     const Widget = function () {
         const self = this;
+        const _amocrm = window.AMOCRM;
         self.system = this.system();
         self.langs = this.langs;
 
@@ -17,12 +18,11 @@ define(['./app.js?cache=' + Date.now()], function (App) {
                 return App.default.bind_actions(self);
             },
             async settings($settings_body, context) {
-                return await App.default.settings(self, $settings_body, context, AMOCRM);
+                return await App.default.settings(_amocrm, $settings_body, context);
             },
             async onSave() {
                 try {
-                    /** @var */ 
-                    return await App.default.onSave(self, AMOCRM);
+                    return await App.default.onSave(_amocrm);
                 } catch (error) {
                     throw error
                 }
@@ -31,7 +31,7 @@ define(['./app.js?cache=' + Date.now()], function (App) {
                 return App.default.destroy(self);
             },
             advancedSettings() {
-                return App.default.advanced_settings(self, '#list_page_holder', AMOCRM);
+                return App.default.advanced_settings(_amocrm, '#list_page_holder');
             },
             contacts: {
                 selected() {

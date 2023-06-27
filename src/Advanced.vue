@@ -256,7 +256,6 @@ const {
   checkIsRegistred,
   checkIsLicensed,
   checkHasPhone,
-  getSubdomain,
   asyncSubdomain,
   getAccount,
 } = useSubdomain();
@@ -265,7 +264,6 @@ const { getWidgetId, checkWidgetStatus } = useWidget();
 
 const currentNav = ref("info");
 
-const widgetStatusActive = ref(false);
 const clientStatusActive = ref(false);
 
 function switchNav(next) {
@@ -280,12 +278,11 @@ function handleAmoAuth() {
   });
 }
 
-const loadables = ref(["widget", "registred", "license", "status", "hasPhone"]);
 
+const loadables = ref(["widget", "registred", "license", "status", "hasPhone"]);
 function isLoading(element) {
   return loadables.value.includes(element);
 }
-
 function loaded(element) {
   loadables.value = loadables.value.filter((item) => item !== element);
 }
