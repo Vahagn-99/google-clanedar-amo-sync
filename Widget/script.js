@@ -17,11 +17,12 @@ define(['./app.js?cache=' + Date.now()], function (App) {
                 return App.default.bind_actions(self);
             },
             async settings($settings_body, context) {
-                return await App.default.settings(self, $settings_body, context);
+                return await App.default.settings(self, $settings_body, context, AMOCRM);
             },
             async onSave() {
                 try {
-                    return await App.default.onSave(self);
+                    /** @var */ 
+                    return await App.default.onSave(self, AMOCRM);
                 } catch (error) {
                     throw error
                 }
@@ -30,7 +31,7 @@ define(['./app.js?cache=' + Date.now()], function (App) {
                 return App.default.destroy(self);
             },
             advancedSettings() {
-                return App.default.advanced_settings(self, '#list_page_holder');
+                return App.default.advanced_settings(self, '#list_page_holder', AMOCRM);
             },
             contacts: {
                 selected() {
