@@ -241,6 +241,8 @@ const {
   isLicensed,
   checkIsRegistred,
   checkIsLicensed,
+  checkHasPhone,
+  getSubdomain,
   asyncSubdomain,
 } = useSubdomain();
 
@@ -263,10 +265,12 @@ function handleAmoAuth() {
 }
 
 onMounted(async () => {
+  await getSubdomain();
   await getWidgetId();
   await asyncSubdomain();
   await checkWidgetStatus();
   await checkIsRegistred();
   await checkIsLicensed();
+  await checkHasPhone();
 });
 </script>
