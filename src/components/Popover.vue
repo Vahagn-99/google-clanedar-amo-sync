@@ -18,15 +18,17 @@
 
     <div class="mymodal">
       <Modal :size="sm" v-if="isShow">
-<!--        <template #header>-->
-<!--          <div class="flex items-center text-lg">Сообщить о ошибке</div>-->
-<!--        </template>-->
+        <template #header>
+          <div class="flex items-center text-lg"></div>
+        </template>
         <template #body>
           <div class="px-4">
             <p>
               {{ context }}
             </p>
           </div>
+        </template>
+        <template #footer>
         </template>
       </Modal>
     </div>
