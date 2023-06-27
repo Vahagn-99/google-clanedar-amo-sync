@@ -15,12 +15,14 @@ const Widget = {
     init: () => true,
     bind_actions: () => true,
     destroy: (amocrm) => {
-        const appElement = document.getElementsByClassName('widget-settings__desc-space');
-        for (var i = 0; i < appElement.length; i++) {
-            // Check if the element has the class you want to remove
-            if (appElement[i].classList.contains('dtc-settings-app')) {
-                // Remove the class
-                appElement[i].classList.remove('dtc-settings-app');
+        // Check if the widget is being disabled or the user is navigating away from the page
+        const isDisabled = localStorage.getItem('widgetInstalled') === null;
+
+        // Unmount Vue apps if the widget is being disabled or the user is navigating away from the page
+        if (isDisabled || !document.querySelector('.js-widget-install')) {
+            if (window.VUE_SETTINGS_AREA && typeof window.VUE_SETTINGS_AREA.unmount === 'function') {
+                window.VUE_SETTINGS_AREA.unmount();
+                window.VUE_SETTINGS_AREA = null;
             }
         }
         return true;
@@ -44,16 +46,22 @@ const Widget = {
             const { data: { data: { id: subdomainId } } } = await apiClient.post(`subdomains`, data, { byWidgetId: true });
             const { data: { data: { status: isInstalled } } } = await apiClient.get(`status/${subdomainId}`, { byWidgetId: true });
             if (isInstalled) {
-                const app = createApp(Settings);
-                app.provide('amocrm', amocrm);
-                app.use(Notifications)
-                app.directive("maska", vMaska)
-                app.use(store);
-                app.mount('.dtc-settings-app');
+                window.VUE_SETTINGS_AREA = createApp(Settings)
+                    .provide('amocrm', amocrm)
+                    .use(Notifications)
+                    .directive("maska", vMaska)
+                    .use(store);
+                window.VUE_SETTINGS_AREA.mount('.dtc-settings-app');
+            }
+            const installButton = document.querySelector('.js-widget-install');
+            const isInstalledButton = !installButton.classList.contains('button-input-disabled');
+            if (isInstalledButton) {
+                localStorage.setItem('widgetInstalled', 'true');  // set flag when installed
+            } else {
+                localStorage.removeItem('widgetInstalled');  // remove flag when disabled
             }
             return true
         } catch (error) {
-            console.log(error);
             return true
         }
     },
@@ -63,18 +71,18 @@ const Widget = {
             const account = amocrm.constant('account')
             const subdomain = account.subdomain;
             // Check if subdomain exists
-            const { data: { data: { status: subdomainId } } } = await apiClient.get(`subdomains/${subdomain}/exists`, { byWidgetId: true });
+            const { data: { data: { id: subdomainId } } } = await apiClient.get(`subdomains/${subdomain}/exists`, { byWidgetId: true });
             if (subdomainId) {
                 // Get subdomainId from the server
                 const { data: { data: { status: isInstalled } } } = await apiClient.get(`status/${subdomainId}`, { byWidgetId: true });
 
                 if (isInstalled) {
-                    const app = createApp(Settings);
-                    app.provide('amocrm', amocrm);
-                    app.use(Notifications)
-                    app.directive("maska", vMaska)
-                    app.use(store);
-                    app.mount('.dtc-settings-app');
+                    window.VUE_SETTINGS_AREA = createApp(Settings)
+                        .provide('amocrm', amocrm)
+                        .use(Notifications)
+                        .directive("maska", vMaska)
+                        .use(store);
+                    window.VUE_SETTINGS_AREA.mount('.dtc-settings-app');
                 }
             }
         } catch (error) {
@@ -82,11 +90,11 @@ const Widget = {
         }
     },
     advanced_settings: (amocrm, appElement) => {
-        const app = createApp(Advanced);
-        app.provide('amocrm', amocrm);
-        app.use(Notifications)
-        app.directive("maska", vMaska)
-        app.use(store)
+        const app = createApp(Advanced)
+            .provide('amocrm', amocrm)
+            .use(Notifications)
+            .directive("maska", vMaska)
+            .use(store);
         app.mount(appElement);
     }
 }
