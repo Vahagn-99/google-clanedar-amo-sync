@@ -93,7 +93,15 @@
           </ul>
           <div class="mt-[-50px]">
             <InfoCard :value="isLicensed" :isLicensed="true" :isFirst="false">
-              <template #title> Статус лицензии: <strong v-if="isLicensed" class="text-black ml-[8px]"> Активировано</strong> <strong v-if="!isLicensed"  class="text-black ml-[8px]">Просрочено</strong></template>
+              <template #title>
+                Статус лицензии:
+                <strong v-if="isLicensed" class="text-black ml-[8px]">
+                  Активировано</strong
+                >
+                <strong v-if="!isLicensed" class="text-black ml-[8px]"
+                  >Просрочено</strong
+                ></template
+              >
             </InfoCard>
           </div>
         </div>
@@ -102,100 +110,109 @@
     <div class="mx-6">
       <div class="border-gray-200 rounded-lg dark:border-gray-700">
         <NavItem v-if="showNav('info')">
-            <div class="flex">
-              <div class="w-[50%] ">
-                <InfoCard :value="isRegistred" @click="handleAmoAuth" :isFirst="true" :isLicensed="false">
-                  <template #title> Авторизация </template>
-                  <template #trueValue>
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 24 24"
-                        fill="currentColor"
-                        class="w-6 h-6 mx-2 text-green-500"
-                    >
-                      <path
-                          fill-rule="evenodd"
-                          d="M12 1.5a5.25 5.25 0 00-5.25 5.25v3a3 3 0 00-3 3v6.75a3 3 0 003 3h10.5a3 3 0 003-3v-6.75a3 3 0 00-3-3v-3c0-2.9-2.35-5.25-5.25-5.25zm3.75 8.25v-3a3.75 3.75 0 10-7.5 0v3h7.5z"
-                          clip-rule="evenodd"
-                      />
-                    </svg>
-                  </template>
-                  <template #falseValue>
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 24 24"
-                        fill="currentColor"
-                        class="w-6 h-6 mx-2 text-red-500"
-                    >
-                      <path
-                          fill-rule="evenodd"
-                          d="M6.72 5.66l11.62 11.62A8.25 8.25 0 006.72 5.66zm10.56 12.68L5.66 6.72a8.25 8.25 0 0011.62 11.62zM5.105 5.106c3.807-3.808 9.98-3.808 13.788 0 3.808 3.807 3.808 9.98 0 13.788-3.807 3.808-9.98 3.808-13.788 0-3.808-3.807-3.808-9.98 0-13.788z"
-                          clip-rule="evenodd"
-                      />
-                    </svg>
-                  </template>
-                  <template v-if="isRegistred" #content
-                  >Данные успешно сохранены</template
+          <div class="flex">
+            <div class="w-[50%]">
+              <InfoCard
+                :value="isRegistred"
+                @click="handleAmoAuth"
+                :isFirst="true"
+                :isLicensed="false"
+              >
+                <template #title> Авторизация </template>
+                <template #trueValue>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    class="w-6 h-6 mx-2 text-green-500"
                   >
-                  <template v-else #content>Каснитес для авторизации</template>
-                </InfoCard>
-                <InfoCard :value="widgetStatusActive" :isFirst="false" :isLicensed="false">
-                  <template #title> Статус клиента  </template>
-                  <template #trueValue>
-                    <svg
-                        class="w-6 h-6 mr-2 text-xl text-green-500 ml-2"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                    >
-                      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                      <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                    </svg>
-                  </template>
-                  <template #falseValue>
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 24 24"
-                        fill="currentColor"
-                        class="w-6 h-6 mx-2 text-red-500"
-                    >
-                      <path
-                          fill-rule="evenodd"
-                          d="M6.72 5.66l11.62 11.62A8.25 8.25 0 006.72 5.66zm10.56 12.68L5.66 6.72a8.25 8.25 0 0011.62 11.62zM5.105 5.106c3.807-3.808 9.98-3.808 13.788 0 3.808 3.807 3.808 9.98 0 13.788-3.807 3.808-9.98 3.808-13.788 0-3.808-3.807-3.808-9.98 0-13.788z"
-                          clip-rule="evenodd"
-                      />
-                    </svg>
-                  </template>
-                  <template #content>Подтвержден</template>
-                </InfoCard>
-              </div>
-              <div class="w-[50%] ml-6">
-                <div class="view-integration-modal__activation h-full">
-                  <div class="activation-main-wrapper h-full">
-                    <div class="dtc-activation-page h-full">
-                      <div class="dtc-send-phone-block h-full">
-                        <SettingsPhone  :isMain="true"  :value="clientStatusActive">
-                          <template #trueValue></template>
-                          <template #falseValue></template>
-                        </SettingsPhone>
-                      </div>
+                    <path
+                      fill-rule="evenodd"
+                      d="M12 1.5a5.25 5.25 0 00-5.25 5.25v3a3 3 0 00-3 3v6.75a3 3 0 003 3h10.5a3 3 0 003-3v-6.75a3 3 0 00-3-3v-3c0-2.9-2.35-5.25-5.25-5.25zm3.75 8.25v-3a3.75 3.75 0 10-7.5 0v3h7.5z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                </template>
+                <template #falseValue>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    class="w-6 h-6 mx-2 text-red-500"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M6.72 5.66l11.62 11.62A8.25 8.25 0 006.72 5.66zm10.56 12.68L5.66 6.72a8.25 8.25 0 0011.62 11.62zM5.105 5.106c3.807-3.808 9.98-3.808 13.788 0 3.808 3.807 3.808 9.98 0 13.788-3.807 3.808-9.98 3.808-13.788 0-3.808-3.807-3.808-9.98 0-13.788z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                </template>
+                <template v-if="isRegistred" #content
+                  >Данные успешно сохранены</template
+                >
+                <template v-else #content>Каснитес для авторизации</template>
+              </InfoCard>
+              <InfoCard
+                :value="widgetStatusActive"
+                :isFirst="false"
+                :isLicensed="false"
+              >
+                <template #title> Статус клиента </template>
+                <template #trueValue>
+                  <svg
+                    class="w-6 h-6 mr-2 text-xl text-green-500 ml-2"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                  </svg>
+                </template>
+                <template #falseValue>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    class="w-6 h-6 mx-2 text-red-500"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M6.72 5.66l11.62 11.62A8.25 8.25 0 006.72 5.66zm10.56 12.68L5.66 6.72a8.25 8.25 0 0011.62 11.62zM5.105 5.106c3.807-3.808 9.98-3.808 13.788 0 3.808 3.807 3.808 9.98 0 13.788-3.807 3.808-9.98 3.808-13.788 0-3.808-3.807-3.808-9.98 0-13.788z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                </template>
+                <template #content>Подтвержден</template>
+              </InfoCard>
+            </div>
+            <div class="w-[50%] ml-6">
+              <div class="view-integration-modal__activation h-full">
+                <div class="activation-main-wrapper h-full">
+                  <div class="dtc-activation-page h-full">
+                    <div class="dtc-send-phone-block h-full">
+                      <SettingsPhone :isMain="true" :value="clientStatusActive">
+                        <template #trueValue></template>
+                        <template #falseValue></template>
+                      </SettingsPhone>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
+          </div>
           <div class="mt-6">
-            <Support :isMain="true"/>
+            <Support :isMain="true" />
           </div>
         </NavItem>
         <NavItem v-if="showNav('settings')">
           <WidgetSettings />
           <div class="mt-6">
-            <Support :isMain="true"/>
+            <Support :isMain="true" />
           </div>
         </NavItem>
         <NavItem v-if="showNav('doc')">
@@ -230,10 +247,10 @@ const {
   checkHasPhone,
   getSubdomain,
   asyncSubdomain,
+  getAccount,
 } = useSubdomain();
 
 const { getWidgetId, checkWidgetStatus } = useWidget();
-
 
 const currentNav = ref("info");
 
@@ -250,6 +267,7 @@ function handleAmoAuth() {
   oauthModal(`${window.Host}amo-auth/${subdomainId.value}`).then(async (e) => {
     await checkIsRegistred();
   });
+}
 
 onMounted(async () => {
   await getSubdomain();
@@ -259,6 +277,6 @@ onMounted(async () => {
   await checkIsRegistred();
   await checkIsLicensed();
   await checkHasPhone();
+  await getAccount();
 });
-
 </script>

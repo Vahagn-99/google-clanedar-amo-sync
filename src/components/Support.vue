@@ -1,6 +1,6 @@
 <template>
   <div :class="classObjMain">
-    <div class="feedback-block dtc-feedback-modal-dtc mt-4 rounded-lg" >
+    <div class="feedback-block dtc-feedback-modal-dtc mt-4 rounded-lg">
       <slot name="text"></slot>
       <div class="dtc-feedback__buttons" data-btns="dtc">
         <div class="flex items-center" :class="classObj">
@@ -22,87 +22,154 @@
           <button class="dtc-feedback__button" data-feedback="call">
             <span> <a href="tel:+74992132608"></a> +7 499 213 26 08</span>
           </button>
-          <button class="dtc-feedback__button" data-feedback="bug" @click="showModal2">
+          <button
+            class="dtc-feedback__button"
+            data-feedback="bug"
+            @click="showModal2"
+          >
             <span>Сообщить о ошибке</span>
           </button>
-          <button class="dtc-feedback__button" data-feedback="wishes" @click="showModal">
+          <button
+            class="dtc-feedback__button"
+            data-feedback="wishes"
+            @click="showModal"
+          >
             <span>Предложить новый функционал </span>
           </button>
         </div>
       </div>
     </div>
   </div>
-<div class="mymodal">
-  <Modal :size="sm" v-if="isShowModal" @close="closeModal">
-    <template #header>
-      <div class="flex items-center text-lg">
-        Предложить новый функционал
-      </div>
-    </template>
-    <template #body>
-      <div class="px-4">
-        <p>
-          Вам бы хотелось чтобы виджет умел делать то, что не умеет
-          сейчас? Опишите Вашу идею, мы обязательно рассмотрим
-          её и возможно реализуем в следующей версии виджета.
-        </p>
-        <form class="space-y-6 mt-4" action="#">
-          <div>
-            <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"><b>Имя</b></label>
-            <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="Имя" required>
-          </div>
-          <div>
-            <label for="tel" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"><b>Номер телефона</b></label>
-            <input type="tel" name="tel" id="tel" placeholder="Номер телефона" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required>
-          </div>
-          <div class="py-2 bg-white rounded-t-lg dark:bg-gray-800">
-            <textarea rows="4" class="p-2 w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-0 dark:text-white dark:placeholder-gray-400"  required></textarea>
-          </div>
-        </form>
-      </div>
-    </template>
-    <template #footer>
-      <div class="w-full p-4">
-        <button @click="closeModal" type="button" class=" w-full text-white bg-[#4285F4] hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-          Отправить
-        </button>
-      </div>
-    </template>
-  </Modal>
-</div>
-
   <div class="mymodal">
-    <Modal :size="sm" v-if="isShowModal2" @close="closeModal2">
+    <Modal :size="sm" v-if="isShowModal" @close="closeModal">
       <template #header>
-        <div class="flex items-center text-lg">
-          Сообщить о ошибке
-        </div>
+        <div class="flex items-center text-lg">Предложить новый функционал</div>
       </template>
       <template #body>
         <div class="px-4">
           <p>
-            Обнаружили ошибку в работе виджета? Опишите проблему
-            и по возможности прикрепите скриншоты ссылками. Наши специалисты постараются
-            решить её в ближайшее время.
+            Вам бы хотелось чтобы виджет умел делать то, что не умеет сейчас?
+            Опишите Вашу идею, мы обязательно рассмотрим её и возможно реализуем
+            в следующей версии виджета.
           </p>
           <form class="space-y-6 mt-4" action="#">
             <div>
-              <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"><b>Имя</b></label>
-              <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="Имя" required>
+              <label
+                for="email"
+                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                ><b>Имя</b></label
+              >
+              <input
+                type="text"
+                name="name"
+                id="name_1"
+                v-model="account.name"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                placeholder="Имя"
+                required
+              />
             </div>
             <div>
-              <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"><b>Эл. адрес</b></label>
-              <input type="email" name="email" id="email" placeholder="Эл. адрес" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required>
+              <label
+                for="tel"
+                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                ><b>Номер телефона</b></label
+              >
+              <input
+                type="tel"
+                name="tel"
+                id="tel"
+                v-model="subdomain.phone"
+                placeholder="Номер телефона"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                required
+              />
             </div>
             <div class="py-2 bg-white rounded-t-lg dark:bg-gray-800">
-              <textarea rows="4" class="p-2 w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-0 dark:text-white dark:placeholder-gray-400"  ></textarea>
+              <textarea
+                rows="4"
+                class="p-2 w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-0 dark:text-white dark:placeholder-gray-400"
+                required
+              ></textarea>
             </div>
           </form>
         </div>
       </template>
       <template #footer>
         <div class="w-full p-4">
-          <button @click="closeModal2" type="button" class=" w-full text-white bg-[#4285F4] hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+          <button
+            @click="closeModal"
+            type="button"
+            class="w-full text-white bg-[#4285F4] hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          >
+            Отправить
+          </button>
+        </div>
+      </template>
+    </Modal>
+  </div>
+
+  <div class="mymodal">
+    <Modal :size="sm" v-if="isShowModal2" @close="closeModal2">
+      <template #header>
+        <div class="flex items-center text-lg">Сообщить о ошибке</div>
+      </template>
+      <template #body>
+        <div class="px-4">
+          <p>
+            Обнаружили ошибку в работе виджета? Опишите проблему и по
+            возможности прикрепите скриншоты ссылками. Наши специалисты
+            постараются решить её в ближайшее время.
+          </p>
+          <form class="space-y-6 mt-4" action="#">
+            <div>
+              <label
+                for="email"
+                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                ><b>Имя</b></label
+              >
+              <input
+                type="text"
+                name="name"
+                id="name"
+                v-model="account.name"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                placeholder="Имя"
+                required
+              />
+            </div>
+            <div>
+              <label
+                for="email"
+                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                ><b>Эл. адрес</b></label
+              >
+              <input
+                type="email"
+                name="email"
+                id="email"
+                v-model="account.email"
+                placeholder="Эл. адрес"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
+                required
+              />
+            </div>
+            <div class="py-2 bg-white rounded-t-lg dark:bg-gray-800">
+              <textarea
+                rows="4"
+                class="p-2 w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-0 dark:text-white dark:placeholder-gray-400"
+              ></textarea>
+            </div>
+          </form>
+        </div>
+      </template>
+      <template #footer>
+        <div class="w-full p-4">
+          <button
+            @click="closeModal2"
+            type="button"
+            class="w-full text-white bg-[#4285F4] hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          >
             Отправить
           </button>
         </div>
@@ -111,47 +178,44 @@
   </div>
 </template>
 
-
 <script setup>
-import {computed, onMounted} from "vue";
-import { Modal } from 'flowbite-vue'
-import { ref } from 'vue'
+import { computed } from "vue";
+import { Modal } from "flowbite-vue";
+import { ref } from "vue";
+import { useSubdomain } from "../compostions/useSubdomain";
+
+const { account, subdomain } = useSubdomain();
 
 const props = defineProps({
-  isMain:Boolean,
+  isMain: Boolean,
 });
-console.log(props)
+console.log(props);
 const classObj = computed(() => ({
-  "dtc-fixed-item-1":props.isMain,
-  "flex-wrap":!props.isMain
-
+  "dtc-fixed-item-1": props.isMain,
+  "flex-wrap": !props.isMain,
 }));
 
 const classObjMain = computed(() => ({
-  "dtc-feedback-modal-dtc-settings":!props.isMain,
+  "dtc-feedback-modal-dtc-settings": !props.isMain,
 }));
 
-const isShowModal = ref(false)
-const isShowModal2 = ref(false)
+const isShowModal = ref(false);
+const isShowModal2 = ref(false);
 
 function closeModal() {
-  isShowModal.value = false
+  isShowModal.value = false;
 }
 
 function closeModal2() {
-  isShowModal2.value = false
+  isShowModal2.value = false;
 }
 
-function pix(){
-  let w=document.getElementById('sidebar').offsetWidth;
-  console.log(w);
-}
 function showModal() {
-  isShowModal.value = true
+  isShowModal.value = true;
 }
 
 function showModal2() {
-  isShowModal2.value = true
+  isShowModal2.value = true;
 }
 
 </script>

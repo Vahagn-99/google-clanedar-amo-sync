@@ -9,8 +9,11 @@ export function useSubdomain() {
     const isLicensed = computed(() => store.getters['subdomain/isLicensed']);
     const isRegistred = computed(() => store.getters['subdomain/isRegistred']);
     const hasPhone = computed(() => store.getters['subdomain/hasPhone']);
+    const account = computed(() => store.getters['subdomain/getAccount']);
+
     const checkIsRegistred = async () => await store.dispatch('subdomain/checkIsRegistred', subdomainId.value);
     const checkIsLicensed = async () => await store.dispatch('subdomain/checkIsLicensed', subdomainId.value);
+    const getAccount = async () => await store.dispatch('subdomain/getAccount');
 
     const addPhone = async (phone) => {
         await store.dispatch('subdomain/addPhone', phone);
@@ -38,6 +41,8 @@ export function useSubdomain() {
         addPhone,
         subdomain,
         hasPhone,
-        getSubdomain
+        getSubdomain,
+        getAccount,
+        account
     };
 }
