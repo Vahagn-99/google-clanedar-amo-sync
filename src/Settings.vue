@@ -47,13 +47,13 @@ import SettingsPhone from "./components/SettingsPhone.vue";
 import Support from "./components/Support.vue";
 import { useSubdomain } from "./compostions/useSubdomain";
 
-const { getSubdomain, subdomain } = useSubdomain();
+const { asyncSubdomain, subdomain } = useSubdomain();
 
 const goToAdvancedSettings = () => {
   window.location.href = `https://${subdomain.value.domain}/settings`;
 };
 
 onMounted(async () => {
-  await getSubdomain();
+  await asyncSubdomain();
 });
 </script>
