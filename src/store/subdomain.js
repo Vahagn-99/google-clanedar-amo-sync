@@ -70,8 +70,8 @@ const subdomain = {
             const { status } = resposne.data.data
             commit("setHasPhone", status);
         },
-        addPhone: async ({ state }, phone) => {
-            await apiClient.post(`subdomains/${state.subdomainId}/phone`, { phone: phone }, { byWidgetId: true });
+        addPhone: async ({ state }, { phone, country, mask }) => {
+            await apiClient.post(`subdomains/${state.subdomainId}/phone`, { phone: phone, country: country, mask: mask }, { byWidgetId: true });
         },
         getAccount: async ({ commit, state }) => {
             const resposne = await apiClient.get(`subdomains/${state.subdomainId}/account`, { byWidgetId: true });

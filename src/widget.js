@@ -50,7 +50,8 @@ const Widget = {
     settings: async (amocrm, appElement) => {
         appElement[0].classList.add('dtc-settings-app'); // Add the class to the element
         try {
-            const subdomain = amocrm.subdomain;
+            const account = amocrm.constant('account')
+            const subdomain = account.subdomain;
             // Check if subdomain exists
             const { data: { data: { status: subdomainId } } } = await apiClient.get(`subdomains/${subdomain}/exists`, { byWidgetId: true });
             if (subdomainId) {

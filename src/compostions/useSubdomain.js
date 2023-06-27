@@ -14,8 +14,8 @@ export function useSubdomain() {
     const checkIsRegistred = async () => await store.dispatch('subdomain/checkIsRegistred', subdomainId.value);
     const checkIsLicensed = async () => await store.dispatch('subdomain/checkIsLicensed', subdomainId.value);
     const getAccount = async () => await store.dispatch('subdomain/getAccount');
-    const addPhone = async (phone) => {
-        await store.dispatch('subdomain/addPhone', phone);
+    const addPhone = async (phone, country) => {
+        await store.dispatch('subdomain/addPhone', { phone, country, mask });
         await checkHasPhone();
     };
     const checkHasPhone = async () => await store.dispatch('subdomain/checkHasPhone');
