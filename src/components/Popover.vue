@@ -24,7 +24,7 @@
       data-popper-placement="bottom-start"
     >
       <div class="">
-        <p class="text-center py-3">
+        <p class="text-start py-3 px-2">
           {{ context }}
         </p>
       </div>

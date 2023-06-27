@@ -1,5 +1,4 @@
 <template>
-   <h2 class=" dtc-sett text-slate-900 text-2xl mb-8">Сервиси Google Календаря под ваших нужд!</h2>
     <div class="view-integration-modal__activation">
       <div class="activation-main-wrapper">
         <div class="dtc-activation-page">
@@ -12,7 +11,7 @@
             <button
                 type="button"
                 @click="goToAdvancedSettings"
-                class=" w-full justify-center mt-4 dtc-button setting-btn text-white bg-[#4285F4] hover:bg-[#4285F4]/90 focus:ring-4 focus:outline-none focus:ring-[#4285F4]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#4285F4]/55 mr-2"
+                class=" w-full justify-center mt-4 mb-4 dtc-button setting-btn text-white bg-[#4285F4] hover:bg-[#4285F4]/90 focus:ring-4 focus:outline-none focus:ring-[#4285F4]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#4285F4]/55 mr-2"
             >
               <svg class="w-4 h-4 mr-2 -ml-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                 <path
@@ -50,7 +49,15 @@ import { useSelect } from "./compostions/useSelect";
 import { Modal } from 'flowbite-vue'
 import SettingsPhone from "./components/SettingsPhone.vue";
 import Support from "./components/Support.vue";
-
+import {useSubdomain} from "./compostions/useSubdomain";
+const {
+  subdomainId,
+  hasPhone,
+  checkHasPhone,
+  getSubdomain,
+  asyncSubdomain,
+  getAccount,
+} = useSubdomain();
 
 const widget = inject("widget");
 

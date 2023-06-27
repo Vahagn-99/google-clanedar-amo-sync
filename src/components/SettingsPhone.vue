@@ -3,19 +3,67 @@
     class="dtc-activate__wrapper h-full rounded-lg box-border"
     :class="classObj"
   >
-    <div class="dtc-activate__body">
+    <div v-if="loading" class="flex items-center">
+      <div role="status" >
+        <svg
+            aria-hidden="true"
+            class="w-8 h-8 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
+            viewBox="0 0 100 101"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+              d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
+              fill="currentColor"
+          />
+          <path
+              d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
+              fill="currentFill"
+          />
+        </svg>
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+
+    <div class="dtc-activate__body" v-else>
       <div class="dtc-activate__info-wrapper">
         <div class="dtc-activate__info-body flex start">
           <div class="dtc-activate__icon">
             <svg
-              v-if="hasPhone"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 50 50"
-              width="32px"
-              height="32px"
+                v-if="hasPhone&&isMain"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                class="w-6 h-6 mx-2 text-green-500"
             >
               <path
-                d="M 25 3 C 18.363281 3 13 8.363281 13 15 L 13 20 L 9 20 C 7.300781 20 6 21.300781 6 23 L 6 47 C 6 48.699219 7.300781 50 9 50 L 41 50 C 42.699219 50 44 48.699219 44 47 L 44 23 C 44 21.300781 42.699219 20 41 20 L 37 20 L 37 15 C 37 8.363281 31.636719 3 25 3 Z M 25 5 C 30.566406 5 35 9.433594 35 15 L 35 20 L 15 20 L 15 15 C 15 9.433594 19.433594 5 25 5 Z M 25 30 C 26.699219 30 28 31.300781 28 33 C 28 33.898438 27.601563 34.6875 27 35.1875 L 27 38 C 27 39.101563 26.101563 40 25 40 C 23.898438 40 23 39.101563 23 38 L 23 35.1875 C 22.398438 34.6875 22 33.898438 22 33 C 22 31.300781 23.300781 30 25 30 Z"
+                  fill-rule="evenodd"
+                  d="M12 1.5a5.25 5.25 0 00-5.25 5.25v3a3 3 0 00-3 3v6.75a3 3 0 003 3h10.5a3 3 0 003-3v-6.75a3 3 0 00-3-3v-3c0-2.9-2.35-5.25-5.25-5.25zm3.75 8.25v-3a3.75 3.75 0 10-7.5 0v3h7.5z"
+                  clip-rule="evenodd"
+              />
+            </svg>
+            <svg
+                v-if="!hasPhone&&isMain"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                class="w-6 h-6 mx-2 text-red-500"
+            >
+              <path
+                  fill-rule="evenodd"
+                  d="M6.72 5.66l11.62 11.62A8.25 8.25 0 006.72 5.66zm10.56 12.68L5.66 6.72a8.25 8.25 0 0011.62 11.62zM5.105 5.106c3.807-3.808 9.98-3.808 13.788 0 3.808 3.807 3.808 9.98 0 13.788-3.807 3.808-9.98 3.808-13.788 0-3.808-3.807-3.808-9.98 0-13.788z"
+                  clip-rule="evenodd"
+              />
+            </svg>
+            <svg
+                v-if="!isMain"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 50 50"
+                width="32px"
+                height="32px"
+            >
+              <path
+                  d="M 25 3 C 18.363281 3 13 8.363281 13 15 L 13 20 L 9 20 C 7.300781 20 6 21.300781 6 23 L 6 47 C 6 48.699219 7.300781 50 9 50 L 41 50 C 42.699219 50 44 48.699219 44 47 L 44 23 C 44 21.300781 42.699219 20 41 20 L 37 20 L 37 15 C 37 8.363281 31.636719 3 25 3 Z M 25 5 C 30.566406 5 35 9.433594 35 15 L 35 20 L 15 20 L 15 15 C 15 9.433594 19.433594 5 25 5 Z M 25 30 C 26.699219 30 28 31.300781 28 33 C 28 33.898438 27.601563 34.6875 27 35.1875 L 27 38 C 27 39.101563 26.101563 40 25 40 C 23.898438 40 23 39.101563 23 38 L 23 35.1875 C 22.398438 34.6875 22 33.898438 22 33 C 22 31.300781 23.300781 30 25 30 Z"
               />
             </svg>
           </div>
@@ -43,6 +91,7 @@
                     name="dtc-phone__activation"
                     v-model="currentCountryCode"
                     placeholder="Номер телефона"
+                    :pattern="currentCountryMask"
                   />
                   <div class="flag-dropdown" @click="toggleCountryList">
                     <div class="flex items-center pr-[5px]">
@@ -80,7 +129,7 @@
               <button
                 @click="handlePhone"
                 type="button"
-                class="button-input"
+                class="button-input bg-[#4285F4] hover:bg-[#4285F4]/90"
                 :class="{ 'button-input-disabled': !userAgreed }"
                 id="dtc-activation-button"
               >
@@ -136,11 +185,13 @@ const { hasPhone, addPhone, subdomain, getSubdomain } = useSubdomain();
 
 const props = defineProps({
   isMain: Boolean,
+  loading:Boolean,
 });
 
 const classObj = computed(() => ({
   "bg-[#e3edf6]": props.isMain,
   "bg-[#f8f8f8]": !props.isMain,
+  "flex items-center justify-center":props.loading,
 }));
 
 const { getCountries, countries } = useSelect();
@@ -148,7 +199,7 @@ const openCountryList = ref(false);
 const userAgreed = ref(false);
 const currentCountryCode = ref("+7");
 const currentCountryFlag = ref("ru");
-const currentCountryMask = ref(["(###)###-##-##"]);
+const currentCountryMask = ref(["+7(###)###-##-##"]);
 
 async function handlePhone() {
   await addPhone(currentCountryCode.value);
@@ -157,7 +208,7 @@ async function handlePhone() {
 function handleCountryCode(code, flag, mask) {
   currentCountryCode.value = code;
   currentCountryFlag.value = flag;
-  currentCountryMask.value = mask;
+  currentCountryMask.value = code+mask;
   openCountryList.value = false;
 }
 

@@ -271,6 +271,13 @@ video {
 }
 .dtc-activation-page .button-input-disabled {
     pointer-events: none;
+    background: #fff;
+    border: 0.834356px solid #7a7979;
+    opacity: 0.5;
+}
+.dtc-activate__button .button-input{
+    cursor: pointer;
+    /*color: #ffffff;*/
 }
 .dtc-activation-page .dtc-circle-loader {
     background: #ffffff;
@@ -362,9 +369,10 @@ video {
 .dtc-activate__controls-dtc .dtc-activate__politics {
     display: flex;
     align-items: flex-start;
+    margin-top: 14px;
 }
 .dtc-activate__controls-dtc .dtc-activate__politics .control-checkbox {
-    margin: 2px 9px 0px 0px;
+    margin: 0px 9px 0px 0px;
 }
 .dtc-activate__controls-dtc .dtc-activate__politics .control-checkbox input[type="checkbox"] {
     cursor: pointer;
@@ -399,7 +407,7 @@ video {
 
  .dtc-feedback-modal-dtc-settings {
      border: 1px solid #F0F0F0;
-     box-shadow: 0.73424px 0.73424px 10px rgb(155 155 155 / 25%);
+     /*box-shadow: 0.73424px 0.73424px 10px rgb(155 155 155 / 25%);*/
      padding: 12px;
      border-radius: 2px;
      background-color: #f8f8f8;

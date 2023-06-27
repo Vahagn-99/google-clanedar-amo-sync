@@ -154,12 +154,12 @@
                   </svg>
                 </template>
                 <template v-if="isRegistred" #content
-                  >Данные успешно сохранены</template
+                  >Аккаунт авторизован</template
                 >
-                <template v-else #content>Каснитес для авторизации</template>
+                <template v-else #content>Шаг 1. Кликните для авторизации  </template>
               </InfoCard>
               <InfoCard
-                :value="widgetStatusActive"
+                :value="hasPhone"
                 :isFirst="false"
                 :isLicensed="false"
                 :loading="isLoading('hasPhone')"
@@ -194,7 +194,10 @@
                     />
                   </svg>
                 </template>
-                <template #content>Подтвержден</template>
+                <template #content>
+                  <span v-if="hasPhone">Телефон подтвержден</span>
+                  <span v-if="!hasPhone">Шаг 2. Подтвердите телефон</span>
+                    </template>
               </InfoCard>
             </div>
             <div class="w-[50%] ml-6">
@@ -202,7 +205,7 @@
                 <div class="activation-main-wrapper h-full">
                   <div class="dtc-activation-page h-full">
                     <div class="dtc-send-phone-block h-full">
-                      <SettingsPhone :isMain="true" :value="clientStatusActive">
+                      <SettingsPhone :isMain="true" :value="clientStatusActive" :loading="isLoading('hasPhone')">
                         <template #trueValue></template>
                         <template #falseValue></template>
                       </SettingsPhone>
@@ -249,6 +252,7 @@ const {
   subdomainId,
   isRegistred,
   isLicensed,
+  hasPhone,
   checkIsRegistred,
   checkIsLicensed,
   checkHasPhone,

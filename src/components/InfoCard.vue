@@ -4,7 +4,7 @@
     :class="classObj"
     role="alert"
   >
-    <div v-if="loading" class="flex items-center">
+    <div v-if="loading" class="flex items-center justify-center">
       <div role="status">
         <svg
           aria-hidden="true"
@@ -56,11 +56,14 @@ const props = defineProps({
 });
 console.log(props);
 const classObj = computed(() => ({
-  "text-blue-700 bg-blue-100 border border-blue-300  dark:border-blue-800 dark:text-blue-400 dtc-success-card":
+  "text-blue-700 bg-blue-100 border border-blue-300  dark:border-blue-800 dark:text-blue-400":
     props.value,
-  "text-red-700 bg-red-100 border border-red-300  dark:border-red-800 dark:text-red-400 dtc-danger-card":
+  "flex justify-center items-center":props.loading,
+  " dtc-success-card":!props.loading&&props.value,
+  " dtc-danger-card":!props.loading&&!props.value,
+  "text-red-700 bg-red-100 border border-red-300  dark:border-red-800 dark:text-red-400":
     !props.value,
-  "px-10 py-8": !props.isLicensed,
+  "px-10 py-8  min-h-[144px]": !props.isLicensed,
   "mt-6": !props.isLicensed && !props.isFirst,
   "px-6 py-2 text-[13px]": props.isLicensed,
   "mt-0": props.isFirst,
