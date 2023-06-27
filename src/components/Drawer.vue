@@ -368,9 +368,6 @@ const usePcker = ref(true);
 const isOpenTemplate = ref(false);
 const canAddNewItem = ref(true);
 const services = ref(null);
-// const servicesToDeleteFromSelect = ref(
-//   settings.value.services.map((service) => service.service_id)
-// );
 
 function toggleTemplate() {
   isOpenTemplate.value = !isOpenTemplate.value;
