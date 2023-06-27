@@ -92,7 +92,12 @@
             </li>
           </ul>
           <div class="mt-[-50px]">
-            <InfoCard :value="isLicensed" :isLicensed="true" :isFirst="false">
+            <InfoCard
+              :value="isLicensed"
+              :isLicensed="true"
+              :isFirst="false"
+              :loading="isLoading('license')"
+            >
               <template #title>
                 Статус лицензии:
                 <strong v-if="isLicensed" class="text-black ml-[8px]">
@@ -117,6 +122,7 @@
                 @click="handleAmoAuth"
                 :isFirst="true"
                 :isLicensed="false"
+                :loading="isLoading('registred')"
               >
                 <template #title> Авторизация </template>
                 <template #trueValue>
@@ -156,6 +162,7 @@
                 :value="widgetStatusActive"
                 :isFirst="false"
                 :isLicensed="false"
+                :loading="isLoading('hasPhone')"
               >
                 <template #title> Статус клиента </template>
                 <template #trueValue>
@@ -269,14 +276,28 @@ function handleAmoAuth() {
   });
 }
 
+const loadables = ref(["widget", "registred", "licese", "status", "hasPhone"]);
+
+function isLoading(element) {
+  return loadables.value.includes(element);
+}
+
+function loaded(element) {
+  loadables.value = loadables.value.filter((item) => item !== element);
+}
+
 onMounted(async () => {
-  await getSubdomain();
   await getWidgetId();
+  loaded("widget");
   await asyncSubdomain();
   await checkWidgetStatus();
+  loaded("status");
   await checkIsRegistred();
+  loaded("registred");
   await checkIsLicensed();
+  loaded("licese");
   await checkHasPhone();
+  loaded("hasPhone");
   await getAccount();
 });
 </script>
