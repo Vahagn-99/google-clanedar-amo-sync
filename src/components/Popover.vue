@@ -17,7 +17,7 @@
     </a>
 
     <div class="mymodal">
-      <Modal :size="sm" v-if="isShow">
+      <Modal :size="sm" v-if="isShow" @close="closeModal">
         <template #header>
           <div class="flex items-center text-lg"></div>
         </template>
@@ -50,7 +50,7 @@ function showPopover() {
   isShow.value = true;
 }
 
-function hidePopover() {
+function closeModal() {
   isShow.value = false;
 }
 </script>

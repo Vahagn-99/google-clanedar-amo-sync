@@ -7,7 +7,12 @@
         class="mb-1 text-sm font-medium text-gray-900 dark:text-white"
         >{{ label }}
       </label>
-      <Popover v-if="popover" :context="popover" />
+      <Popover v-if="popover">
+        <template #context>
+            {{popover}}
+        </template>
+      </Popover>
+
     </div>
     <select
       :disabled="disabled"
