@@ -129,7 +129,7 @@
               <button
                 @click="handlePhone"
                 type="button"
-                class="button-input bg-[#4285F4] hover:bg-[#4285F4]/90"
+                class="button-input"
                 :class="{ 'button-input-disabled': !userAgreed }"
                 id="dtc-activation-button"
               >

@@ -86,6 +86,11 @@
               />
             </div>
             <div class="py-2 bg-white rounded-t-lg dark:bg-gray-800">
+              <label
+                  for="tel"
+                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              ><b>Описание</b></label
+              >
               <textarea
                 rows="4"
                 class="p-2 w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-0 dark:text-white dark:placeholder-gray-400"

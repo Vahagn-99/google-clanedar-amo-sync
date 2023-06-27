@@ -15,24 +15,27 @@
         ></path>
       </svg>
     </a>
-    <div
-      v-if="isShow"
-      data-popover=""
-      role="tooltip"
-      class="w-[250px] absolute z-10 inline-block text-sm text-gray-500 transition-opacity duration-300 bg-slate-50 border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-600 dark:text-gray-400 opacity-100 visible"
-      style="left: auto; top: auto; transform: translateX(0)"
-      data-popper-placement="bottom-start"
-    >
-      <div class="">
-        <p class="text-start py-3 px-2">
-          {{ context }}
-        </p>
-      </div>
+
+    <div class="mymodal">
+      <Modal :size="sm" v-if="isShow">
+<!--        <template #header>-->
+<!--          <div class="flex items-center text-lg">Сообщить о ошибке</div>-->
+<!--        </template>-->
+        <template #body>
+          <div class="px-4">
+            <p>
+              {{ context }}
+            </p>
+          </div>
+        </template>
+      </Modal>
     </div>
   </div>
 </template>
 
 <script setup>
+import {Modal} from "flowbite-vue";
+
 const props = defineProps({
   context: String,
 });

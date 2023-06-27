@@ -269,15 +269,22 @@ video {
 .dtc-activation-page strong, .dtc-activation-page b {
     font-weight: 700;
 }
-.dtc-activation-page .button-input-disabled {
+
+.dtc-activate__button .button-input{
+    cursor: pointer;
+    color: #2c2c2c;
+}
+.dtc-activation-page .button-input.button-input-disabled {
     pointer-events: none;
     background: #fff;
     border: 0.834356px solid #7a7979;
     opacity: 0.5;
 }
-.dtc-activate__button .button-input{
-    cursor: pointer;
-    /*color: #ffffff;*/
+
+.dtc-activate__button .button-input:hover{
+    /*cursor: pointer;*/
+    color: #ffffff;
+    background-color: #4285F4;
 }
 .dtc-activation-page .dtc-circle-loader {
     background: #ffffff;

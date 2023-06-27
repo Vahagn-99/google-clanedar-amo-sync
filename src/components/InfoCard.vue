@@ -63,7 +63,7 @@ const classObj = computed(() => ({
   " dtc-danger-card":!props.loading&&!props.value,
   "text-red-700 bg-red-100 border border-red-300  dark:border-red-800 dark:text-red-400":
     !props.value,
-  "px-10 py-8  min-h-[144px]": !props.isLicensed,
+  "px-10 py-8  min-h-[110px]": !props.isLicensed,
   "mt-6": !props.isLicensed && !props.isFirst,
   "px-6 py-2 text-[13px]": props.isLicensed,
   "mt-0": props.isFirst,
