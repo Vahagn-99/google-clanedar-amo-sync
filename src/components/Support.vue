@@ -232,11 +232,6 @@ function closeModal() {
 
 function closeModal2() {
   isShowModal2.value = false;
-  notify({
-    type: "success",
-    title: "Заявка отправлена",
-    text: "Наши специалисты свяжутся с вами",
-  });
 }
 
 function showModal() {
