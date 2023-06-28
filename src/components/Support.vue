@@ -103,7 +103,7 @@
       <template #footer>
         <div class="w-full p-4">
           <button
-            @click="closeModal"
+            @click="handleSave"
             type="button"
             class="w-full text-white bg-[#4285F4] hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
           >
@@ -171,7 +171,7 @@
       <template #footer>
         <div class="w-full p-4">
           <button
-            @click="closeModal2"
+            @click="handleSave2"
             type="button"
             class="w-full text-white bg-[#4285F4] hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
           >
@@ -208,13 +208,26 @@ const classObjMain = computed(() => ({
 const isShowModal = ref(false);
 const isShowModal2 = ref(false);
 
-function closeModal() {
-  isShowModal.value = false;
+function handleSave2() {
+  closeModal2();
   notify({
     type: "success",
     title: "Заявка отправлена",
     text: "Наши специалисты свяжутся с вами",
   });
+}
+
+function handleSave() {
+  closeModal();
+  notify({
+    type: "success",
+    title: "Заявка отправлена",
+    text: "Наши специалисты свяжутся с вами",
+  });
+}
+
+function closeModal() {
+  isShowModal.value = false;
 }
 
 function closeModal2() {
