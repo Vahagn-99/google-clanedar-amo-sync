@@ -17,8 +17,20 @@ define(['./app.js?cache=' + Date.now()], function (App) {
             bind_actions() {
                 return App.default.bind_actions(_amocrm);
             },
-            async settings($settings_body, context) {
-                return await App.default.settings(_amocrm, $settings_body, context);
+            async settings($settings_body) {
+                try {
+                    await App.default.settings(_amocrm, $settings_body);
+                } catch (error) {
+                    throw error
+                }
+            },
+            async advancedSettings() {
+                $settings_body = document.getElementById('list_page_holder');
+                try {
+                    await App.default.advancedSettings(_amocrm, $settings_body);
+                } catch (error) {
+                    throw error
+                }
             },
             async onSave() {
                 try {
@@ -29,9 +41,6 @@ define(['./app.js?cache=' + Date.now()], function (App) {
             },
             destroy() {
                 return App.default.destroy(_amocrm);
-            },
-            advancedSettings() {
-                App.default.settings(_amocrm, '#list_page_holder');
             },
             contacts: {
                 selected() {

@@ -69,19 +69,22 @@ const Widget = {
                 }
             }
         } catch (error) {
+            const errorHandler = createApp(ErrorHendler);
+            errorHandler.mount('.dtc-settings-app');
         }
     },
-    advancedSettings: function (amocrm, appElement) {
+    advancedSettings: async function (amocrm, appElement) {
+        appElement.classList.add('dtc-settings-app'); // Add the class to the element
         try {
             const app = createApp(Advanced);
             app.provide('amocrm', amocrm);
             app.use(Notifications)
             app.directive("maska", vMaska)
             app.use(store);
-            app.mount(appElement);
+            app.mount('.dtc-settings-app');
         } catch (error) {
             const errorHandler = createApp(ErrorHendler);
-            errorHandler.mount(appElement);
+            errorHandler.mount('.dtc-settings-app');
         }
     },
 }
