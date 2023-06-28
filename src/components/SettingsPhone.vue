@@ -27,7 +27,7 @@
 
     <div class="dtc-activate__body" v-else>
       <div class="dtc-activate__info-wrapper">
-        <div class="dtc-activate__info-body flex start">
+        <div class="dtc-activate__info-body flex start items-center">
           <div class="dtc-activate__icon">
             <svg
               v-if="hasPhone"
@@ -57,8 +57,8 @@
             </svg>
           </div>
           <div>
-            <div class="dtc-activate__title">Статус клиента</div>
-            <div class="dtc-activate__description">
+            <div class="dtc-activate__title text-[15px]">Статус клиента</div>
+            <div class="dtc-activate__description text-[15px]">
               Подтвердите телефон и получите виджет в подарок
             </div>
           </div>
