@@ -154,7 +154,7 @@
 </template>
 
 <script setup>
-import { inject, onMounted, ref } from "vue";
+import { onMounted, ref } from "vue";
 import { useAccount } from "../compostions/useAccount";
 import { useSettings } from "../compostions/useSettings";
 import { useSelect } from "../compostions/useSelect";
@@ -168,7 +168,6 @@ const {
   getSelects,
   getCalendars,
   getMarkers,
-  statuses,
   fields,
   markers,
 } = useSelect();
@@ -198,8 +197,6 @@ async function showSettings(accountId) {
 function hideSettings() {
   showDrawer.value = false;
 }
-
-const openedWindow = ref(false);
 
 function handleGoogleAuth() {
   oauthModal(`${window.Host}google-auth/${subdomainId.value}`).then(

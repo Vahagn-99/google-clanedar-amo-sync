@@ -54,7 +54,6 @@ const props = defineProps({
     requried: false,
   },
 });
-console.log(props);
 const classObj = computed(() => ({
   "text-blue-700 bg-blue-100 border border-blue-300  dark:border-blue-800 dark:text-blue-400":
     props.value,

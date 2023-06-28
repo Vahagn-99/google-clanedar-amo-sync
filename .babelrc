@@ -26,7 +26,8 @@
             {
                 "loose": true
             }
-        ],
+        ]
+        ,
         [
             "transform-remove-console"
         ]
