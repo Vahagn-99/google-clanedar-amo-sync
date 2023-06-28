@@ -1,6 +1,6 @@
 <template>
   <div
-    class="dtc-activate__wrapper h-full rounded-lg box-border"
+    class="dtc-activate__wrapper h-full rounded-lg box-border bg-[#e3edf6]"
     :class="classObj"
   >
     <div v-if="loading" class="flex items-center">
@@ -34,7 +34,7 @@
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
               fill="currentColor"
-              class="w-6 h-6 mx-2 text-green-500"
+              class="w-[3rem] h-[3rem] mx-2 text-green-500"
             >
               <path
                 fill-rule="evenodd"
@@ -47,7 +47,7 @@
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
               fill="currentColor"
-              class="w-6 h-6 mx-2 text-red-500"
+              class="w-[3rem] h-[3rem] mx-2 text-red-500"
             >
               <path
                 fill-rule="evenodd"
@@ -57,7 +57,7 @@
             </svg>
           </div>
           <div>
-            <div class="dtc-activate__title text-[15px] text-black">Статус клиента</div>
+            <div class="dtc-activate__title text-[15px] text-[#343434]">Статус клиента <span class="text-[#00ad71]" v-if="hasPhone"> : Телефон подтвержден</span></div>
             <div class="dtc-activate__description text-[15px] text-black">
               Подтвердите телефон и получите виджет в подарок
             </div>
@@ -178,8 +178,6 @@ const props = defineProps({
 });
 
 const classObj = computed(() => ({
-  "bg-[#e3edf6]": props.isMain,
-  "bg-[#f8f8f8]": !props.isMain,
   "flex items-center justify-center": props.loading,
 }));
 

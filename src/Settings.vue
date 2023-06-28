@@ -17,7 +17,7 @@
             <Support :isMain="false">
               <template v-slot:text>
                 <div class="dtc-feedback__text">
-                  <strong class="text-[15px] text-black">Техническая поддержка</strong><br />
+                  <strong class="text-[15px] text-[#343434]">Техническая поддержка</strong><br />
                   <p class="text-[15px] text-black">Мы всегда готовы помочь удобном для вас способом</p>
                 </div>
               </template>
