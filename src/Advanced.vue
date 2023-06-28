@@ -156,7 +156,9 @@
                 <template v-if="isRegistred" #content
                   >Аккаунт авторизован</template
                 >
-                <template v-else #content>Шаг 1. Кликните для авторизации  </template>
+                <template v-else #content
+                  >Шаг 1. Кликните для авторизации
+                </template>
               </InfoCard>
               <InfoCard
                 :value="hasPhone"
@@ -197,7 +199,7 @@
                 <template #content>
                   <span v-if="hasPhone">Телефон подтвержден</span>
                   <span v-if="!hasPhone">Шаг 2. Подтвердите телефон</span>
-                    </template>
+                </template>
               </InfoCard>
             </div>
             <div class="w-[50%] ml-6 resp-item">
@@ -205,7 +207,11 @@
                 <div class="activation-main-wrapper h-full">
                   <div class="dtc-activation-page h-full">
                     <div class="dtc-send-phone-block h-full">
-                      <SettingsPhone :isMain="true" :value="clientStatusActive" :loading="isLoading('hasPhone')">
+                      <SettingsPhone
+                        :isMain="true"
+                        :value="clientStatusActive"
+                        :loading="isLoading('hasPhone')"
+                      >
                         <template #trueValue></template>
                         <template #falseValue></template>
                       </SettingsPhone>
@@ -233,7 +239,7 @@
       </div>
     </div>
   </div>
-  <notifications position="bottom right" width="400px" :duration="3" />
+  <notifications position="top right" width="400px" :duration="5000" />
 </template>
 
 <script setup>
@@ -276,7 +282,6 @@ function handleAmoAuth() {
     await checkIsRegistred();
   });
 }
-
 
 const loadables = ref(["widget", "registred", "license", "status", "hasPhone"]);
 function isLoading(element) {

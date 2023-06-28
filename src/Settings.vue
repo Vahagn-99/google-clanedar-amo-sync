@@ -28,6 +28,7 @@
     </div>
     <div style="margin-top: 10px" class="float-right"></div>
   </div>
+  <notifications position="top right" width="400px" :duration="5000" />
 </template>
 
 <script setup>

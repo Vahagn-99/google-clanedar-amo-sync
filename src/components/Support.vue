@@ -87,9 +87,9 @@
             </div>
             <div class="py-2 bg-white rounded-t-lg dark:bg-gray-800">
               <label
-                  for="tel"
-                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-              ><b>Описание</b></label
+                for="tel"
+                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                ><b>Описание</b></label
               >
               <textarea
                 rows="4"
@@ -187,6 +187,7 @@
 import { computed, inject } from "vue";
 import { Modal } from "flowbite-vue";
 import { ref } from "vue";
+import { notify } from "@kyvg/vue3-notification";
 
 const amocrm = inject("amocrm");
 const user = amocrm.constant("user");
@@ -209,10 +210,20 @@ const isShowModal2 = ref(false);
 
 function closeModal() {
   isShowModal.value = false;
+  notify({
+    type: "success",
+    title: "Заявка отправлена",
+    text: "Наши специалисты свяжутся с вами",
+  });
 }
 
 function closeModal2() {
   isShowModal2.value = false;
+  notify({
+    type: "success",
+    title: "Заявка отправлена",
+    text: "Наши специалисты свяжутся с вами",
+  });
 }
 
 function showModal() {
@@ -222,5 +233,4 @@ function showModal() {
 function showModal2() {
   isShowModal2.value = true;
 }
-
 </script>
