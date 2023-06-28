@@ -115,8 +115,8 @@
     <div class="mx-6">
       <div class="border-gray-200 rounded-lg dark:border-gray-700">
         <NavItem v-if="showNav('info')">
-          <div class="flex">
-            <div class="w-[50%]">
+          <div class="flex response-items">
+            <div class="w-[50%] resp-item">
               <InfoCard
                 :value="isRegistred"
                 @click="handleAmoAuth"
@@ -200,7 +200,7 @@
                     </template>
               </InfoCard>
             </div>
-            <div class="w-[50%] ml-6">
+            <div class="w-[50%] ml-6 resp-item">
               <div class="view-integration-modal__activation h-full">
                 <div class="activation-main-wrapper h-full">
                   <div class="dtc-activation-page h-full">
