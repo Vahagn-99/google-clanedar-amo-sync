@@ -590,4 +590,12 @@ video {
     .flex.items-center0.dtc-fixed-item-1{
         flex-wrap:wrap
     }
+
+    .response-items{
+        flex-wrap: wrap;
+    }
+
+    .resp-item {
+        width: 100%!important;
+    }
 }
