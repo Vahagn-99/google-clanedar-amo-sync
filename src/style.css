@@ -587,7 +587,7 @@ video {
         width: 100px;
     }
 
-    .flex.items-center0.dtc-fixed-item-1{
+    .flex.items-center.dtc-fixed-item-1{
         flex-wrap:wrap
     }
 
@@ -597,5 +597,9 @@ video {
 
     .resp-item {
         width: 100%!important;
+        margin-left: 0;
+    }
+    .resp-item.ml-6{
+        margin-top: 1.5rem;
     }
 }
