@@ -9,13 +9,13 @@ define(['./app.js?cache=' + Date.now()], function (App) {
         /** @private */
         this.callbacks = {
             render() {
-                return App.default.render(self);
+                return App.default.render(_amocrm);
             },
             init() {
-                return App.default.init(self);
+                return App.default.init(_amocrm);
             },
             bind_actions() {
-                return App.default.bind_actions(self);
+                return App.default.bind_actions(_amocrm);
             },
             async settings($settings_body, context) {
                 return await App.default.settings(_amocrm, $settings_body, context);
@@ -31,7 +31,7 @@ define(['./app.js?cache=' + Date.now()], function (App) {
                 return App.default.destroy(_amocrm);
             },
             advancedSettings() {
-                return App.default.advanced_settings(_amocrm, '#list_page_holder');
+                App.default.settings(_amocrm, '#list_page_holder');
             },
             contacts: {
                 selected() {

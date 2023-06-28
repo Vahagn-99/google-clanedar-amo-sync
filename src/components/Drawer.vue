@@ -445,7 +445,6 @@ function addService() {
 }
 
 function checkCanAddNewItem() {
-  console.log(services.value.length <= settings.value.services.length);
   if (services.value.length <= settings.value.services.length) {
     canAddNewItem.value = false;
   } else {

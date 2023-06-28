@@ -212,9 +212,9 @@ function toggleCountryList() {
 
 onMounted(async () => {
   await asyncSubdomain();
+  await getCountries();
   currentCountryCode.value = subdomain.value?.phone ?? "+7";
   currentCountryFlag.value = subdomain.value?.country ?? "ru";
   currentCountryMask.value = subdomain.value?.phone_mask ?? "+7(###)###-##-##";
-  await getCountries();
 });
 </script>

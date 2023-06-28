@@ -257,7 +257,6 @@ const {
   checkIsLicensed,
   checkHasPhone,
   asyncSubdomain,
-  getAccount,
 } = useSubdomain();
 
 const { getWidgetId, checkWidgetStatus } = useWidget();
@@ -299,6 +298,5 @@ onMounted(async () => {
   loaded("license");
   await checkHasPhone();
   loaded("hasPhone");
-  await getAccount();
 });
 </script>

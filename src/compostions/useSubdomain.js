@@ -9,17 +9,14 @@ export function useSubdomain() {
     const isLicensed = computed(() => store.getters['subdomain/isLicensed']);
     const isRegistred = computed(() => store.getters['subdomain/isRegistred']);
     const hasPhone = computed(() => store.getters['subdomain/hasPhone']);
-    const account = computed(() => store.getters['subdomain/getAccount']);
 
     const checkIsRegistred = async () => await store.dispatch('subdomain/checkIsRegistred', subdomainId.value);
     const checkIsLicensed = async () => await store.dispatch('subdomain/checkIsLicensed', subdomainId.value);
-    const getAccount = async () => await store.dispatch('subdomain/getAccount');
     const addPhone = async (data) => {
         await store.dispatch('subdomain/addPhone', data);
         await checkHasPhone();
     };
     const checkHasPhone = async () => await store.dispatch('subdomain/checkHasPhone');
-    const getSubdomain = async () => await store.dispatch('subdomain/getSubdomain');
     const asyncSubdomain = async () => {
         const account = amocrm.constant('account')
         await store.dispatch('subdomain/async', account.subdomain);
@@ -35,9 +32,6 @@ export function useSubdomain() {
         checkHasPhone,
         addPhone,
         subdomain,
-        hasPhone,
-        getSubdomain,
-        getAccount,
-        account
+        hasPhone
     };
 }
