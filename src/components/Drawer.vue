@@ -276,11 +276,11 @@
                 for="description"
                 class="block mb-1 text-sm font-medium text-gray-900 dark:text-white"
               >
-                Описание задачи
+                Описание события
               </label>
               <Popover>
                 <template #title>
-                  <h3 style="font-weight: 800">Описание задачи</h3>
+                  <h3 style="font-weight: 800">Описание события</h3>
                 </template>
                 <template #context>
                   Это развернутое описание события в Google Календаре,<br> которое позволит передать любую необходимую информацию из полей amoCRM используя текст и переменные (все переменные доступны по кнопке “Открыть Шаблонизатор”
