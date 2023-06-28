@@ -99,12 +99,13 @@
               :loading="isLoading('license')"
             >
               <template #title>
-                Статус лицензии:
-                <strong v-if="isLicensed" class="text-black ml-[8px]">
-                  Активировано</strong
-                >
-                <strong v-if="!isLicensed" class="text-black ml-[8px]"
-                  >Просрочено</strong
+                <span class="text-[#343434]">Статус лицензии:</span>
+
+                <strong v-if="isLicensed" class="text-[#00af70] ml-[8px]">
+                Активировано</strong
+              >
+                <strong v-if="!isLicensed" class="text-[#f45050] ml-[8px]"
+                >Просрочено</strong
                 ></template
               >
             </InfoCard>
