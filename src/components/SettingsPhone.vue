@@ -144,14 +144,14 @@
             <span class="dtc-activate__policits-text">
               Я ознакомлен с
               <a
-                href="https://dtc.ru/confidence"
+                href="https://dicitech.com/license-agreement "
                 target="_blank"
                 class="dtc-tab__activation_user_agreement_link"
                 >пользовательским соглашением</a
               >
               и
               <a
-                href="https://dtc.ru/terms"
+                href="https://dicitech.com/work_info "
                 target="_blank"
                 class="dtc-tab__activation_politics_link"
                 >политикой конфиденциальности</a
