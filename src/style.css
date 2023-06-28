@@ -572,3 +572,22 @@ video {
         width: 50%!important;
     }
 }
+
+@media(max-width: 1350px){
+    .dtc-feedback-modal-dtc .dtc-feedback__buttons[data-btns="dtc"] .dtc-feedback__button{
+        font-size: 12px;
+    }
+    .dtc-activate__controls-dtc .dtc-activate__phone #dtc-activation-phone{
+        min-width: 230px;
+    }
+}
+
+@media(max-width: 1000px){
+    .dtc-activate__controls-dtc .dtc-activate__button button{
+        width: 100px;
+    }
+
+    .flex.items-center0.dtc-fixed-item-1{
+        flex-wrap:wrap
+    }
+}
