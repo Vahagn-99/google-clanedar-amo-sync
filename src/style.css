@@ -58,7 +58,7 @@ select:disabled{
 .dtc-h5{
     display: flex;
     /*margin-bottom: 0.5rem;*/
-    color: #6B7280;
+    color: #000000;
     font-weight: 600;
     letter-spacing: -0.025em;
     white-space: nowrap;

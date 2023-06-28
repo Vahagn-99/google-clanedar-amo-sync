@@ -57,8 +57,8 @@
             </svg>
           </div>
           <div>
-            <div class="dtc-activate__title text-[15px]">Статус клиента</div>
-            <div class="dtc-activate__description text-[15px]">
+            <div class="dtc-activate__title text-[15px] text-black">Статус клиента</div>
+            <div class="dtc-activate__description text-[15px] text-black">
               Подтвердите телефон и получите виджет в подарок
             </div>
           </div>

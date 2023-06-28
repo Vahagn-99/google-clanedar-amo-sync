@@ -28,7 +28,7 @@
     <a v-else href="#" class="dtc-a">
       <h5
         :class="cardClass"
-        class="dtc-h5 text-md font-semibold tracking-tight text-gray-500 dark:text-white flex items-center whitespace-nowrap"
+        class="dtc-h5 text-md font-semibold tracking-tight text-[15px] text-black dark:text-white flex items-center whitespace-nowrap"
       >
         <slot name="title"></slot>
         <slot v-if="value" name="trueValue"></slot>
