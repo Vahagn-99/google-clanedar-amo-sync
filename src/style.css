@@ -412,12 +412,16 @@ video {
     font-weight: 700;
 }
 
- .dtc-feedback-modal-dtc-settings {
-     border: 1px solid #F0F0F0;
+ .dtc-feedback-modal-dtc-settings{
+     /* border: 1px solid #F0F0F0; */
      /*box-shadow: 0.73424px 0.73424px 10px rgb(155 155 155 / 25%);*/
      padding: 12px;
-     border-radius: 2px;
-     background-color: #f8f8f8;
+     /* border-radius: 2px; */
+     background-color: #ffffff;
+ }
+
+ .dtc-feedback-modal-dtc-settings .dtc-feedback__button{
+    background-color: #e3edf6!important;
  }
 
 .dtc-fixed-item-1{
@@ -478,7 +482,7 @@ video {
 .dtc-feedback-modal-dtc .dtc-feedback__buttons[data-btns="dtc"] .dtc-feedback__button {
     display: flex;
     align-items: center;
-    background: #fff;
+    background: #ffffff;
     cursor: pointer;
     margin-right: 12px;
     padding: 8px;

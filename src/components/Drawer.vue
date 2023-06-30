@@ -78,7 +78,7 @@
               </p>
             </template>
           </Select>
-          <div class="w-full" v-if="settings.services.length > 0">
+          <div class="w-full" v-if="settings.services?.length > 0">
             <ul class="p-0 space-y-1 text-gray-500 list-none">
               <template
                 v-for="(service, index) in settings.services"
@@ -129,7 +129,7 @@
               </template>
             </ul>
           </div>
-          <div class="w-full" v-if="settings.services.length > 0">
+          <div class="w-full" v-if="settings.services?.length > 0">
             <button
               :disabled="!canAddNewItem"
               @click="addService"

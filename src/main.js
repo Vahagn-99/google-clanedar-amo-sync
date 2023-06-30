@@ -12,14 +12,14 @@ window.Host = import.meta.env.VITE_APP_ENV === 'local' ? 'http://localhost:8080/
 
 
 createApp(Advanced)
-    .provide('widget', Widget)
+    .provide('amocrm', Widget)
     .use(Notifications)
     .directive("maska", vMaska)
     .use(store)
     .mount('#advanced-area')
 
 createApp(Settings)
-    .provide('widget', Widget)
+    .provide('amocrm', Widget)
     .use(Notifications)
     .directive("maska", vMaska)
     .use(store)
