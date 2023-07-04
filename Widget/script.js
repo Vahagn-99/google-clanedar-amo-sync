@@ -9,54 +9,46 @@ define(['./app.js?cache=' + Date.now()], function (App) {
         /** @private */
         this.callbacks = {
             render() {
-                return App.default.render(_amocrm);
+                App.default.render(_amocrm);
+                return true;
             },
             init() {
-                return App.default.init(_amocrm);
+                App.default.init(_amocrm);
+                return true;
             },
             bind_actions() {
-                return App.default.bind_actions(_amocrm);
+                App.default.bind_actions(_amocrm);
+                return true;
             },
             async settings($settings_body) {
                 try {
                     await App.default.settings(_amocrm, $settings_body);
+                    return true;
                 } catch (error) {
-                    throw error
+                    return true;
                 }
             },
             async advancedSettings() {
                 $settings_body = document.getElementById('list_page_holder');
                 try {
                     await App.default.advancedSettings(_amocrm, $settings_body);
+                    return true;
                 } catch (error) {
-                    throw error
+                    return true;
                 }
             },
             async onSave() {
                 try {
-                    return await App.default.onSave(_amocrm);
+                    await App.default.onSave(_amocrm);
+                    return true;
                 } catch (error) {
-                    throw error
+                    return true;
                 }
             },
             destroy() {
-                return App.default.destroy(_amocrm);
+                App.default.destroy(_amocrm);
+                return true;
             },
-            contacts: {
-                selected() {
-                    return App.default.contacts_selected(self);
-                }
-            },
-            leads: {
-                selected() {
-                    return App.default.leads_selected(self);
-                }
-            },
-            tasks: {
-                selected() {
-                    return App.default.tasks_selected(self);
-                }
-            }
         };
 
         return this;

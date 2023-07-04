@@ -10,7 +10,6 @@ import Notifications from '@kyvg/vue3-notification';
 
 window.Host = import.meta.env.VITE_APP_ENV === 'local' ? 'http://localhost:8080/api/' : "https://widgets-api.dicitech.com/api/";
 
-
 createApp(Advanced)
     .provide('amocrm', Widget)
     .use(Notifications)

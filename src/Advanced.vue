@@ -102,10 +102,10 @@
                 <span class="text-[#343434]">Статус лицензии:</span>
 
                 <strong v-if="isLicensed" class="text-[#00af70] ml-[8px]">
-                Активировано</strong
-              >
+                  Активировано</strong
+                >
                 <strong v-if="!isLicensed" class="text-[#f45050] ml-[8px]"
-                >Просрочено</strong
+                  >Просрочено</strong
                 ></template
               >
             </InfoCard>
@@ -251,7 +251,6 @@ import WidgetSettings from "./components/WidgetSettings.vue";
 import { onMounted, ref } from "vue";
 import { oauthModal } from "./helpers/helpers";
 import { useSubdomain } from "./compostions/useSubdomain";
-import { useWidget } from "./compostions/useWidget";
 import SettingsPhone from "./components/SettingsPhone.vue";
 import Support from "./components/Support.vue";
 
@@ -266,8 +265,6 @@ const {
   asyncSubdomain,
 } = useSubdomain();
 
-const { getWidgetId, checkWidgetStatus } = useWidget();
-
 const currentNav = ref("info");
 
 const clientStatusActive = ref(false);
@@ -278,10 +275,13 @@ function switchNav(next) {
 function showNav(is) {
   return currentNav.value === is;
 }
-function handleAmoAuth() {
-  oauthModal(`${window.Host}amo-auth/${subdomainId.value}`).then(async (e) => {
-    await checkIsRegistred();
-  });
+async function handleAmoAuth() {
+  await 
+  oauthModal(`${window.Host}amo-auth/${subdomainId.value}`).then(
+    async (e) => {
+      await checkIsRegistred();
+    }
+  );
 }
 
 const loadables = ref(["widget", "registred", "license", "status", "hasPhone"]);
@@ -293,10 +293,8 @@ function loaded(element) {
 }
 
 onMounted(async () => {
-  await getWidgetId();
-  loaded("widget");
   await asyncSubdomain();
-  await checkWidgetStatus();
+  loaded("widget");
   loaded("status");
   await checkIsRegistred();
   loaded("registred");

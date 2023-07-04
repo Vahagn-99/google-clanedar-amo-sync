@@ -8,7 +8,10 @@ const apiClient = axios.create({
 
 // Helper function to get widget id
 async function getWidgetId() {
-
+    const fromLocalStorage = localStorage.getItem('calendar_widget_id');
+    if (fromLocalStorage) {
+        return fromLocalStorage;
+    }
     const { data: { data: { id: widgetId } } } = await apiClient.get('info/calendar');
     localStorage.setItem('calendar_widget_id', widgetId);
     return widgetId;
