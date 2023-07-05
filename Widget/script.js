@@ -8,16 +8,16 @@ define(['./app.js?cache=' + Date.now()], function (App) {
 
         /** @private */
         this.callbacks = {
-            render() {
-                App.default.render(_amocrm);
+            async render() {
+                await App.default.render(_amocrm);
                 return true;
             },
-            init() {
-                App.default.init(_amocrm);
+            async init() {
+                await App.default.init(_amocrm);
                 return true;
             },
-            bind_actions() {
-                App.default.bind_actions(_amocrm);
+            async bind_actions() {
+                await App.default.bind_actions(_amocrm);
                 return true;
             },
             async settings($settings_body) {

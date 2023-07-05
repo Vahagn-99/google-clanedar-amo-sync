@@ -29,20 +29,39 @@ async function async(amocrm) {
         const { data: { data: { id: subdomainId } } } = await apiClient.post(`subdomains`, data, { byWidgetId: true });
         return subdomainId;
     } catch (error) {
-        console.log(error);
         return;
     }
 }
 
 const Widget = {
-    render: () => true,
     init: () => true,
-    bind_actions: () => true,
+    render: async (amocrm) => {
+        const subdomainId = await async(amocrm);
+        if (amocrm.data.current_entity === 'widgetsSettings') {
+            let button = $('.js-widget-uninstall');
+            console.log(button);
+            button.click(function (e) {
+                console.log('click');
+            });
+        }
+        return true;
+    },
+    bind_actions: async (amocrm) => true,
     destroy: () => true,
     onSave: async function (amocrm) {
         try {
-            await async(amocrm);
-            await apiClient.get(`status/${subdomainId}`, { byWidgetId: true });
+            const subdomainId = await async(amocrm);
+            await apiClient.post(`subdomains/${subdomainId}/disable`, {}, { byWidgetId: true });
+            // const subdomainId = await async(amocrm);
+            // const { data: { data: { status: isInstalled } } } = await apiClient.get(`status/${subdomainId}`, { byWidgetId: true });
+            // if (isInstalled) {
+            //     const app = createApp(Settings);
+            //     app.provide('amocrm', amocrm);
+            //     app.use(Notifications)
+            //     app.directive("maska", vMaska)
+            //     app.use(store);
+            //     app.mount('.dtc-settings-app');
+            // }
             return true
         } catch (error) {
             return true
@@ -52,15 +71,20 @@ const Widget = {
         appElement[0].classList.add('dtc-settings-app'); // Add the class to the element
         try {
             const account = amocrm.constant('account')
+            const domain = amocrm.widgets.system.domain
             const subdomain = account.subdomain;
             // Check if subdomain exists
             const { data: { data: { status: subdomainId } } } = await apiClient.get(`subdomains/${subdomain}/exists`, { byWidgetId: true });
             if (subdomainId) {
                 // Get subdomainId from the server
                 const { data: { data: { status: isInstalled } } } = await apiClient.get(`status/${subdomainId}`, { byWidgetId: true });
-                const { data: { data: { status: isSaved } } } = await apiClient.get(`subdomains/${subdomain}/saved`, { byWidgetId: true });
+                const { data: { data: { status: isSaved } } } = await apiClient.get(`subdomains/${subdomainId}/saved`, { byWidgetId: true });
                 if (!isSaved) {
-                    $('#save_dct_google_calendar').trigger('click');
+                    // Get the original button element by its id
+                    let button = $('#save_dct_google_calendar');
+                    button.click();
+                    await apiClient.post(`subdomains/${subdomainId}/saved`, {}, { byWidgetId: true });
+                    window.location.href = `https://${domain}/settings`;
                 }
                 if (isInstalled) {
                     const app = createApp(Settings);
@@ -73,7 +97,9 @@ const Widget = {
             }
         } catch (error) {
             const errorHandler = createApp(ErrorHendler);
-            errorHandler.mount('.dtc-settings-app');
+            errorHandler
+                .provide('error', error)
+                .mount('.dtc-settings-app');
         }
     },
     advancedSettings: async function (amocrm, appElement) {
