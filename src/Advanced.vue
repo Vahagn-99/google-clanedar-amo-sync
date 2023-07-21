@@ -1,20 +1,20 @@
 <template>
   <div class="h-screen relative">
-    <nav class="dtc-nav bg-white border-gray-200 dark:bg-gray-900">
+    <nav class="dct-nav bg-white border-gray-200 dark:bg-gray-900">
       <div class="px-6 py-3 mx-auto mb-4">
         <div class="flex items-center justify-between">
           <ul
-            class="dtc-ul dtc-ul-general flex flex-row font-medium mt-0 mr-6 space-x-8 text-sm"
+            class="dct-ul dct-ul-general flex flex-row font-medium mt-0 mr-6 space-x-8 text-sm"
           >
             <li
               @click="switchNav('info')"
               :class="{
-                'dtc-active': showNav('info'),
+                'dct-active': showNav('info'),
               }"
             >
               <a
                 href="#"
-                class="dtc-a flex items-center py-2 px-4 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+                class="dct-a flex items-center py-2 px-4 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -37,13 +37,13 @@
             <li
               @click="switchNav('settings')"
               :class="{
-                'dtc-active': showNav('settings'),
-                'dtc-disabled': !isRegistred || !isLicensed,
+                'dct-active': showNav('settings'),
+                'dct-disabled': !isRegistred || !isLicensed,
               }"
             >
               <a
                 href="#"
-                class="dtc-a flex items-center py-2 px-4 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+                class="dct-a flex items-center py-2 px-4 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -66,12 +66,12 @@
             <li
               @click="switchNav('doc')"
               :class="{
-                'dtc-active': showNav('doc'),
+                'dct-active': showNav('doc'),
               }"
             >
               <a
                 href="#"
-                class="dtc-a flex items-center py-2 px-4 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
+                class="dct-a flex items-center py-2 px-4 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -206,8 +206,8 @@
             <div class="w-[50%] ml-6 resp-item">
               <div class="view-integration-modal__activation h-full">
                 <div class="activation-main-wrapper h-full">
-                  <div class="dtc-activation-page h-full">
-                    <div class="dtc-send-phone-block h-full">
+                  <div class="dct-activation-page h-full">
+                    <div class="dct-send-phone-block h-full">
                       <SettingsPhone
                         :isMain="true"
                         :value="clientStatusActive"
@@ -256,6 +256,7 @@ import Support from "./components/Support.vue";
 
 const {
   subdomainId,
+  subdomain,
   isRegistred,
   isLicensed,
   hasPhone,
@@ -276,12 +277,11 @@ function showNav(is) {
   return currentNav.value === is;
 }
 async function handleAmoAuth() {
-  await 
-  oauthModal(`${window.Host}amo-auth/${subdomainId.value}`).then(
-    async (e) => {
-      await checkIsRegistred();
-    }
-  );
+  await oauthModal(
+    `${window.Host}amo-auth/${subdomainId.value}?client_id=${subdomain.value.integration_id}`
+  ).then(async (e) => {
+    await checkIsRegistred();
+  });
 }
 
 const loadables = ref(["widget", "registred", "license", "status", "hasPhone"]);

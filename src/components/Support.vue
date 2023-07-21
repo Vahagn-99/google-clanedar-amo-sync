@@ -1,36 +1,36 @@
 <template>
   <div :class="classObjMain">
-    <div class="feedback-block dtc-feedback-modal-dtc mt-4 rounded-lg">
+    <div class="feedback-block dct-feedback-modal-dct mt-4 rounded-lg">
       <slot name="text"></slot>
-      <div class="dtc-feedback__buttons" data-btns="dtc">
+      <div class="dct-feedback__buttons" data-btns="dct">
         <div class="flex items-center" :class="classObj">
-          <button class="dtc-feedback__button" data-feedback="whatsapp">
+          <button class="dct-feedback__button" data-feedback="whatsapp">
             <a href="https://web.whatsapp.com/send?phone=79655932646">
               <span>Написать в Whatsapp</span>
             </a>
           </button>
-          <button class="dtc-feedback__button" data-feedback="telegram">
+          <button class="dct-feedback__button" data-feedback="telegram">
             <a href="https://t.me/dici_tech_bot">
               <span>Написать в Telegram</span>
             </a>
           </button>
-          <button class="dtc-feedback__button" data-feedback="email">
+          <button class="dct-feedback__button" data-feedback="email">
             <a href="mailto:help@dicitech.com">
               <span>help@dicitech.com</span>
             </a>
           </button>
-          <button class="dtc-feedback__button" data-feedback="call">
+          <button class="dct-feedback__button" data-feedback="call">
             <span> <a href="tel:+74992132608"></a> +7 499 213 26 08</span>
           </button>
           <button
-            class="dtc-feedback__button"
+            class="dct-feedback__button"
             data-feedback="bug"
             @click="showModal2"
           >
             <span>Сообщить о ошибке</span>
           </button>
           <button
-            class="dtc-feedback__button"
+            class="dct-feedback__button"
             data-feedback="wishes"
             @click="showModal"
           >
@@ -197,12 +197,12 @@ const props = defineProps({
 });
 
 const classObj = computed(() => ({
-  "dtc-fixed-item-1": props.isMain,
+  "dct-fixed-item-1": props.isMain,
   "flex-wrap": !props.isMain,
 }));
 
 const classObjMain = computed(() => ({
-  "dtc-feedback-modal-dtc-settings": !props.isMain,
+  "dct-feedback-modal-dct-settings": !props.isMain,
 }));
 
 const isShowModal = ref(false);

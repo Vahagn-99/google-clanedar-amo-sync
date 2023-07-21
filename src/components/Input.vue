@@ -20,7 +20,7 @@
       :placeholder="placeholder"
       v-maska
       :data-maska="pattern"
-      class="dtc-input bg-gray-50 border text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+      class="dct-input  bg-gray-50 border border-sky-500 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
       :class="{
         'text-gray-100 border-gray-100': disabled,
         'text-gray-900 border-gray-300': !disabled,

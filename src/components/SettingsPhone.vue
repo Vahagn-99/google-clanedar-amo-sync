@@ -1,6 +1,6 @@
 <template>
   <div
-    class="dtc-activate__wrapper h-full rounded-lg box-border bg-[#e3edf6]"
+    class="dct-activate__wrapper h-full rounded-lg box-border bg-[#e3edf6]"
     :class="classObj"
   >
     <div v-if="loading" class="flex items-center">
@@ -25,10 +25,10 @@
       </div>
     </div>
 
-    <div class="dtc-activate__body" v-else>
-      <div class="dtc-activate__info-wrapper">
-        <div class="dtc-activate__info-body flex start items-center">
-          <div class="dtc-activate__icon">
+    <div class="dct-activate__body" v-else>
+      <div class="dct-activate__info-wrapper">
+        <div class="dct-activate__info-body flex start items-center">
+          <div class="dct-activate__icon">
             <svg
               v-if="hasPhone"
               xmlns="http://www.w3.org/2000/svg"
@@ -57,27 +57,27 @@
             </svg>
           </div>
           <div>
-            <div class="dtc-activate__title text-[15px] text-[#343434]">Статус клиента <span class="text-[#00ad71]" v-if="hasPhone"> : Телефон подтвержден</span></div>
-            <div class="dtc-activate__description text-[15px] text-black">
+            <div class="dct-activate__title text-[15px] text-[#343434]">Статус клиента <span class="text-[#00ad71]" v-if="hasPhone"> : Телефон подтвержден</span></div>
+            <div class="dct-activate__description text-[15px] text-black">
               Подтвердите телефон и получите виджет в подарок
             </div>
           </div>
         </div>
       </div>
       <div
-        class="dtc-activate__controls-wrapper"
+        class="dct-activate__controls-wrapper"
         style="pointer-events: all; opacity: 1"
       >
-        <div class="dtc-activate__controls dtc-activate__controls-dtc">
-          <div class="dtc-activate__controls">
-            <div class="dtc-activate__phone w-full">
+        <div class="dct-activate__controls dct-activate__controls-dct">
+          <div class="dct-activate__controls">
+            <div class="dct-activate__phone w-full">
               <label>
                 <div class="intl-tel-input">
                   <Input
-                    id="dtc-activation-phone"
+                    id="dct-activation-phone"
                     label=""
                     type="tel"
-                    name="dtc-phone__activation"
+                    name="dct-phone__activation"
                     v-model="currentCountryCode"
                     placeholder="Номер телефона"
                     :pattern="[currentCountryMask]"
@@ -114,13 +114,13 @@
                 </div>
               </label>
             </div>
-            <div class="dtc-activate__button">
+            <div class="dct-activate__button">
               <button
                 @click="handlePhone"
                 type="button"
                 class="button-input"
                 :class="{ 'button-input-disabled': !userAgreed }"
-                id="dtc-activation-button"
+                id="dct-activation-button"
               >
                 <span class="button-input-inner"
                   ><span class="button-input-inner__text"
@@ -130,30 +130,30 @@
               </button>
             </div>
           </div>
-          <div class="dtc-activate__politics">
+          <div class="dct-activate__politics">
             <label class="control-checkbox control-checkbox_small">
               <div class="control-checkbox__body">
                 <input
                   type="checkbox"
-                  name="dtc-politics"
+                  name="dct-politics"
                   v-model="userAgreed"
                 />
                 <span class="control-checkbox__helper"></span>
               </div>
             </label>
-            <span class="dtc-activate__policits-text">
+            <span class="dct-activate__policits-text">
               Я ознакомлен с
               <a
                 href="https://dicitech.com/license-agreement "
                 target="_blank"
-                class="dtc-tab__activation_user_agreement_link"
+                class="dct-tab__activation_user_agreement_link"
                 >пользовательским соглашением</a
               >
               и
               <a
                 href="https://dicitech.com/work_info "
                 target="_blank"
-                class="dtc-tab__activation_politics_link"
+                class="dct-tab__activation_politics_link"
                 >политикой конфиденциальности</a
               >
             </span>
@@ -201,7 +201,7 @@ function handleCountryCode(code, flag, mask) {
   currentCountryCode.value = code;
   currentCountryFlag.value = flag;
   currentCountryMask.value = code + mask;
-  openCountryList.value = false;
+  toggleCountryList();
 }
 
 function toggleCountryList() {

@@ -45,8 +45,9 @@ const selectable = {
             commit("setCalendars", calendars);
         },
         getFields: async ({ commit }, subdomainId) => {
-            const resposne = await apiClient.get(`subdomains/${subdomainId}/fields`, { byWidgetId: true });
+            const resposne = await apiClient.get(`subdomains/${subdomainId}/fields-with-key`, { byWidgetId: true });
             const fields = resposne.data.data
+            console.log(fields);
             commit("setFields", fields);
         },
         getStatuses: async ({ commit }, subdomainId) => {

@@ -10,6 +10,7 @@ const subdomain = {
         isExists: false,
         isLicensed: false,
         hasPhone: false,
+        isSaved: false,
     },
     getters: {
         getSubdomainId: (state) => state.subdomainId,
@@ -18,6 +19,7 @@ const subdomain = {
         isLicensed: (state) => state.isLicensed,
         hasPhone: (state) => state.hasPhone,
         getSubdomain: (state) => state.subdomain,
+        getIsSaved: (state) => state.isSaved,
     },
     mutations: {
         setSubdomainId: (state, subdomainId) => state.subdomainId = subdomainId,
@@ -26,6 +28,7 @@ const subdomain = {
         setIsLicensed: (state, isLicensed) => state.isLicensed = isLicensed,
         setHasPhone: (state, hasPhone) => state.hasPhone = hasPhone,
         setSubdomain: (state, subdomain) => state.subdomain = subdomain,
+        setIsSaved: (state, isSaved) => state.isSaved = isSaved,
     },
     actions: {
         // save new client data in the back-end
@@ -66,6 +69,14 @@ const subdomain = {
             const resposne = await apiClient.get(`subdomains/${state.subdomainId}/phone`, { byWidgetId: true });
             const { status } = resposne.data.data
             commit("setHasPhone", status);
+        },
+        checkIsSaved: async ({ commit, state }) => {
+            const resposne = await apiClient.get(`subdomains/${state.subdomainId}/saved`, { byWidgetId: true });
+            const { status } = resposne.data.data
+            commit("setIsSaved", status);
+        },
+        save: async ({ commit, state }) => {
+            await apiClient.post(`subdomains/${state.subdomainId}/saved`, {}, { byWidgetId: true });
         },
         addPhone: async ({ state }, { phone, country, mask }) => {
             await apiClient.post(`subdomains/${state.subdomainId}/phone`, { phone: phone, country: country, mask: mask }, { byWidgetId: true });

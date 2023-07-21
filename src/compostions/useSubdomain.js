@@ -9,14 +9,29 @@ export function useSubdomain() {
     const isLicensed = computed(() => store.getters['subdomain/isLicensed']);
     const isRegistred = computed(() => store.getters['subdomain/isRegistred']);
     const hasPhone = computed(() => store.getters['subdomain/hasPhone']);
+    const isSaved = computed(() => store.getters['subdomain/isSaved']);
 
     const checkIsRegistred = async () => await store.dispatch('subdomain/checkIsRegistred', subdomainId.value);
     const checkIsLicensed = async () => await store.dispatch('subdomain/checkIsLicensed', subdomainId.value);
+    const checkIsSaved = async () => await store.dispatch('subdomain/checkIsSaved', subdomainId.value);
+    const save = async () => await store.dispatch('subdomain/save', subdomainId.value);
     const addPhone = async (data) => {
-        await store.dispatch('subdomain/addPhone', data);
+        try {
+            await store.dispatch('subdomain/addPhone', data);
+            notify({
+                type: 'success',
+                title: "Телефон успешно сохранен",
+            });
+        } catch (error) {
+            notify({
+                type: 'error',
+                title: "Что то пошло не так!",
+            });
+        }
         await checkHasPhone();
     };
     const checkHasPhone = async () => await store.dispatch('subdomain/checkHasPhone');
+
     const asyncSubdomain = async () => {
         const account = amocrm.constant('account')
         await store.dispatch('subdomain/async', account.subdomain);
@@ -32,6 +47,9 @@ export function useSubdomain() {
         checkHasPhone,
         addPhone,
         subdomain,
-        hasPhone
+        hasPhone,
+        isSaved,
+        checkIsSaved,
+        save
     };
 }

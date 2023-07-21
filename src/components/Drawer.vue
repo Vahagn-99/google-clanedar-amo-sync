@@ -2,7 +2,7 @@
   <div class="max-w-2xl p-4 mx-auto">
     <div
       id="drawer-example"
-      class="fixed z-40 h-screen p-4 overflow-y-auto bg-slate-50 w-2/5 dtc-modal"
+      class="fixed z-40 h-screen p-4 overflow-y-auto bg-slate-50 w-2/5 dct-modal"
       tabindex="-1"
       aria-labelledby="drawer-label"
     >
@@ -11,7 +11,7 @@
         id="drawer-hide-button"
         type="button"
         aria-controls="drawer-example"
-        class="dtc-button text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 absolute top-2.5 right-2.5 inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
+        class="dct-button text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 absolute top-2.5 right-2.5 inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
       >
         <svg
           aria-hidden="true"
@@ -68,15 +68,6 @@
             name="settings_parent_service_id"
             @update:value="handleServiceParentId"
           >
-            <template #popover>
-              <p>
-                Дополнительный параметр для создания события в Google Календарь.
-                Здесь можно выбрать услугу которую вы оказываете и при переходе в этап, если поле будет заполнено и будет выбран этот параметр, событие будет создано именно в этом календаре.
-              </p>
-              <p class="pt-4">
-                Если все сотрудники пользуются одним календарем, чтобы не было путаницы необходимо сделать сопоставление поля (например имя сотрудника) и внутреннего календаря. В таком случае можно будет быстро просмотреть все занятые слоты, либо просмотреть только одного сотрудника или услугу.
-              </p>
-            </template>
           </Select>
           <div class="w-full" v-if="settings.services?.length > 0">
             <ul class="p-0 space-y-1 text-gray-500 list-none">
@@ -108,7 +99,7 @@
                     @click="deleteItem(index, service.service_id)"
                     data-modal-target="delete-modal"
                     data-modal-toggle="delete-modal"
-                    class="dtc-button flex items-center ml-3 text-[#ff6e6e] hover:text-white border border-[#ff6e6e] hover:bg-[#f45050] focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-3 py-2 text-center"
+                    class="dct-button flex items-center ml-3 text-[#ff6e6e] hover:text-white border border-[#ff6e6e] hover:bg-[#f45050] focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-3 py-2 text-center"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -134,7 +125,7 @@
               :disabled="!canAddNewItem"
               @click="addService"
               type="button"
-              class="dtc-button mt-4 float-right flex justify-center items-center focus:ring-4 focus:outline-none focus:ring-blue-300 text-white font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+              class="dct-button mt-4 float-right flex justify-center items-center focus:ring-4 focus:outline-none focus:ring-blue-300 text-white font-medium rounded-lg text-sm px-5 py-2.5 text-center"
               :class="{
                 'bg-[#4c8bf7] hover:bg-[#5c8bf9]': canAddNewItem,
                 'bg-blue-400 dct-cursor-not-allowed': !canAddNewItem,
@@ -166,60 +157,81 @@
             Настройки дата и время
             <Popover>
               <template #title>
-                  <h3 style="font-weight: 800">Настройки дата и время</h3>
+                <h3 style="font-weight: 800">Настройки дата и время</h3>
               </template>
               <template #context>
                 <ul>
                   <li class="pt-4">
-                    <b style="font-weight: 800">Вариант 1.</b> Вы вручную для каждой сделки определяете дату и время начала и завершения события, посредством заполнения полей amoCRM.
-                    Например: 20.06.2023 15:00 - 20.06.2023 17:30
+                    <b style="font-weight: 800">Вариант 1.</b> Вы вручную для
+                    каждой сделки определяете дату и время начала и завершения
+                    события, посредством заполнения полей amoCRM. Например:
+                    20.06.2023 15:00 - 20.06.2023 17:30
                   </li>
                   <li class="pt-4">
-                    <b style="font-weight: 800">Вариант 2.</b> Вы назначаете дату и время начала события, а продолжительность уже будет фиксирована для всех событий.
-                    Например: Начало события 20.06.2023 15:00, а длительность всех событий будет по умолчанию 1 час."
+                    <b style="font-weight: 800">Вариант 2.</b> Вы назначаете
+                    дату и время начала события, а продолжительность уже будет
+                    фиксирована для всех событий. Например: Начало события
+                    20.06.2023 15:00, а длительность всех событий будет по
+                    умолчанию 1 час."
                   </li>
                 </ul>
               </template>
-              </Popover>
+            </Popover>
           </h2>
           <div class="">
             <Toggle v-model="usePcker" class="ml-0" />
             <div class="flex gap-2 justify-between items-end">
-              <Select
-                :disabled="useInput"
+              <SelectTwo
                 label="Начало события (дата и время)"
-                :options="fields"
-                :selected="settings.start_date_id"
-                optionKey="name"
-                selected-key="id"
                 name="start_date_id"
-                @update:value="handleStartDate"
-              />
-              <Select
                 :disabled="useInput"
+                :settings="{
+                  selected: settings.start_date_id,
+                  options: fields,
+                  nested: {
+                    key: 'id',
+                    value: 'name',
+                  },
+                }"
+                @update:value="handleStartDate"
+              >
+              </SelectTwo>
+              <SelectTwo
                 label="Завершение события (дата и время)"
-                :options="fields"
-                option-key="name"
-                :selected="settings.end_date_id"
-                selected-key="id"
                 name="end_date_id"
+                :disabled="useInput"
+                :settings="{
+                  selected: settings.end_date_id,
+                  options: fields,
+                  nested: {
+                    key: 'id',
+                    value: 'name',
+                  },
+                }"
                 @update:value="handleEndDate"
-              />
+              >
+              </SelectTwo>
             </div>
           </div>
           <div class="">
             <Toggle v-model="useInput" />
             <div class="flex gap-2 justify-between items-end">
-              <Select
+              <SelectTwo
                 label="Начало события (дата и время)"
-                :disabled="usePcker"
-                :options="fields"
-                :selected="settings.start_date_id"
-                optionKey="name"
-                selected-key="id"
                 name="start_date_id"
+                placeholder="Город Москва, Ул 45 дом 14"
+                :disabled="usePcker"
+                :settings="{
+                  selected: settings.start_date_id,
+                  options: fields,
+                  nested: {
+                    key: 'id',
+                    value: 'name',
+                  },
+                }"
                 @update:value="handleStartDate"
-              />
+              >
+              </SelectTwo>
               <Input
                 :disabled="usePcker"
                 type="tell"
@@ -239,37 +251,51 @@
           <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">
             Настройки Контента
           </h2>
-
-          <Select
+          <SelectTwo
             popover="Выбираете поле в amoCRM, которое будет отображать название события в Google Календаре. Можете выбрать название сделки, для того чтобы событие и сделка назывались одинаково"
             class=""
             label="Название события в календаре"
-            :options="fields"
-            option-key="name"
-            :selected="settings.event_name_id"
-            selected-key="id"
             name="event_name_id"
+            :settings="{
+              selected: settings.event_name_id,
+              options: fields,
+              nested: {
+                key: 'id',
+                value: 'name',
+              },
+            }"
             @update:value="handleTaskName"
           >
             <template #popover>
-              <p>Выбираете поле в amoCRM, которое будет отображать название события в Google Календаре. Можете выбрать название сделки, для того чтобы событие и сделка назывались одинаково</p>
+              <p>
+                Выбираете поле в amoCRM, которое будет отображать название
+                события в Google Календаре. Можете выбрать название сделки, для
+                того чтобы событие и сделка назывались одинаково
+              </p>
             </template>
-          </Select>
-          <Select
-            popover="Выбираете поле в amoCRM, где вы прописываете адрес и после создания события в Google Календаре, можно будет посмотреть адрес отдельно и даже открыть его на Google Maps"
+          </SelectTwo>
+          <SelectTwo
             label="Местоположение / Адрес"
-            :options="fields"
-            optionKey="name"
-            :selected="settings.event_address_id"
-            selectedKey="id"
-            name="address"
-            @update:value="handleAddress"
+            name="event_name_id"
             placeholder="Город Москва, Ул 45 дом 14"
+            :settings="{
+              selected: settings.event_address_id,
+              options: fields,
+              nested: {
+                key: 'id',
+                value: 'name',
+              },
+            }"
+            @update:value="handleAddress"
           >
             <template #popover>
-              <p>Выбираете поле в amoCRM, где вы прописываете адрес и после создания события в Google Календаре, можно будет посмотреть адрес отдельно и даже открыть его на Google Maps</p>
+              <p>
+                Выбираете поле в amoCRM, где вы прописываете адрес и после
+                создания события в Google Календаре, можно будет посмотреть
+                адрес отдельно и даже открыть его на Google Maps
+              </p>
             </template>
-          </Select>
+          </SelectTwo>
           <div class="my-2 relative">
             <div class="flex">
               <label
@@ -283,28 +309,31 @@
                   <h3 style="font-weight: 800">Описание события</h3>
                 </template>
                 <template #context>
-                  Это развернутое описание события в Google Календаре,<br> которое позволит передать любую необходимую информацию из полей amoCRM используя текст и переменные (все переменные доступны по кнопке “Открыть Шаблонизатор”
+                  Это развернутое описание события в Google Календаре,<br />
+                  которое позволит передать любую необходимую информацию из
+                  полей amoCRM используя текст и переменные (все переменные
+                  доступны по кнопке “Открыть Шаблонизатор”
                 </template>
               </Popover>
             </div>
             <textarea
               id="description"
               rows="8"
-              class="dtc-textarea block p-2.5 w-full text-sm text-gray-900 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+              class="dct-textarea block p-2.5 w-full text-sm text-gray-900 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
               placeholder="Вставьте сюда..."
               v-model="settings.event_body"
             ></textarea>
             <button
               @click="toggleTemplate"
               type="button"
-              class="dtc-button-absolute absolute text-white bg-[#4c8bf7] hover:bg-[#5c8bf9] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              class="dct-button-absolute absolute text-white bg-[#4c8bf7] hover:bg-[#5c8bf9] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >
               {{ isOpenTemplate ? "закрить" : "открить" }} Шаблонизатор
             </button>
           </div>
           <div class="pt-3" v-if="isOpenTemplate">
             <div class="h-[300px] overflow-y-auto custom-scroll">
-              <ul class="dtc-ul mt-0 pl-0">
+              <ul class="dct-ul mt-0 pl-0">
                 <template v-for="(marker, key) in markers" :key="key">
                   <ShablonItem
                     @copy:value="copyMarker"
@@ -320,14 +349,14 @@
           <button
             @click="closeModal"
             type="button"
-            class="dtc-button text-gray-500 bg-white focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:focus:ring-gray-600"
+            class="dct-button text-gray-500 bg-white focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:focus:ring-gray-600"
           >
             Закрыть
           </button>
           <button
             @click="handleSave"
             type="button"
-            class="dtc-button text-white bg-[#4c8bf7] hover:bg-[#5c8bf9] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            class="dct-button text-white bg-[#4c8bf7] hover:bg-[#5c8bf9] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
           >
             Сохранить
           </button>
@@ -348,7 +377,7 @@ import Toggle from "./Toggle.vue";
 import Input from "./Input.vue";
 import ShablonItem from "./ShablonItem.vue";
 import Popover from "./Popover.vue";
-import {Modal} from "flowbite-vue";
+import SelectTwo from "./SelectTwo.vue";
 
 const { settings, saveSettings } = useSettings();
 const { fields, statuses, calendars, selects, markers } = useSelect();
@@ -362,8 +391,8 @@ const props = defineProps({
 
 const emit = defineEmits(["close-drawer"]);
 // logic
-const useInput = ref(false);
-const usePcker = ref(true);
+const useInput = ref(settings.value.date_district);
+const usePcker = ref(!settings.value.date_district);
 
 const isOpenTemplate = ref(false);
 const canAddNewItem = ref(true);
@@ -472,45 +501,45 @@ const isShow5 = ref(false);
 const isShow6 = ref(false);
 
 function close1() {
-  isShow1.value=false
+  isShow1.value = false;
 }
 function show1() {
-  isShow1.value=false
+  isShow1.value = false;
 }
 
 function close2() {
-  isShow1.value=false
+  isShow1.value = false;
 }
 function show2() {
-  isShow1.value=false
+  isShow1.value = false;
 }
 
 function close3() {
-  isShow1.value=false
+  isShow1.value = false;
 }
 function show3() {
-  isShow1.value=false
+  isShow1.value = false;
 }
 
 function close4() {
-  isShow1.value=false
+  isShow1.value = false;
 }
 function show4() {
-  isShow1.value=false
+  isShow1.value = false;
 }
 
 function close5() {
-  isShow1.value=false
+  isShow1.value = false;
 }
 function show5() {
-  isShow1.value=false
+  isShow1.value = false;
 }
 
 function close6() {
-  isShow1.value=false
+  isShow1.value = false;
 }
 function show6() {
-  isShow1.value=false
+  isShow1.value = false;
 }
 watch(useInput, (newValue) => {
   settings.value.start_date_id = null;

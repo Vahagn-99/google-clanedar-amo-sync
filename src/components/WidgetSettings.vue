@@ -2,10 +2,10 @@
   <!-- Start block -->
   <section class="dark:bg-gray-900 antialiased">
     <div class="mx-auto">
-      <div class="dtc-overflow-hidden ml-6 px-4 dtc-card">
+      <div class="dct-overflow-hidden ml-6 px-4 dct-card">
         <div class="overflow-x-auto">
           <table
-            class="dtc-table w-full text-sm text-left text-gray-500 dark:text-gray-400"
+            class="dct-table w-full text-sm text-left text-gray-500 dark:text-gray-400"
           >
             <thead
               class="text-xs text-gray-700 uppercase dark:bg-gray-700 dark:text-gray-400"
@@ -16,7 +16,7 @@
                 class="border-b dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700"
               >
                 <th
-                  class="dtc-empty-table px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                  class="dct-empty-table px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                 >
                   Нет зарегистрированных аккаунтов
                 </th>
@@ -45,7 +45,7 @@
                     @click="showSettings(account.id)"
                     :disabled="isLoadingId == account.id"
                     type="button"
-                    class="dtc-button text-white bg-[#4c8bf7] hover:bg-[#5c8bf9] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 inline-flex items-center"
+                    class="dct-button text-white bg-[#4c8bf7] hover:bg-[#5c8bf9] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 inline-flex items-center"
                   >
                     <svg
                       v-if="isLoadingId == account.id"
@@ -92,7 +92,7 @@
                     type="button"
                     data-modal-target="delete-modal"
                     data-modal-toggle="delete-modal"
-                    class="dtc-button flex items-center text-[#ff6e6e] hover:text-white border border-[#ff6e6e] hover:bg-[#f45050] focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-3 py-2 text-center"
+                    class="dct-button flex items-center text-[#ff6e6e] hover:text-white border border-[#ff6e6e] hover:bg-[#f45050] focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-3 py-2 text-center"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -122,7 +122,7 @@
             type="button"
             id="createProductButton"
             data-modal-toggle="createProductModal"
-            class="dtc-button dtc-google-button flex items-center justify-center text-white bg-[#4c8bf7] hover:bg-[#5c8bf9] focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800"
+            class="dct-button dct-google-button flex items-center justify-center text-white bg-[#4c8bf7] hover:bg-[#5c8bf9] focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800"
           >
             <svg
               class="w-4 h-4 mr-2 -ml-1"
@@ -170,6 +170,8 @@ const {
   getMarkers,
   fields,
   markers,
+  statuses,
+  selects,
 } = useSelect();
 
 const { getSettings } = useSettings();
@@ -180,13 +182,9 @@ const isLoadingId = ref(null);
 
 async function showSettings(accountId) {
   isLoadingId.value = accountId;
-  if (fields.value.length === 0) {
-    await getFields(subdomainId.value);
+  if (statuses.value.length === 0) {
+    await getStatuses(subdomainId.value);
   }
-  if (markers.value.length === 0) {
-    await getMarkers(subdomainId.value);
-  }
-
   await getSettings(accountId);
   await getCalendars(accountId);
   currentAccount.value = accountId;
@@ -209,9 +207,8 @@ async function handleDeleteAccount(account) {
 }
 
 onMounted(async () => {
-  await getStatuses(subdomainId.value);
-  await getFields(subdomainId.value);
   await getSelects(subdomainId.value);
+  await getFields(subdomainId.value);
   await getMarkers(subdomainId.value);
 });
 </script>

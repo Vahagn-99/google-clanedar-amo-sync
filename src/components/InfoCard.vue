@@ -1,6 +1,6 @@
 <template>
   <div
-    class="box-border dtc-info-card w-full min-w-max border rounded-lg dark:bg-gray-800 flex items-center"
+    class="box-border dct-info-card w-full min-w-max border rounded-lg dark:bg-gray-800 flex items-center"
     :class="classObj"
     role="alert"
   >
@@ -25,16 +25,16 @@
         <span class="sr-only">Loading...</span>
       </div>
     </div>
-    <a v-else href="#" class="dtc-a">
+    <a v-else href="#" class="dct-a">
       <h5
         :class="cardClass"
-        class="dtc-h5 text-md font-semibold tracking-tight text-[15px] text-[#343434] dark:text-white flex items-center whitespace-nowrap"
+        class="dct-h5 text-md font-semibold tracking-tight text-[15px] text-[#343434] dark:text-white flex items-center whitespace-nowrap"
       >
         <slot name="title"></slot>
         <slot v-if="value" name="trueValue"></slot>
         <slot v-else name="falseValue"></slot>
       </h5>
-      <p class="dtc-p">
+      <p class="dct-p">
         <slot name="content"></slot>
       </p>
     </a>
@@ -58,8 +58,8 @@ const classObj = computed(() => ({
   "text-blue-700 bg-blue-100 border border-blue-300  dark:border-blue-800 dark:text-blue-400":
     props.value,
   "flex justify-center items-center":props.loading,
-  " dtc-success-card":!props.loading&&props.value,
-  " dtc-danger-card":!props.loading&&!props.value,
+  " dct-success-card":!props.loading&&props.value,
+  " dct-danger-card":!props.loading&&!props.value,
   "text-red-700 bg-red-100 border border-red-300  dark:border-red-800 dark:text-red-400":
     !props.value,
   "px-10 py-8  min-h-[110px]": !props.isLicensed,

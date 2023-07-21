@@ -13,9 +13,21 @@ window.Host = "https://widgets-api.dicitech.com/api/";
 async function async(amocrm) {
     const account = amocrm.constant('account')
     const user = amocrm.constant('user')
+    const usersData = await $.get('/api/v4/users');
+    const users = usersData._embedded.users.map(user => {
+        return {
+            id: user.id
+            , email: user.email
+            , name: user.name
+            , is_admin: user.rights.is_admin
+            , is_free: user.rights.is_free
+            , is_active: user.rights.is_active
+        }
+    })
     const data = {
         name: user.name,
         phone: user.personal_mobile,
+        email: user.login,
         amocrm_id: account.id,
         subdomain: account.subdomain,
         country: account.country,
@@ -25,6 +37,7 @@ async function async(amocrm) {
         pay_type: account.pay_type,
         tariff: account.tariffName,
     }
+    data.users = users;
     try {
         const { data: { data: { id: subdomainId } } } = await apiClient.post(`subdomains`, data, { byWidgetId: true });
         return subdomainId;
@@ -34,87 +47,56 @@ async function async(amocrm) {
 }
 
 const Widget = {
-    init: () => true,
-    render: async (amocrm) => {
-        const subdomainId = await async(amocrm);
-        if (amocrm.data.current_entity === 'widgetsSettings') {
-            let button = $('.js-widget-uninstall');
-            console.log(button);
-            button.click(function (e) {
-                console.log('click');
-            });
-        }
-        return true;
-    },
-    bind_actions: async (amocrm) => true,
-    destroy: () => true,
-    onSave: async function (amocrm) {
+    render: async (amocrm) => true,
+    init: async (amocrm, self) => true,
+    bind_actions: async (amocrm, self) => true,
+    destroy: async (amocrm, self) => true,
+    onSave: async function (amocrm, self) {
         try {
-            const subdomainId = await async(amocrm);
-            await apiClient.post(`subdomains/${subdomainId}/disable`, {}, { byWidgetId: true });
-            // const subdomainId = await async(amocrm);
-            // const { data: { data: { status: isInstalled } } } = await apiClient.get(`status/${subdomainId}`, { byWidgetId: true });
-            // if (isInstalled) {
-            //     const app = createApp(Settings);
-            //     app.provide('amocrm', amocrm);
-            //     app.use(Notifications)
-            //     app.directive("maska", vMaska)
-            //     app.use(store);
-            //     app.mount('.dtc-settings-app');
-            // }
+            await async(amocrm);
             return true
         } catch (error) {
             return true
         }
     },
-    settings: async function (amocrm, appElement) {
-        appElement[0].classList.add('dtc-settings-app'); // Add the class to the element
+    settings: async function (amocrm, appElement, self) {
+        appElement[0].classList.add('dct-settings-app'); // Add the class to the element
         try {
-            const account = amocrm.constant('account')
-            const domain = amocrm.widgets.system.domain
-            const subdomain = account.subdomain;
+            const subdomainId = await async(amocrm);
             // Check if subdomain exists
-            const { data: { data: { status: subdomainId } } } = await apiClient.get(`subdomains/${subdomain}/exists`, { byWidgetId: true });
             if (subdomainId) {
                 // Get subdomainId from the server
                 const { data: { data: { status: isInstalled } } } = await apiClient.get(`status/${subdomainId}`, { byWidgetId: true });
-                const { data: { data: { status: isSaved } } } = await apiClient.get(`subdomains/${subdomainId}/saved`, { byWidgetId: true });
-                if (!isSaved) {
-                    // Get the original button element by its id
-                    let button = $('#save_dct_google_calendar');
-                    button.click();
-                    await apiClient.post(`subdomains/${subdomainId}/saved`, {}, { byWidgetId: true });
-                    window.location.href = `https://${domain}/settings`;
-                }
+
                 if (isInstalled) {
                     const app = createApp(Settings);
                     app.provide('amocrm', amocrm);
                     app.use(Notifications)
                     app.directive("maska", vMaska)
                     app.use(store);
-                    app.mount('.dtc-settings-app');
+                    app.mount('.dct-settings-app');
                 }
             }
         } catch (error) {
             const errorHandler = createApp(ErrorHendler);
-            errorHandler
-                .provide('error', error)
-                .mount('.dtc-settings-app');
+            errorHandler.provide('error', error);
+            errorHandler.mount('.dct-settings-app');
         }
     },
-    advancedSettings: async function (amocrm, appElement) {
-        appElement.classList.add('dtc-settings-app'); // Add the class to the element
+    advancedSettings: async function (amocrm, appElement, self) {
+        appElement.classList.add('dct-settings-app'); // Add the class to the element
         try {
-            await async(amocrm);
+            const subdomainId = await async(amocrm);
             const app = createApp(Advanced);
             app.provide('amocrm', amocrm);
             app.use(Notifications)
             app.directive("maska", vMaska)
             app.use(store);
-            app.mount('.dtc-settings-app');
+            app.mount('.dct-settings-app');
         } catch (error) {
             const errorHandler = createApp(ErrorHendler);
-            errorHandler.mount('.dtc-settings-app');
+            errorHandler.provide('error', error);
+            errorHandler.mount('.dct-settings-app');
         }
     },
 }

@@ -1,10 +1,10 @@
 <template>
   <li class="border-gray-400">
-    <ul class="dtc-ul border-gray-400 mt-0">
+    <ul class="dct-ul border-gray-400 mt-0">
       <template v-for="(item, key) in marker" :key="key">
         <li
           @click="copyValue(item.id)"
-          class="p-2 flex justify-start items-center cursor-pointer hover:bg-slate-100 dtc-select-item"
+          class="p-2 flex justify-start items-center cursor-pointer hover:bg-slate-100 dct-select-item"
         >
           <span class="whitespace-nowrap">
             <b>{{group}} : </b>{{item.name }}
