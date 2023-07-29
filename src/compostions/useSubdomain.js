@@ -1,3 +1,4 @@
+import { notify } from '@kyvg/vue3-notification';
 import { computed, inject } from 'vue';
 import { useStore } from 'vuex';
 
@@ -9,12 +10,9 @@ export function useSubdomain() {
     const isLicensed = computed(() => store.getters['subdomain/isLicensed']);
     const isRegistred = computed(() => store.getters['subdomain/isRegistred']);
     const hasPhone = computed(() => store.getters['subdomain/hasPhone']);
-    const isSaved = computed(() => store.getters['subdomain/isSaved']);
 
     const checkIsRegistred = async () => await store.dispatch('subdomain/checkIsRegistred', subdomainId.value);
     const checkIsLicensed = async () => await store.dispatch('subdomain/checkIsLicensed', subdomainId.value);
-    const checkIsSaved = async () => await store.dispatch('subdomain/checkIsSaved', subdomainId.value);
-    const save = async () => await store.dispatch('subdomain/save', subdomainId.value);
     const addPhone = async (data) => {
         try {
             await store.dispatch('subdomain/addPhone', data);
@@ -48,8 +46,5 @@ export function useSubdomain() {
         addPhone,
         subdomain,
         hasPhone,
-        isSaved,
-        checkIsSaved,
-        save
     };
 }

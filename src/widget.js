@@ -60,7 +60,8 @@ const Widget = {
         }
     },
     settings: async function (amocrm, appElement, self) {
-        appElement[0].classList.add('dct-settings-app'); // Add the class to the element
+        document.querySelector('.widget_settings_block__descr').style.display = 'none'; // hide this element
+        $(appElement[0]).append('<div id="vue-app-dispatch"></div>'); // add new div here and set id vue-app-dispatch
         try {
             const subdomainId = await async(amocrm);
             // Check if subdomain exists
@@ -74,13 +75,13 @@ const Widget = {
                     app.use(Notifications)
                     app.directive("maska", vMaska)
                     app.use(store);
-                    app.mount('.dct-settings-app');
+                    app.mount('#vue-app-dispatch');
                 }
             }
         } catch (error) {
             const errorHandler = createApp(ErrorHendler);
             errorHandler.provide('error', error);
-            errorHandler.mount('.dct-settings-app');
+            errorHandler.mount('.vue-app-dispatch');
         }
     },
     advancedSettings: async function (amocrm, appElement, self) {

@@ -10,7 +10,6 @@ const subdomain = {
         isExists: false,
         isLicensed: false,
         hasPhone: false,
-        isSaved: false,
     },
     getters: {
         getSubdomainId: (state) => state.subdomainId,
@@ -19,7 +18,6 @@ const subdomain = {
         isLicensed: (state) => state.isLicensed,
         hasPhone: (state) => state.hasPhone,
         getSubdomain: (state) => state.subdomain,
-        getIsSaved: (state) => state.isSaved,
     },
     mutations: {
         setSubdomainId: (state, subdomainId) => state.subdomainId = subdomainId,
@@ -46,8 +44,8 @@ const subdomain = {
             commit("setSubdomain", subdomain);
             localStorage.setItem("subdomain_id", subdomain.id);
         },
-        destory: async ({ commit }, subdomainId) => {
-            const resposne = await apiClient.delete(`subdomains/${subdomainId}`, { byWidgetId: true });
+        destory: async (subdomainId) => {
+            await apiClient.delete(`subdomains/${subdomainId}`, { byWidgetId: true });
             localStorage.clear();
         },
         checkIsRegistred: async ({ commit }, subdomainId) => {
@@ -74,9 +72,6 @@ const subdomain = {
             const resposne = await apiClient.get(`subdomains/${state.subdomainId}/saved`, { byWidgetId: true });
             const { status } = resposne.data.data
             commit("setIsSaved", status);
-        },
-        save: async ({ commit, state }) => {
-            await apiClient.post(`subdomains/${state.subdomainId}/saved`, {}, { byWidgetId: true });
         },
         addPhone: async ({ state }, { phone, country, mask }) => {
             await apiClient.post(`subdomains/${state.subdomainId}/phone`, { phone: phone, country: country, mask: mask }, { byWidgetId: true });
