@@ -32,7 +32,7 @@
             <span>
               {{
                 saveLoading
-                  ? "Загруска"
+                  ? "Загрузка"
                   : "Активировать и перейти к настройке виджета"
               }}
             </span>
@@ -60,7 +60,7 @@
 </template>
 
 <script setup>
-import { onMounted } from "vue";
+import { onMounted, ref } from "vue";
 import SettingsPhone from "./components/SettingsPhone.vue";
 import Support from "./components/Support.vue";
 import { useSubdomain } from "./compostions/useSubdomain";

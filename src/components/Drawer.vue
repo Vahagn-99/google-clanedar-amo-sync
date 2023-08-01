@@ -92,6 +92,7 @@
                       selected-key="id"
                       name="calendar_id"
                       @update:value="handleCalendar($event, index)"
+                      ref="selectedCalendar"
                     />
                   </div>
                   <button
@@ -120,7 +121,7 @@
               </template>
             </ul>
           </div>
-          <div class="w-full" v-if="settings.services?.length > 0">
+          <div class="w-full" v-if="serviceSelected">
             <button
               :disabled="!canAddNewItem"
               @click="addService"
@@ -131,7 +132,7 @@
                 'bg-blue-400 dct-cursor-not-allowed': !canAddNewItem,
               }"
             >
-              <svg
+              <svg v-if="hasServicesCount"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
@@ -145,7 +146,21 @@
                   d="M12 4.5v15m7.5-7.5h-15"
                 />
               </svg>
-              Добавить
+              <svg v-else
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="w-6 h-6"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"
+                />
+              </svg>
+              {{ hasServicesCount ? "Добавить" : "Синхронизировать" }}
             </button>
           </div>
         </div>
@@ -372,7 +387,7 @@ import Select from "./Select.vue";
 import MultilevelSelect from "./MultilevelSelect.vue";
 import { useSettings } from "../compostions/useSettings";
 import { useSelect } from "../compostions/useSelect";
-import { onMounted, ref, watch } from "vue";
+import { computed, onMounted, reactive, ref, watch } from "vue";
 import Toggle from "./Toggle.vue";
 import Input from "./Input.vue";
 import ShablonItem from "./ShablonItem.vue";
@@ -397,6 +412,10 @@ const usePcker = ref(!settings.value.date_district);
 const isOpenTemplate = ref(false);
 const canAddNewItem = ref(true);
 const services = ref(null);
+// declare a ref to hold the element reference
+// the name must match template ref value
+const serviceSelected = ref(settings.value.services_parent_id > 0);
+const hasServicesCount = computed(() => settings.value.services.length > 0);
 
 function toggleTemplate() {
   isOpenTemplate.value = !isOpenTemplate.value;
@@ -428,7 +447,8 @@ function handleEndDate(value) {
 function handleServiceParentId(parentId) {
   settings.value.services_parent_id = parentId;
   services.value = getServices(parentId);
-  settings.value.services = [{}];
+  settings.value.services = [];
+  serviceSelected.value = true;
 }
 
 function getServices(parentId) {
@@ -447,8 +467,6 @@ function handleService(serviceId, index) {
   settings.value.services[index].service_id = service.service_id;
   settings.value.services[index].service_value = service.service_value;
   settings.value.services[index].order = index;
-  //   servicesToDeleteFromSelect.value.push(serviceId);
-  //   services.value = services.value.filter((service) => service.id !== serviceId);
 }
 
 function handleCalendar(calendar_id, index) {
@@ -493,54 +511,7 @@ function closeModal() {
   drawerInstance.value.hide();
   emit("close-drawer");
 }
-const isShow1 = ref(false);
-const isShow2 = ref(false);
-const isShow3 = ref(false);
-const isShow4 = ref(false);
-const isShow5 = ref(false);
-const isShow6 = ref(false);
 
-function close1() {
-  isShow1.value = false;
-}
-function show1() {
-  isShow1.value = false;
-}
-
-function close2() {
-  isShow1.value = false;
-}
-function show2() {
-  isShow1.value = false;
-}
-
-function close3() {
-  isShow1.value = false;
-}
-function show3() {
-  isShow1.value = false;
-}
-
-function close4() {
-  isShow1.value = false;
-}
-function show4() {
-  isShow1.value = false;
-}
-
-function close5() {
-  isShow1.value = false;
-}
-function show5() {
-  isShow1.value = false;
-}
-
-function close6() {
-  isShow1.value = false;
-}
-function show6() {
-  isShow1.value = false;
-}
 watch(useInput, (newValue) => {
   settings.value.start_date_id = null;
   settings.value.end_date_id = null;

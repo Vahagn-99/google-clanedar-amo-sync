@@ -83,7 +83,7 @@
                       ></path>
                     </svg>
                     {{
-                      isLoadingId == account.id ? "Загруска..." : "Настроить"
+                      isLoadingId == account.id ? "Загрузка..." : "Настроить"
                     }}
                   </button>
 
